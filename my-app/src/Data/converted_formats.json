@@ -1,0 +1,994 @@
+{
+  "ancientgale": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "breezior": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "crimsonveil": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dusbun": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "jackalune": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "emberam": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "aurnaram": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "furnauries": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "equelpi": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "equiross": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "equirin": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "feralwish": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "fluffle": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "fropple": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "amfrosia": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galecadet": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ceruclone": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "zephyrouge": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "infastella": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "stellotl": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "stellotlawakened": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "stellumbra": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "stellumbraawakened": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironcore": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "irondrone": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironjustice": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironmight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironmirage": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironvictory": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironvirus": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "kaevern": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "wyrmend": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "liwyrm": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "lumini": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "luminova": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "luminarity": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "lumintail": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "melofly": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "norstar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "starstellation": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "nosepyre": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "djinnferno": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gildenose": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "noseferatu": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "papersol": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "umbrelligant": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pillowisp": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pillowispbaddream": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dreaneuma": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "porytron": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "porytronz": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "porytron2": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pumpkaboom": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pumpkaboomsmall": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pumpkaboomlarge": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pumpkaboomsuper": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gourgrenade": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gourgrenadesmall": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gourgrenadelarge": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gourgrenadesuper": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "quantom": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "phantasmau": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "regisculk": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "seedlin": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "podlin": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "pitchertun": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "torchlin": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "torchflyer": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "sephiredge": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "seraphiyon": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "slugrit": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dunecargo": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "snowygast": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "palossnow": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "spiritube": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "stygipede": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "centisculk": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tanglare": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tempestfang": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tigriff": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "griffern": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "griffaera": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "toxicmelody": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "typecast": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "wildgene": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "woofloo": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dubfool": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "alloette": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "alloettevex": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "beryllius": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "bronzombro": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "clarissie": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "clawviathan": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "echolyte": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "golisopede": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "hattertainer": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "hattrix": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "maroyal": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "neuveon": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "phantasmare": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tuligant": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "carbinkamethystcrystal": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "carbinkechoshardcrystal": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "carbinkemeraldcrystal": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dhelmisesculk": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "falinkslastsoldier": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "falinksgunslinger": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "flabebeallay": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "fomantislunar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "frillishghast": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gallademegamidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gallademidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gardevoirmegamidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gardevoirmidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "golettcopper": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "golurkcopper": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "goodrabogland": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "goodrawetland": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "hatennamidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "jellicentgrumpyghast": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "jellicenthappyghast": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "kirliamidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "lucariomegamidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "lucariomidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "lurantislunar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "meloettasoprano": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "meloettaacoustic": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "morelullcrimson": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "morelullwarped": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "phantumppale": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "raltsmidnight": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "roseliawitherrose": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "roseradewitherrose": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "shiinoticcrimson": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "shiinoticwarped": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "stonjournersandstone": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tangelalushcave": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "trevenantpale": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "wimpodsilverfish": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "cassowrath": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "feistling": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "mantiverous": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "scuta": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "sproutopod": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tentango": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tumbell": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "umamirage": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gorochuscrappedmons": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "clockage": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "minadial": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "mechabang": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "drimid": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dralily": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dragash": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "golbur": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "hyburst": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "leafipotent": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "mimivee": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "regihydro": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "regimoss": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "scarablet": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "vaporipotent": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "espilevi": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "flarichi": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "glacida": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "joltinum": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "kringwar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "krokellang": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "leaforest": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "megwar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "mortarb": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "qwilton": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "spiritempest": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "sylvijou": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "umbravis": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "vaporila": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "mausholdseavlian": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "revavroomnether": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tandemausseavlian": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tinkatinknether": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tinkatonnether": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "tinkatuffnether": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "varoomnether": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "glimmerix": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ducario": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "malevorustherian": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxyentei": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "detagross": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "valentinezapdos": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxydialga": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironcoil": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "durshifu": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "enginechiyu": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironrunner": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dengar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironpilot": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "rotogar": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltadreepy": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltadrakloak": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltadragapult": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "malevorus": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "valentinearticuno": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "archapult": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "wisphir": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "valentinemoltres": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxykyogre": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dayquaza": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxygroudon": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltagrowlithe": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltaarcanine": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dnorlax": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "februarymiraidon": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "cosmachi": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironshades": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ironworld": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "diancette": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dew": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxysuicune": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dragascue": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dunala": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dyarados": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "electisaur": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxyraikou": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "alatianyamask": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "alatianampularigus": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "florizim": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxypalkia": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltashuckle": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltashrookle": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dewtwo": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dlastoise": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "ursanette": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltayamask": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltamagirigus": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "flydon": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dolcarona": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "gholdaton": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "galaxygiratina": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltahoopa": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "mewrai": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "radiantmoon": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "engineragingbolt": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dardevoir": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltagible": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltagabite": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltagarchomp": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "dolgaleo": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  },
+  "deltahoopaunbound": {
+    "tier": "OU",
+    "isNonstandard": "Custom"
+  }
+}

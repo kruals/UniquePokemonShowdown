@@ -1,0 +1,79 @@
+:root {
+    --primary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --battle-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --dark-bg: #2a2e3a;
+    --glass: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.2);
+    --text: #ffffff;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text);
+    overflow: hidden;
+}
+.App{
+  display: flex;
+  flex-direction: column;
+  row-gap: 1vh;
+}
+
+/* Header */
+.main-header {
+    height: 60px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    z-index: 100;
+}
+
+.logo { font-size: 1.4rem; letter-spacing: -0.5px; }
+.logo b { color: #4facfe; }
+
+.btn-user {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Main Area */
+.battle-main {
+    position: relative;
+    height: calc(100% - 60px);
+    display: flex;
+    padding: 40px;
+    gap: 30px;
+}
+
+.user-info-block {
+    display: flex;
+    align-items: center;
+}
+
+.user-rating {
+    margin-left: 5px;
+    color: #aaa;
+    font-size: 0.9em;
+}
+
+.status-icon.online {
+    background-color: #2ecc71; /* Зеленый цвет для онлайна */
+    box-shadow: 0 0 5px #2ecc71;
+}
+
+.username {
+    font-weight: bold;
+}

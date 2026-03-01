@@ -1,0 +1,6167 @@
+{
+  "ancientgale": {
+    "num": 1501,
+    "name": "Ancient-gale",
+    "types": [
+      "Flying",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 97,
+      "atk": 91,
+      "def": 95,
+      "spa": 103,
+      "spd": 91,
+      "spe": 113
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 4.5,
+    "weightkg": 526,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "breezior": {
+    "num": 1502,
+    "name": "Breezior",
+    "types": [
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 50,
+      "spa": 100,
+      "spd": 50,
+      "spe": 140
+    },
+    "abilities": {
+      "0": "Windrider"
+    },
+    "heightm": 3,
+    "weightkg": 1,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "crimsonveil": {
+    "num": 1503,
+    "name": "Crimson-veil",
+    "types": [
+      "Dark",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 89,
+      "atk": 115,
+      "def": 95,
+      "spa": 99,
+      "spd": 87,
+      "spe": 105
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 3,
+    "weightkg": 27,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dusbun": {
+    "num": 1504,
+    "name": "Dusbun",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 33,
+      "def": 60,
+      "spa": 48,
+      "spd": 60,
+      "spe": 54
+    },
+    "abilities": {
+      "0": "Shielddust"
+    },
+    "heightm": 3,
+    "weightkg": 30,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "jackalune": {
+    "num": 1505,
+    "name": "Jackalune",
+    "types": [
+      "Ground",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 53,
+      "def": 70,
+      "spa": 97,
+      "spd": 95,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Shielddust"
+    },
+    "heightm": 10,
+    "weightkg": 70,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "emberam": {
+    "num": 1513,
+    "name": "Emberam",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 60,
+      "def": 60,
+      "spa": 40,
+      "spd": 50,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Blaze"
+    },
+    "heightm": 5,
+    "weightkg": 57,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "aurnaram": {
+    "num": 1514,
+    "name": "Aurnaram",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 90,
+      "spa": 50,
+      "spd": 60,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Blaze"
+    },
+    "heightm": 11,
+    "weightkg": 208,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "furnauries": {
+    "num": 1515,
+    "name": "Furnauries",
+    "types": [
+      "Fire",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 100,
+      "def": 120,
+      "spa": 60,
+      "spd": 85,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Blaze"
+    },
+    "heightm": 22,
+    "weightkg": 5100,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "equelpi": {
+    "num": 1516,
+    "name": "Equelpi",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 54,
+      "def": 35,
+      "spa": 66,
+      "spd": 65,
+      "spe": 45
+    },
+    "abilities": {
+      "0": "Torrent"
+    },
+    "heightm": 5,
+    "weightkg": 110,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "equiross": {
+    "num": 1517,
+    "name": "Equiross",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 58,
+      "def": 45,
+      "spa": 92,
+      "spd": 80,
+      "spe": 75
+    },
+    "abilities": {
+      "0": "Torrent"
+    },
+    "heightm": 8,
+    "weightkg": 280,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "equirin": {
+    "num": 1518,
+    "name": "Equirin",
+    "types": [
+      "Water",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 68,
+      "def": 60,
+      "spa": 122,
+      "spd": 90,
+      "spe": 115
+    },
+    "abilities": {
+      "0": "Torrent"
+    },
+    "heightm": 18,
+    "weightkg": 1150,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "feralwish": {
+    "num": 1519,
+    "name": "Feral-wish",
+    "types": [
+      "Steel",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 93,
+      "def": 111,
+      "spa": 107,
+      "spd": 81,
+      "spe": 103
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 2,
+    "weightkg": 42,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "fluffle": {
+    "num": 1520,
+    "name": "Fluffle",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 80,
+      "def": 130,
+      "spa": 80,
+      "spd": 130,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Fluffy"
+    },
+    "heightm": 17,
+    "weightkg": 825,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "fropple": {
+    "num": 1521,
+    "name": "Fropple",
+    "types": [
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 46,
+      "atk": 42,
+      "def": 81,
+      "spa": 42,
+      "spd": 55,
+      "spe": 24
+    },
+    "abilities": {
+      "0": "Supersweetsyrup"
+    },
+    "heightm": 2,
+    "weightkg": 3,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "amfrosia": {
+    "num": 1522,
+    "name": "Amfrosia",
+    "types": [
+      "Grass",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 121,
+      "def": 95,
+      "spa": 60,
+      "spd": 80,
+      "spe": 74
+    },
+    "abilities": {
+      "0": "Supersweetsyrup"
+    },
+    "heightm": 15,
+    "weightkg": 658,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galecadet": {
+    "num": 1523,
+    "name": "Galecadet",
+    "types": [
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 50,
+      "def": 30,
+      "spa": 50,
+      "spd": 30,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Windrider"
+    },
+    "heightm": 6,
+    "weightkg": 105,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ceruclone": {
+    "num": 1524,
+    "name": "Ceruclone",
+    "types": [
+      "Flying",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 70,
+      "def": 70,
+      "spa": 125,
+      "spd": 90,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Windpower"
+    },
+    "heightm": 16,
+    "weightkg": 620,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "zephyrouge": {
+    "num": 1525,
+    "name": "Zephyrouge",
+    "types": [
+      "Flying",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 125,
+      "def": 110,
+      "spa": 60,
+      "spd": 90,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Windrider"
+    },
+    "heightm": 15,
+    "weightkg": 9999,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "infastella": {
+    "num": 1526,
+    "name": "Infastella",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 60,
+      "def": 60,
+      "spa": 60,
+      "spd": 60,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Unaware"
+    },
+    "heightm": 3,
+    "weightkg": 8640,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "stellotl": {
+    "num": 1527,
+    "name": "Stellotl",
+    "types": [
+      "Dragon",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 75,
+      "def": 75,
+      "spa": 110,
+      "spd": 90,
+      "spe": 120
+    },
+    "abilities": {
+      "0": "Regenerator"
+    },
+    "heightm": 4,
+    "weightkg": 64,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "stellotlawakened": {
+    "num": 1528,
+    "name": "Stellotl (Awakened)",
+    "types": [
+      "Dragon",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 85,
+      "def": 85,
+      "spa": 135,
+      "spd": 120,
+      "spe": 145
+    },
+    "abilities": {
+      "0": "Neuroforce"
+    },
+    "heightm": 38,
+    "weightkg": 2640,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "stellumbra": {
+    "num": 1529,
+    "name": "Stellumbra",
+    "types": [
+      "Psychic",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 120,
+      "atk": 110,
+      "def": 90,
+      "spa": 75,
+      "spd": 75,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Illusion"
+    },
+    "heightm": 3,
+    "weightkg": 9999,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "stellumbraawakened": {
+    "num": 1530,
+    "name": "Stellumbra (Awakened)",
+    "types": [
+      "Psychic",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 145,
+      "atk": 135,
+      "def": 120,
+      "spa": 85,
+      "spd": 85,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Shadowtag"
+    },
+    "heightm": 29,
+    "weightkg": 9999,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironcore": {
+    "num": 1531,
+    "name": "Iron-core",
+    "types": [
+      "Poison",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 90,
+      "def": 128,
+      "spa": 98,
+      "spd": 108,
+      "spe": 78
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 2,
+    "weightkg": 134,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "irondrone": {
+    "num": 1532,
+    "name": "Iron-drone",
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 96,
+      "atk": 92,
+      "def": 86,
+      "spa": 112,
+      "spd": 82,
+      "spe": 122
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 2,
+    "weightkg": 52,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironjustice": {
+    "num": 1533,
+    "name": "Iron-justice",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 82,
+      "atk": 110,
+      "def": 90,
+      "spa": 104,
+      "spd": 88,
+      "spe": 116
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 2,
+    "weightkg": 222,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironmight": {
+    "num": 1534,
+    "name": "Iron-might",
+    "types": [
+      "Ground",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 104,
+      "atk": 120,
+      "def": 94,
+      "spa": 94,
+      "spd": 92,
+      "spe": 86
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 3.5,
+    "weightkg": 195,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironmirage": {
+    "num": 1535,
+    "name": "Iron-mirage",
+    "types": [
+      "Fairy",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 94,
+      "def": 80,
+      "spa": 120,
+      "spd": 90,
+      "spe": 116
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 3.5,
+    "weightkg": 172,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironvictory": {
+    "num": 1536,
+    "name": "Iron-victory",
+    "types": [
+      "Fire",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 94,
+      "def": 86,
+      "spa": 112,
+      "spd": 98,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 2,
+    "weightkg": 92,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironvirus": {
+    "num": 1537,
+    "name": "Iron-virus",
+    "types": [
+      "Psychic",
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 92,
+      "atk": 94,
+      "def": 90,
+      "spa": 106,
+      "spd": 88,
+      "spe": 120
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 2,
+    "weightkg": 452,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "kaevern": {
+    "num": 1538,
+    "name": "Kaevern",
+    "types": [
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 59,
+      "atk": 66,
+      "def": 79,
+      "spa": 31,
+      "spd": 79,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Shedskin"
+    },
+    "heightm": 4,
+    "weightkg": 406,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "wyrmend": {
+    "num": 1539,
+    "name": "Wyrmend",
+    "types": [
+      "Bug",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 84,
+      "atk": 46,
+      "def": 89,
+      "spa": 86,
+      "spd": 99,
+      "spe": 120
+    },
+    "abilities": {
+      "0": "Moldbreaker"
+    },
+    "heightm": 16,
+    "weightkg": 505,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "liwyrm": {
+    "num": 1540,
+    "name": "Liwyrm",
+    "types": [
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 29,
+      "atk": 46,
+      "def": 29,
+      "spa": 21,
+      "spd": 49,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Shedskin"
+    },
+    "heightm": 3,
+    "weightkg": 30,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "lumini": {
+    "num": 1541,
+    "name": "Lumini",
+    "types": [
+      "Psychic",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 44,
+      "atk": 35,
+      "def": 44,
+      "spa": 80,
+      "spd": 44,
+      "spe": 76
+    },
+    "abilities": {
+      "0": "Victorystar"
+    },
+    "heightm": 8,
+    "weightkg": 55,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "luminova": {
+    "num": 1542,
+    "name": "Luminova",
+    "types": [
+      "Psychic",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 66,
+      "atk": 45,
+      "def": 66,
+      "spa": 105,
+      "spd": 66,
+      "spe": 102
+    },
+    "abilities": {
+      "0": "Victorystar"
+    },
+    "heightm": 16,
+    "weightkg": 110,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "luminarity": {
+    "num": 1543,
+    "name": "Luminarity",
+    "types": [
+      "Ghost",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 108,
+      "atk": 50,
+      "def": 88,
+      "spa": 130,
+      "spd": 98,
+      "spe": 58
+    },
+    "abilities": {
+      "0": "Shadowtag"
+    },
+    "heightm": 21,
+    "weightkg": 9999,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "lumintail": {
+    "num": 1544,
+    "name": "Lumin-tail",
+    "types": [
+      "Water",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 91,
+      "def": 97,
+      "spa": 107,
+      "spd": 89,
+      "spe": 111
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 2,
+    "weightkg": 72,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "melofly": {
+    "num": 1545,
+    "name": "Melofly",
+    "types": [
+      "Flying",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 35,
+      "def": 57,
+      "spa": 97,
+      "spd": 57,
+      "spe": 114
+    },
+    "abilities": {
+      "0": "Perishbody"
+    },
+    "heightm": 1,
+    "weightkg": 9,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "norstar": {
+    "num": 1546,
+    "name": "Norstar",
+    "types": [
+      "Steel",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 65,
+      "def": 60,
+      "spa": 65,
+      "spd": 70,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Magnetpull"
+    },
+    "heightm": 8,
+    "weightkg": 952,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "starstellation": {
+    "num": 1547,
+    "name": "Starstellation",
+    "types": [
+      "Steel",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 100,
+      "def": 90,
+      "spa": 100,
+      "spd": 110,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Magnetpull"
+    },
+    "heightm": 11,
+    "weightkg": 2025,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "nosepyre": {
+    "num": 1548,
+    "name": "Nosepyre",
+    "types": [
+      "Rock",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 120,
+      "spa": 30,
+      "spd": 90,
+      "spe": 20
+    },
+    "abilities": {
+      "0": "Sturdy"
+    },
+    "heightm": 10,
+    "weightkg": 970,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "djinnferno": {
+    "num": 1549,
+    "name": "Djinnferno",
+    "types": [
+      "Fire",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 100,
+      "def": 130,
+      "spa": 100,
+      "spd": 120,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Rockypayload"
+    },
+    "heightm": 16,
+    "weightkg": 1190,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gildenose": {
+    "num": 1550,
+    "name": "Gildenose",
+    "types": [
+      "Rock",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 40,
+      "def": 130,
+      "spa": 95,
+      "spd": 140,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Regenerator"
+    },
+    "heightm": 12,
+    "weightkg": 1190,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "noseferatu": {
+    "num": 1551,
+    "name": "Noseferatu",
+    "types": [
+      "Rock",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 20,
+      "def": 100,
+      "spa": 115,
+      "spd": 140,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 12,
+    "weightkg": 1190,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "papersol": {
+    "num": 1552,
+    "name": "Papersol",
+    "types": [
+      "Grass",
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 70,
+      "def": 35,
+      "spa": 55,
+      "spd": 35,
+      "spe": 35
+    },
+    "abilities": {
+      "0": "Swiftswim"
+    },
+    "heightm": 5,
+    "weightkg": 10,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "umbrelligant": {
+    "num": 1558,
+    "name": "Umbrelligant",
+    "types": [
+      "Grass",
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 60,
+      "spa": 90,
+      "spd": 60,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Swiftswim"
+    },
+    "heightm": 10,
+    "weightkg": 15,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pillowisp": {
+    "num": 1564,
+    "name": "Pillowisp",
+    "types": [
+      "Ghost",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 40,
+      "def": 45,
+      "spa": 40,
+      "spd": 50,
+      "spe": 20
+    },
+    "abilities": {
+      "0": "Comatose"
+    },
+    "heightm": 13,
+    "weightkg": 1,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pillowispbaddream": {
+    "num": 1565,
+    "name": "Pillowisp (Bad_Dream)",
+    "types": [
+      "Ghost",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 40,
+      "def": 50,
+      "spa": 40,
+      "spd": 45,
+      "spe": 20
+    },
+    "abilities": {
+      "0": "Baddreams"
+    },
+    "heightm": 13,
+    "weightkg": 1,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dreaneuma": {
+    "num": 1566,
+    "name": "Dreaneuma",
+    "types": [
+      "Ghost",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 50,
+      "def": 95,
+      "spa": 135,
+      "spd": 115,
+      "spe": 45
+    },
+    "abilities": {
+      "0": "Comatose"
+    },
+    "heightm": 15,
+    "weightkg": 1.2,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "porytron": {
+    "num": 1567,
+    "name": "Porytron",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 40,
+      "def": 70,
+      "spa": 90,
+      "spd": 70,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 8,
+    "weightkg": 365,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "porytronz": {
+    "num": 1568,
+    "name": "Porytron-z",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 100,
+      "def": 60,
+      "spa": 100,
+      "spd": 60,
+      "spe": 130
+    },
+    "abilities": {
+      "0": "Motordrive"
+    },
+    "heightm": 9,
+    "weightkg": 340,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "porytron2": {
+    "num": 1569,
+    "name": "Porytron2",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 40,
+      "def": 90,
+      "spa": 115,
+      "spd": 95,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 6,
+    "weightkg": 325,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pumpkaboom": {
+    "num": 1570,
+    "name": "Pumpkaboom",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 49,
+      "atk": 66,
+      "def": 70,
+      "spa": 24,
+      "spd": 55,
+      "spe": 71
+    },
+    "abilities": {
+      "0": "Aftermath"
+    },
+    "heightm": 4,
+    "weightkg": 50,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pumpkaboomsmall": {
+    "num": 1571,
+    "name": "Pumpkaboom (Small)",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 44,
+      "atk": 66,
+      "def": 70,
+      "spa": 24,
+      "spd": 55,
+      "spe": 76
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 3,
+    "weightkg": 35,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pumpkaboomlarge": {
+    "num": 1572,
+    "name": "Pumpkaboom (Large)",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 54,
+      "atk": 66,
+      "def": 70,
+      "spa": 24,
+      "spd": 55,
+      "spe": 66
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 5,
+    "weightkg": 75,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pumpkaboomsuper": {
+    "num": 1573,
+    "name": "Pumpkaboom (Super)",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 59,
+      "atk": 66,
+      "def": 70,
+      "spa": 24,
+      "spd": 55,
+      "spe": 61
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 8,
+    "weightkg": 150,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gourgrenade": {
+    "num": 1574,
+    "name": "Gourgrenade",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 122,
+      "spa": 38,
+      "spd": 75,
+      "spe": 104
+    },
+    "abilities": {
+      "0": "Aftermath"
+    },
+    "heightm": 9,
+    "weightkg": 125,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gourgrenadesmall": {
+    "num": 1575,
+    "name": "Gourgrenade (Small)",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 85,
+      "def": 122,
+      "spa": 38,
+      "spd": 75,
+      "spe": 119
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 7,
+    "weightkg": 95,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gourgrenadelarge": {
+    "num": 1576,
+    "name": "Gourgrenade (Large)",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 95,
+      "def": 122,
+      "spa": 38,
+      "spd": 75,
+      "spe": 89
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 11,
+    "weightkg": 140,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gourgrenadesuper": {
+    "num": 1577,
+    "name": "Gourgrenade (Super)",
+    "types": [
+      "Fire",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 100,
+      "def": 122,
+      "spa": 38,
+      "spd": 75,
+      "spe": 74
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 17,
+    "weightkg": 390,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "quantom": {
+    "num": 1578,
+    "name": "Quantom",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 44,
+      "atk": 56,
+      "def": 46,
+      "spa": 44,
+      "spd": 66,
+      "spe": 58
+    },
+    "abilities": {
+      "0": "Frisk"
+    },
+    "heightm": 3,
+    "weightkg": 32,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "phantasmau": {
+    "num": 1579,
+    "name": "Phantasmau",
+    "types": [
+      "Normal",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 108,
+      "def": 68,
+      "spa": 58,
+      "spd": 94,
+      "spe": 111
+    },
+    "abilities": {
+      "0": "Superluck"
+    },
+    "heightm": 8,
+    "weightkg": 164,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "regisculk": {
+    "num": 1580,
+    "name": "Regisculk",
+    "types": [
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 150,
+      "atk": 80,
+      "def": 100,
+      "spa": 100,
+      "spd": 100,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Soundproof"
+    },
+    "heightm": 17,
+    "weightkg": 2100,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "seedlin": {
+    "num": 1581,
+    "name": "Seedlin",
+    "types": [
+      "Grass",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 40,
+      "def": 40,
+      "spa": 40,
+      "spd": 40,
+      "spe": 20
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 2,
+    "weightkg": 5,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "podlin": {
+    "num": 1583,
+    "name": "Podlin",
+    "types": [
+      "Grass",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 100,
+      "def": 100,
+      "spa": 50,
+      "spd": 80,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 2,
+    "weightkg": 5,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "pitchertun": {
+    "num": 1584,
+    "name": "Pitchertun",
+    "types": [
+      "Grass",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 120,
+      "atk": 125,
+      "def": 135,
+      "spa": 40,
+      "spd": 80,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 4,
+    "weightkg": 1260,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "torchlin": {
+    "num": 1585,
+    "name": "Torchlin",
+    "types": [
+      "Grass",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 40,
+      "def": 80,
+      "spa": 100,
+      "spd": 100,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 2,
+    "weightkg": 5,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "torchflyer": {
+    "num": 1586,
+    "name": "Torchflyer",
+    "types": [
+      "Grass",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 60,
+      "def": 60,
+      "spa": 120,
+      "spd": 90,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 2,
+    "weightkg": 5,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "sephiredge": {
+    "num": 1587,
+    "name": "Sephiredge",
+    "types": [
+      "Steel",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 140,
+      "def": 50,
+      "spa": 140,
+      "spd": 50,
+      "spe": 140
+    },
+    "abilities": {
+      "0": "Sharpness"
+    },
+    "heightm": 17,
+    "weightkg": 330,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "seraphiyon": {
+    "num": 1588,
+    "name": "Seraphiyon",
+    "types": [
+      "Dragon",
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 136,
+      "def": 118,
+      "spa": 136,
+      "spd": 118,
+      "spe": 92
+    },
+    "abilities": {
+      "0": "Protean"
+    },
+    "heightm": 50,
+    "weightkg": 3305,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "slugrit": {
+    "num": 1589,
+    "name": "Slugrit",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 50,
+      "def": 40,
+      "spa": 60,
+      "spd": 40,
+      "spe": 20
+    },
+    "abilities": {
+      "0": "Sandspit"
+    },
+    "heightm": 7,
+    "weightkg": 350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dunecargo": {
+    "num": 1590,
+    "name": "Dunecargo",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 60,
+      "def": 120,
+      "spa": 80,
+      "spd": 80,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Sandspit"
+    },
+    "heightm": 8,
+    "weightkg": 550,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "snowygast": {
+    "num": 1591,
+    "name": "Snowygast",
+    "types": [
+      "Ghost",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 35,
+      "def": 80,
+      "spa": 70,
+      "spd": 45,
+      "spe": 15
+    },
+    "abilities": {
+      "0": "Icebody"
+    },
+    "heightm": 5,
+    "weightkg": 700,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "palossnow": {
+    "num": 1592,
+    "name": "Palossnow",
+    "types": [
+      "Ghost",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 45,
+      "def": 120,
+      "spa": 110,
+      "spd": 75,
+      "spe": 35
+    },
+    "abilities": {
+      "0": "Icebody"
+    },
+    "heightm": 13,
+    "weightkg": 2500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "spiritube": {
+    "num": 1593,
+    "name": "Spiritube",
+    "types": [
+      "Ghost",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 31,
+      "def": 108,
+      "spa": 108,
+      "spd": 108,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Telepathy"
+    },
+    "heightm": 10,
+    "weightkg": 1080,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "stygipede": {
+    "num": 1594,
+    "name": "Stygipede",
+    "types": [
+      "Dark",
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 65,
+      "def": 45,
+      "spa": 50,
+      "spd": 45,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Eartheater"
+    },
+    "heightm": 7,
+    "weightkg": 10,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "centisculk": {
+    "num": 1595,
+    "name": "Centisculk",
+    "types": [
+      "Dark",
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 115,
+      "def": 80,
+      "spa": 60,
+      "spd": 80,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Eartheater"
+    },
+    "heightm": 30,
+    "weightkg": 1200,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tanglare": {
+    "num": 1596,
+    "name": "Tanglare",
+    "types": [
+      "Grass",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 95,
+      "def": 60,
+      "spa": 120,
+      "spd": 110,
+      "spe": 75
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 10,
+    "weightkg": 350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tempestfang": {
+    "num": 1597,
+    "name": "Tempest-fang",
+    "types": [
+      "Electric",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 113,
+      "def": 87,
+      "spa": 103,
+      "spd": 85,
+      "spe": 117
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 4.7,
+    "weightkg": 352,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tigriff": {
+    "num": 1598,
+    "name": "Tigriff",
+    "types": [
+      "Grass",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 57,
+      "atk": 89,
+      "def": 50,
+      "spa": 60,
+      "spd": 60,
+      "spe": 104
+    },
+    "abilities": {
+      "0": "Overgrow"
+    },
+    "heightm": 4,
+    "weightkg": 90,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "griffern": {
+    "num": 1599,
+    "name": "Griffern",
+    "types": [
+      "Grass",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 57,
+      "atk": 89,
+      "def": 50,
+      "spa": 60,
+      "spd": 60,
+      "spe": 104
+    },
+    "abilities": {
+      "0": "Overgrow"
+    },
+    "heightm": 7,
+    "weightkg": 240,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "griffaera": {
+    "num": 1600,
+    "name": "Griffaera",
+    "types": [
+      "Grass",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 87,
+      "atk": 112,
+      "def": 70,
+      "spa": 72,
+      "spd": 70,
+      "spe": 124
+    },
+    "abilities": {
+      "0": "Overgrow"
+    },
+    "heightm": 17,
+    "weightkg": 1270,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "toxicmelody": {
+    "num": 1601,
+    "name": "Toxic-melody",
+    "types": [
+      "Normal",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 103,
+      "atk": 91,
+      "def": 99,
+      "spa": 97,
+      "spd": 105,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 3,
+    "weightkg": 265,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "typecast": {
+    "num": 1602,
+    "name": "Typecast",
+    "types": [
+      "Normal",
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 80,
+      "spa": 80,
+      "spd": 80,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Adaptability"
+    },
+    "heightm": 3,
+    "weightkg": 8,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "wildgene": {
+    "num": 1620,
+    "name": "Wild-gene",
+    "types": [
+      "Bug",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 99,
+      "atk": 105,
+      "def": 101,
+      "spa": 97,
+      "spd": 101,
+      "spe": 87
+    },
+    "abilities": {
+      "0": "Protosynthesis"
+    },
+    "heightm": 2,
+    "weightkg": 452,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "woofloo": {
+    "num": 1621,
+    "name": "Woofloo",
+    "types": [
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 42,
+      "atk": 55,
+      "def": 40,
+      "spa": 45,
+      "spd": 40,
+      "spe": 48
+    },
+    "abilities": {
+      "0": "Steadfast"
+    },
+    "heightm": 6,
+    "weightkg": 97,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dubfool": {
+    "num": 1622,
+    "name": "Dubfool",
+    "types": [
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 100,
+      "def": 80,
+      "spa": 90,
+      "spd": 60,
+      "spe": 88
+    },
+    "abilities": {
+      "0": "Steadfast"
+    },
+    "heightm": 13,
+    "weightkg": 500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "alloette": {
+    "num": 1623,
+    "name": "Alloette",
+    "types": [
+      "Flying",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 50,
+      "def": 68,
+      "spa": 122,
+      "spd": 109,
+      "spe": 125
+    },
+    "abilities": {
+      "0": "Pickup"
+    },
+    "heightm": 2,
+    "weightkg": 9,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "alloettevex": {
+    "num": 1624,
+    "name": "Alloette (Vex)",
+    "types": [
+      "Flying",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 122,
+      "def": 68,
+      "spa": 70,
+      "spd": 99,
+      "spe": 125
+    },
+    "abilities": {
+      "0": "Longreach"
+    },
+    "heightm": 2,
+    "weightkg": 9,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "beryllius": {
+    "num": 1625,
+    "name": "Beryllius",
+    "types": [
+      "Rock",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 150,
+      "def": 150,
+      "spa": 42,
+      "spd": 60,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 7,
+    "weightkg": 88,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "bronzombro": {
+    "num": 1626,
+    "name": "Bronzombro",
+    "types": [
+      "Steel",
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 97,
+      "atk": 60,
+      "def": 75,
+      "spa": 83,
+      "spd": 71,
+      "spe": 74
+    },
+    "abilities": {
+      "0": "Simple"
+    },
+    "heightm": 5,
+    "weightkg": 300,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "clarissie": {
+    "num": 1627,
+    "name": "Clarissie",
+    "types": [
+      "Rock",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 42,
+      "def": 60,
+      "spa": 150,
+      "spd": 150,
+      "spe": 68
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 7,
+    "weightkg": 88,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "clawviathan": {
+    "num": 1628,
+    "name": "Clawviathan",
+    "types": [
+      "Water",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 91,
+      "atk": 98,
+      "def": 83,
+      "spa": 124,
+      "spd": 84,
+      "spe": 85
+    },
+    "abilities": {
+      "0": "Megalauncher"
+    },
+    "heightm": 16,
+    "weightkg": 455,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "echolyte": {
+    "num": 1629,
+    "name": "Echolyte",
+    "types": [
+      "Rock",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 150,
+      "def": 40,
+      "spa": 150,
+      "spd": 40,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Soundproof"
+    },
+    "heightm": 7,
+    "weightkg": 88,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "golisopede": {
+    "num": 1630,
+    "name": "Golisopede",
+    "types": [
+      "Bug",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 125,
+      "def": 90,
+      "spa": 30,
+      "spd": 140,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Emergencyexit"
+    },
+    "heightm": 20,
+    "weightkg": 1080,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "hattertainer": {
+    "num": 1631,
+    "name": "Hattertainer",
+    "types": [
+      "Fire",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 57,
+      "atk": 136,
+      "def": 63,
+      "spa": 80,
+      "spd": 75,
+      "spe": 99
+    },
+    "abilities": {
+      "0": "Magician"
+    },
+    "heightm": 21,
+    "weightkg": 51,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "hattrix": {
+    "num": 1632,
+    "name": "Hattrix",
+    "types": [
+      "Fire",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 57,
+      "atk": 86,
+      "def": 55,
+      "spa": 30,
+      "spd": 63,
+      "spe": 79
+    },
+    "abilities": {
+      "0": "Magician"
+    },
+    "heightm": 6,
+    "weightkg": 48,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "maroyal": {
+    "num": 1633,
+    "name": "Maroyal",
+    "types": [
+      "Water",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 55,
+      "def": 95,
+      "spa": 30,
+      "spd": 70,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Steadfast"
+    },
+    "heightm": 10,
+    "weightkg": 405,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "neuveon": {
+    "num": 1634,
+    "name": "Neuveon",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 110,
+      "def": 75,
+      "spa": 110,
+      "spd": 75,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Protean"
+    },
+    "heightm": 13,
+    "weightkg": 255,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "phantasmare": {
+    "num": 1635,
+    "name": "Phantasmare",
+    "types": [
+      "Ghost",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 135,
+      "def": 95,
+      "spa": 50,
+      "spd": 115,
+      "spe": 45
+    },
+    "abilities": {
+      "0": "Baddreams"
+    },
+    "heightm": 15,
+    "weightkg": 1.2,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tuligant": {
+    "num": 1636,
+    "name": "Tuligant",
+    "types": [
+      "Grass",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 50,
+      "def": 85,
+      "spa": 115,
+      "spd": 95,
+      "spe": 65
+    },
+    "abilities": {
+      "0": "Serenegrace"
+    },
+    "heightm": 11,
+    "weightkg": 153,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "carbinkamethystcrystal": {
+    "num": 1637,
+    "name": "Carbink (Amethyst-Crystal)",
+    "types": [
+      "Rock",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 42,
+      "atk": 42,
+      "def": 42,
+      "spa": 142,
+      "spd": 142,
+      "spe": 42
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 3,
+    "weightkg": 57,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "carbinkechoshardcrystal": {
+    "num": 1638,
+    "name": "Carbink (Echo-Shard-Crystal)",
+    "types": [
+      "Rock",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 42,
+      "atk": 142,
+      "def": 42,
+      "spa": 142,
+      "spd": 42,
+      "spe": 42
+    },
+    "abilities": {
+      "0": "Soundproof"
+    },
+    "heightm": 3,
+    "weightkg": 57,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "carbinkemeraldcrystal": {
+    "num": 1639,
+    "name": "Carbink (Emerald-Crystal)",
+    "types": [
+      "Rock",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 42,
+      "atk": 142,
+      "def": 142,
+      "spa": 42,
+      "spd": 42,
+      "spe": 42
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 3,
+    "weightkg": 57,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dhelmisesculk": {
+    "num": 1640,
+    "name": "Dhelmise (Sculk)",
+    "types": [
+      "Ghost",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 118,
+      "def": 90,
+      "spa": 118,
+      "spd": 100,
+      "spe": 21
+    },
+    "abilities": {
+      "0": "Steelworker"
+    },
+    "heightm": 42,
+    "weightkg": 2100,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "falinkslastsoldier": {
+    "num": 1641,
+    "name": "Falinks (Last-Soldier)",
+    "types": [
+      "Fighting",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 110,
+      "def": 60,
+      "spa": 40,
+      "spd": 100,
+      "spe": 85
+    },
+    "abilities": {
+      "0": "Longreach"
+    },
+    "heightm": 30,
+    "weightkg": 620,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "falinksgunslinger": {
+    "num": 1642,
+    "name": "Falinks (Gunslinger)",
+    "types": [
+      "Fighting",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 90,
+      "def": 100,
+      "spa": 90,
+      "spd": 60,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Skilllink"
+    },
+    "heightm": 60,
+    "weightkg": 517,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "flabebeallay": {
+    "num": 1643,
+    "name": "Flabebe (Allay)",
+    "types": [
+      "Flying",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 54,
+      "atk": 35,
+      "def": 47,
+      "spa": 75,
+      "spd": 58,
+      "spe": 82
+    },
+    "abilities": {
+      "0": "Pickup"
+    },
+    "heightm": 1,
+    "weightkg": 1,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "fomantislunar": {
+    "num": 1644,
+    "name": "Fomantis (Lunar)",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 50,
+      "def": 30,
+      "spa": 50,
+      "spd": 35,
+      "spe": 45
+    },
+    "abilities": {
+      "0": "Mimicry"
+    },
+    "heightm": 3,
+    "weightkg": 15,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "frillishghast": {
+    "num": 1645,
+    "name": "Frillish (Ghast)",
+    "types": [
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 20,
+      "def": 50,
+      "spa": 75,
+      "spd": 85,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Dryskin"
+    },
+    "heightm": 12,
+    "weightkg": 330,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gallademegamidnight": {
+    "num": 1646,
+    "name": "Gallade (Mega Midnight)",
+    "types": [
+      "Dark",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 165,
+      "def": 95,
+      "spa": 65,
+      "spd": 115,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Toughclaws"
+    },
+    "heightm": 16,
+    "weightkg": 564,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gallademidnight": {
+    "num": 1647,
+    "name": "Gallade (midnight)",
+    "types": [
+      "Dark",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 125,
+      "def": 65,
+      "spa": 65,
+      "spd": 115,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Sharpness"
+    },
+    "heightm": 16,
+    "weightkg": 520,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gardevoirmegamidnight": {
+    "num": 1648,
+    "name": "Gardevoir (Mega Midnight)",
+    "types": [
+      "Dark",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 65,
+      "def": 85,
+      "spa": 165,
+      "spd": 135,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Triage"
+    },
+    "heightm": 16,
+    "weightkg": 484,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gardevoirmidnight": {
+    "num": 1649,
+    "name": "Gardevoir (Midnight)",
+    "types": [
+      "Dark",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 65,
+      "def": 65,
+      "spa": 125,
+      "spd": 115,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Insomnia"
+    },
+    "heightm": 16,
+    "weightkg": 484,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "golettcopper": {
+    "num": 1650,
+    "name": "Golett (Copper)",
+    "types": [
+      "Steel",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 49,
+      "atk": 25,
+      "def": 50,
+      "spa": 79,
+      "spd": 50,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Lightningrod"
+    },
+    "heightm": 10,
+    "weightkg": 920,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "golurkcopper": {
+    "num": 1654,
+    "name": "Golurk (Copper)",
+    "types": [
+      "Steel",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 69,
+      "atk": 45,
+      "def": 80,
+      "spa": 124,
+      "spd": 80,
+      "spe": 85
+    },
+    "abilities": {
+      "0": "Lightningrod"
+    },
+    "heightm": 28,
+    "weightkg": 3300,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "goodrabogland": {
+    "num": 1658,
+    "name": "Goodra (Bogland)",
+    "types": [
+      "Dragon",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 60,
+      "def": 150,
+      "spa": 110,
+      "spd": 150,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Liquidooze"
+    },
+    "heightm": 12,
+    "weightkg": 1505,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "goodrawetland": {
+    "num": 1659,
+    "name": "Goodra (Wetland)",
+    "types": [
+      "Dragon",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 100,
+      "def": 90,
+      "spa": 100,
+      "spd": 130,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Stormdrain"
+    },
+    "heightm": 20,
+    "weightkg": 1405,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "hatennamidnight": {
+    "num": 1660,
+    "name": "Hatenna (Midnight)",
+    "types": [
+      "Fire",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 42,
+      "atk": 56,
+      "def": 45,
+      "spa": 30,
+      "spd": 53,
+      "spe": 39
+    },
+    "abilities": {
+      "0": "Magician"
+    },
+    "heightm": 5,
+    "weightkg": 34,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "jellicentgrumpyghast": {
+    "num": 1661,
+    "name": "Jellicent (Grumpy-Ghast)",
+    "types": [
+      "Flying",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 60,
+      "spa": 60,
+      "spd": 80,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Flashfire"
+    },
+    "heightm": 22,
+    "weightkg": 1350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "jellicenthappyghast": {
+    "num": 1662,
+    "name": "Jellicent (Happy-Ghast)",
+    "types": [
+      "Flying",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 50,
+      "def": 60,
+      "spa": 110,
+      "spd": 100,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Waterabsorb"
+    },
+    "heightm": 22,
+    "weightkg": 1350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "kirliamidnight": {
+    "num": 1663,
+    "name": "Kirlia (Midnight)",
+    "types": [
+      "Dark",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 38,
+      "atk": 35,
+      "def": 35,
+      "spa": 65,
+      "spd": 55,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Insomnia"
+    },
+    "heightm": 8,
+    "weightkg": 202,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "lucariomegamidnight": {
+    "num": 1664,
+    "name": "Lucario (Mega Midnight)",
+    "types": [
+      "Fighting",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 90,
+      "def": 98,
+      "spa": 155,
+      "spd": 85,
+      "spe": 127
+    },
+    "abilities": {
+      "0": "Megalauncher"
+    },
+    "heightm": 13,
+    "weightkg": 575,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "lucariomidnight": {
+    "num": 1665,
+    "name": "Lucario (Midnight)",
+    "types": [
+      "Fighting",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 75,
+      "spa": 125,
+      "spd": 75,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Megalauncher"
+    },
+    "heightm": 12,
+    "weightkg": 540,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "lurantislunar": {
+    "num": 1666,
+    "name": "Lurantis (Lunar)",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 100,
+      "def": 70,
+      "spa": 95,
+      "spd": 85,
+      "spe": 65
+    },
+    "abilities": {
+      "0": "Mimicry"
+    },
+    "heightm": 9,
+    "weightkg": 185,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "meloettasoprano": {
+    "num": 1667,
+    "name": "Meloetta (Soprano)",
+    "types": [
+      "Normal",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 50,
+      "def": 104,
+      "spa": 128,
+      "spd": 128,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Serenegrace"
+    },
+    "heightm": 6,
+    "weightkg": 65,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "meloettaacoustic": {
+    "num": 1668,
+    "name": "Meloetta (Acoustic)",
+    "types": [
+      "Normal",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 118,
+      "def": 77,
+      "spa": 128,
+      "spd": 77,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Punkrock"
+    },
+    "heightm": 6,
+    "weightkg": 65,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "morelullcrimson": {
+    "num": 1669,
+    "name": "Morelull (Crimson)",
+    "types": [
+      "Grass",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 30,
+      "def": 75,
+      "spa": 65,
+      "spd": 55,
+      "spe": 20
+    },
+    "abilities": {
+      "0": "Tanglinghair"
+    },
+    "heightm": 2,
+    "weightkg": 15,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "morelullwarped": {
+    "num": 1670,
+    "name": "Morelull (Warped)",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 20,
+      "def": 55,
+      "spa": 75,
+      "spd": 80,
+      "spe": 15
+    },
+    "abilities": {
+      "0": "Wonderskin"
+    },
+    "heightm": 2,
+    "weightkg": 15,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "phantumppale": {
+    "num": 1671,
+    "name": "Phantump (Pale)",
+    "types": [
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 43,
+      "atk": 70,
+      "def": 80,
+      "spa": 30,
+      "spd": 68,
+      "spe": 18
+    },
+    "abilities": {
+      "0": "Sapsipper"
+    },
+    "heightm": 4,
+    "weightkg": 70,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "raltsmidnight": {
+    "num": 1672,
+    "name": "Ralts (Midnight)",
+    "types": [
+      "Dark",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 28,
+      "atk": 25,
+      "def": 25,
+      "spa": 45,
+      "spd": 35,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Insomnia"
+    },
+    "heightm": 4,
+    "weightkg": 66,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "roseliawitherrose": {
+    "num": 1673,
+    "name": "Roselia (Wither-Rose)",
+    "types": [
+      "Dark",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 60,
+      "def": 90,
+      "spa": 40,
+      "spd": 90,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Poisontouch"
+    },
+    "heightm": 3,
+    "weightkg": 20,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "roseradewitherrose": {
+    "num": 1674,
+    "name": "Roserade (Wither-Rose)",
+    "types": [
+      "Dark",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 125,
+      "def": 95,
+      "spa": 50,
+      "spd": 80,
+      "spe": 105
+    },
+    "abilities": {
+      "0": "Merciless"
+    },
+    "heightm": 9,
+    "weightkg": 145,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "shiinoticcrimson": {
+    "num": 1675,
+    "name": "Shiinotic (Crimson)",
+    "types": [
+      "Grass",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 45,
+      "def": 100,
+      "spa": 95,
+      "spd": 80,
+      "spe": 45
+    },
+    "abilities": {
+      "0": "Tanglinghair"
+    },
+    "heightm": 10,
+    "weightkg": 115,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "shiinoticwarped": {
+    "num": 1676,
+    "name": "Shiinotic (Warped)",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 30,
+      "def": 80,
+      "spa": 100,
+      "spd": 100,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Wonderskin"
+    },
+    "heightm": 10,
+    "weightkg": 115,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "stonjournersandstone": {
+    "num": 1677,
+    "name": "Stonjourner (Sandstone)",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 20,
+      "def": 75,
+      "spa": 125,
+      "spd": 110,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Powerspot"
+    },
+    "heightm": 25,
+    "weightkg": 5200,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tangelalushcave": {
+    "num": 1678,
+    "name": "Tangela (Lush-Cave)",
+    "types": [
+      "Grass",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 100,
+      "def": 68,
+      "spa": 45,
+      "spd": 115,
+      "spe": 82
+    },
+    "abilities": {
+      "0": "Grasspelt"
+    },
+    "heightm": 10,
+    "weightkg": 350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "trevenantpale": {
+    "num": 1679,
+    "name": "Trevenant (Pale)",
+    "types": [
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 116,
+      "def": 120,
+      "spa": 35,
+      "spd": 113,
+      "spe": 5
+    },
+    "abilities": {
+      "0": "Sapsipper"
+    },
+    "heightm": 15,
+    "weightkg": 710,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "wimpodsilverfish": {
+    "num": 1680,
+    "name": "Wimpod (Silverfish)",
+    "types": [
+      "Bug",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 25,
+      "atk": 35,
+      "def": 30,
+      "spa": 20,
+      "spd": 40,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Wimpout"
+    },
+    "heightm": 5,
+    "weightkg": 120,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "cassowrath": {
+    "num": 1681,
+    "name": "Cassowrath",
+    "types": [
+      "Rock",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 120,
+      "def": 70,
+      "spa": 90,
+      "spd": 70,
+      "spe": 145
+    },
+    "abilities": {
+      "0": "Flashfire"
+    },
+    "heightm": 17,
+    "weightkg": 1200,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "feistling": {
+    "num": 1682,
+    "name": "Feistling",
+    "types": [
+      "Rock",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 65,
+      "def": 50,
+      "spa": 40,
+      "spd": 50,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Flashfire"
+    },
+    "heightm": 6,
+    "weightkg": 400,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "mantiverous": {
+    "num": 1683,
+    "name": "Mantiverous",
+    "types": [
+      "Bug",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 120,
+      "def": 75,
+      "spa": 120,
+      "spd": 45,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Swiftswim"
+    },
+    "heightm": 13,
+    "weightkg": 400,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "scuta": {
+    "num": 1684,
+    "name": "Scuta",
+    "types": [
+      "Bug",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 60,
+      "def": 50,
+      "spa": 60,
+      "spd": 45,
+      "spe": 85
+    },
+    "abilities": {
+      "0": "Swiftswim"
+    },
+    "heightm": 7,
+    "weightkg": 125,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "sproutopod": {
+    "num": 1685,
+    "name": "Sproutopod",
+    "types": [
+      "Ground",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 60,
+      "def": 135,
+      "spa": 67,
+      "spd": 88,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Runaway"
+    },
+    "heightm": 152,
+    "weightkg": 800,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tentango": {
+    "num": 1686,
+    "name": "Tentango",
+    "types": [
+      "Water",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 20,
+      "def": 60,
+      "spa": 55,
+      "spd": 70,
+      "spe": 28
+    },
+    "abilities": {
+      "0": "Pickup"
+    },
+    "heightm": 5,
+    "weightkg": 80,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tumbell": {
+    "num": 1687,
+    "name": "Tumbell",
+    "types": [
+      "Ground",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 35,
+      "def": 70,
+      "spa": 40,
+      "spd": 50,
+      "spe": 40
+    },
+    "abilities": {
+      "0": "Runaway"
+    },
+    "heightm": 7,
+    "weightkg": 100,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "umamirage": {
+    "num": 1688,
+    "name": "Umamirage",
+    "types": [
+      "Water",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 70,
+      "def": 100,
+      "spa": 75,
+      "spd": 140,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Pickup"
+    },
+    "heightm": 28,
+    "weightkg": 800,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gorochuscrappedmons": {
+    "num": 1689,
+    "name": "Gorochu_scrappedmons",
+    "types": [
+      "Electric",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 110,
+      "def": 85,
+      "spa": 50,
+      "spd": 85,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Flamebody"
+    },
+    "heightm": 8,
+    "weightkg": 410,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "clockage": {
+    "num": 1690,
+    "name": "Clockage",
+    "types": [
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 55,
+      "def": 60,
+      "spa": 35,
+      "spd": 80,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 6,
+    "weightkg": 476,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "minadial": {
+    "num": 1691,
+    "name": "Minadial",
+    "types": [
+      "Steel",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 80,
+      "spa": 55,
+      "spd": 100,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Eartheater"
+    },
+    "heightm": 12,
+    "weightkg": 1350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "mechabang": {
+    "num": 1692,
+    "name": "Mechabang",
+    "types": [
+      "Steel",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 135,
+      "def": 90,
+      "spa": 95,
+      "spd": 130,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Eartheater"
+    },
+    "heightm": 16,
+    "weightkg": 5500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "drimid": {
+    "num": 1693,
+    "name": "Drimid",
+    "types": [
+      "Dragon",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 28,
+      "atk": 40,
+      "def": 30,
+      "spa": 60,
+      "spd": 30,
+      "spe": 82
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 5,
+    "weightkg": 20,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dralily": {
+    "num": 1694,
+    "name": "Dralily",
+    "types": [
+      "Dragon",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 60,
+      "def": 50,
+      "spa": 80,
+      "spd": 50,
+      "spe": 102
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 14,
+    "weightkg": 110,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dragash": {
+    "num": 1695,
+    "name": "Dragash",
+    "types": [
+      "Dragon",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 100,
+      "def": 75,
+      "spa": 120,
+      "spd": 75,
+      "spe": 142
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 30,
+    "weightkg": 750,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "golbur": {
+    "num": 1696,
+    "name": "Golbur",
+    "types": [
+      "Ground",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 59,
+      "atk": 35,
+      "def": 50,
+      "spa": 74,
+      "spd": 50,
+      "spe": 35
+    },
+    "abilities": {
+      "0": "Refrigerate"
+    },
+    "heightm": 10,
+    "weightkg": 920,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "hyburst": {
+    "num": 1697,
+    "name": "Hyburst",
+    "types": [
+      "Ground",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 89,
+      "atk": 54,
+      "def": 80,
+      "spa": 124,
+      "spd": 80,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Refrigerate"
+    },
+    "heightm": 28,
+    "weightkg": 3300,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "leafipotent": {
+    "num": 1698,
+    "name": "Leafipotent",
+    "types": [
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 255,
+      "atk": 180,
+      "def": 255,
+      "spa": 134,
+      "spd": 250,
+      "spe": 146
+    },
+    "abilities": {
+      "0": "Desolateland"
+    },
+    "heightm": 10,
+    "weightkg": 255,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "mimivee": {
+    "num": 1699,
+    "name": "Mimivee",
+    "types": [
+      "Ghost",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 70,
+      "spa": 50,
+      "spd": 105,
+      "spe": 96
+    },
+    "abilities": {
+      "0": "Disguise"
+    },
+    "heightm": 2,
+    "weightkg": 7,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "regihydro": {
+    "num": 1703,
+    "name": "Regihydro",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 50,
+      "spa": 200,
+      "spd": 100,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Waterabsorb"
+    },
+    "heightm": 21,
+    "weightkg": 2000,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "regimoss": {
+    "num": 1704,
+    "name": "Regimoss",
+    "types": [
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 200,
+      "def": 100,
+      "spa": 100,
+      "spd": 50,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Leafguard"
+    },
+    "heightm": 17,
+    "weightkg": 2300,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "scarablet": {
+    "num": 1705,
+    "name": "Scarablet",
+    "types": [
+      "Dark",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 100,
+      "def": 90,
+      "spa": 50,
+      "spd": 70,
+      "spe": 120
+    },
+    "abilities": {
+      "0": "Sandveil"
+    },
+    "heightm": 50,
+    "weightkg": 666,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "vaporipotent": {
+    "num": 1706,
+    "name": "Vaporipotent",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 255,
+      "atk": 134,
+      "def": 250,
+      "spa": 180,
+      "spd": 255,
+      "spe": 146
+    },
+    "abilities": {
+      "0": "Primordialsea"
+    },
+    "heightm": 134,
+    "weightkg": 2950,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "espilevi": {
+    "num": 1707,
+    "name": "Espilevi",
+    "types": [
+      "Psychic",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 70,
+      "def": 70,
+      "spa": 140,
+      "spd": 95,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Synchronize"
+    },
+    "heightm": 9,
+    "weightkg": 265,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "flarichi": {
+    "num": 1708,
+    "name": "Flarichi",
+    "types": [
+      "Fire",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 140,
+      "def": 70,
+      "spa": 95,
+      "spd": 110,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Flashfire"
+    },
+    "heightm": 9,
+    "weightkg": 750,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "glacida": {
+    "num": 1709,
+    "name": "Glacida",
+    "types": [
+      "Ice",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 70,
+      "def": 110,
+      "spa": 140,
+      "spd": 95,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Snowwarning"
+    },
+    "heightm": 8,
+    "weightkg": 4690,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "joltinum": {
+    "num": 1710,
+    "name": "Joltinum",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 70,
+      "spa": 140,
+      "spd": 95,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Quickfeet"
+    },
+    "heightm": 16,
+    "weightkg": 540,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "kringwar": {
+    "num": 1711,
+    "name": "Kringwar",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 135,
+      "def": 115,
+      "spa": 55,
+      "spd": 65,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Hypercutter"
+    },
+    "heightm": 13,
+    "weightkg": 900,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "krokellang": {
+    "num": 1712,
+    "name": "Krokellang",
+    "types": [
+      "Steel",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 100,
+      "spa": 70,
+      "spd": 85,
+      "spe": 105
+    },
+    "abilities": {
+      "0": "Ironbarbs"
+    },
+    "heightm": 6,
+    "weightkg": 810,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "leaforest": {
+    "num": 1713,
+    "name": "Leaforest",
+    "types": [
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 110,
+      "def": 140,
+      "spa": 70,
+      "spd": 70,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Leafguard"
+    },
+    "heightm": 10,
+    "weightkg": 255,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "megwar": {
+    "num": 1714,
+    "name": "Megwar",
+    "types": [
+      "Water",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 130,
+      "def": 65,
+      "spa": 100,
+      "spd": 65,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Roughskin"
+    },
+    "heightm": 24,
+    "weightkg": 1568,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "mortarb": {
+    "num": 1715,
+    "name": "Mortarb",
+    "types": [
+      "Steel",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 120,
+      "def": 125,
+      "spa": 85,
+      "spd": 75,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Sturdy"
+    },
+    "heightm": 15,
+    "weightkg": 5900,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "qwilton": {
+    "num": 1716,
+    "name": "Qwilton",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 95,
+      "def": 115,
+      "spa": 65,
+      "spd": 85,
+      "spe": 65
+    },
+    "abilities": {
+      "0": "Poisonpoint"
+    },
+    "heightm": 30,
+    "weightkg": 1210,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "spiritempest": {
+    "num": 1717,
+    "name": "Spiritempest",
+    "types": [
+      "Ghost",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 92,
+      "def": 108,
+      "spa": 102,
+      "spd": 108,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 10,
+    "weightkg": 2160,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "sylvijou": {
+    "num": 1718,
+    "name": "Sylvijou",
+    "types": [
+      "Fairy",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 70,
+      "def": 95,
+      "spa": 140,
+      "spd": 110,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Cutecharm"
+    },
+    "heightm": 10,
+    "weightkg": 365,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "umbravis": {
+    "num": 1719,
+    "name": "Umbravis",
+    "types": [
+      "Dark",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 110,
+      "def": 140,
+      "spa": 70,
+      "spd": 95,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Intimidate"
+    },
+    "heightm": 17,
+    "weightkg": 475,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "vaporila": {
+    "num": 1720,
+    "name": "Vaporila",
+    "types": [
+      "Water",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 140,
+      "atk": 70,
+      "def": 95,
+      "spa": 110,
+      "spd": 95,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Waterabsorb"
+    },
+    "heightm": 10,
+    "weightkg": 560,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "mausholdseavlian": {
+    "num": 1721,
+    "name": "Maushold (Seavlian)",
+    "types": [
+      "Normal",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 84,
+      "atk": 80,
+      "def": 111,
+      "spa": 60,
+      "spd": 80,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Filter"
+    },
+    "heightm": 16,
+    "weightkg": 2360,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "revavroomnether": {
+    "num": 1722,
+    "name": "Revavroom (Nether)",
+    "types": [
+      "Steel",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 119,
+      "def": 105,
+      "spa": 54,
+      "spd": 82,
+      "spe": 60
+    },
+    "abilities": {
+      "0": "Overcoat"
+    },
+    "heightm": 18,
+    "weightkg": 1200,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tandemausseavlian": {
+    "num": 1723,
+    "name": "Tandemaus (Seavlian)",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 50,
+      "def": 50,
+      "spa": 40,
+      "spd": 45,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Runaway"
+    },
+    "heightm": 6,
+    "weightkg": 182,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tinkatinknether": {
+    "num": 1724,
+    "name": "Tinkatink (Nether)",
+    "types": [
+      "Fairy",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 45,
+      "def": 50,
+      "spa": 30,
+      "spd": 58,
+      "spe": 64
+    },
+    "abilities": {
+      "0": "Moldbreaker"
+    },
+    "heightm": 4,
+    "weightkg": 89,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tinkatonnether": {
+    "num": 1725,
+    "name": "Tinkaton (Nether)",
+    "types": [
+      "Fairy",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 90,
+      "def": 72,
+      "spa": 60,
+      "spd": 94,
+      "spe": 105
+    },
+    "abilities": {
+      "0": "Moldbreaker"
+    },
+    "heightm": 7,
+    "weightkg": 1128,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "tinkatuffnether": {
+    "num": 1726,
+    "name": "Tinkatuff (Nether)",
+    "types": [
+      "Fairy",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 50,
+      "spa": 40,
+      "spd": 78,
+      "spe": 82
+    },
+    "abilities": {
+      "0": "Moldbreaker"
+    },
+    "heightm": 7,
+    "weightkg": 591,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "varoomnether": {
+    "num": 1727,
+    "name": "Varoom (Nether)",
+    "types": [
+      "Steel",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 70,
+      "def": 70,
+      "spa": 30,
+      "spd": 52,
+      "spe": 33
+    },
+    "abilities": {
+      "0": "Overcoat"
+    },
+    "heightm": 10,
+    "weightkg": 350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "glimmerix": {
+    "num": 1729,
+    "name": "Glimmerix",
+    "types": [
+      "Steel",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 53,
+      "atk": 103,
+      "def": 151,
+      "spa": 101,
+      "spd": 83,
+      "spe": 79
+    },
+    "abilities": {
+      "0": "Beastboost"
+    },
+    "heightm": 48,
+    "weightkg": 1320,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ducario": {
+    "num": 1730,
+    "name": "Ducario",
+    "types": [
+      "Fighting",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 115,
+      "def": 65,
+      "spa": 110,
+      "spd": 65,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Steadfast"
+    },
+    "heightm": 12,
+    "weightkg": 540,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "malevorustherian": {
+    "num": 1731,
+    "name": "Malevorus (Therian)",
+    "types": [
+      "Dark",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 89,
+      "atk": 105,
+      "def": 80,
+      "spa": 130,
+      "spd": 80,
+      "spe": 116
+    },
+    "abilities": {
+      "0": "Cloudnine"
+    },
+    "heightm": 25,
+    "weightkg": 650,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxyentei": {
+    "num": 1732,
+    "name": "Galaxy Entei",
+    "types": [
+      "Fire",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 115,
+      "atk": 115,
+      "def": 85,
+      "spa": 90,
+      "spd": 75,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 21,
+    "weightkg": 1980,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "detagross": {
+    "num": 1733,
+    "name": "Detagross",
+    "types": [
+      "Steel",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 145,
+      "def": 120,
+      "spa": 85,
+      "spd": 90,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 16,
+    "weightkg": 5500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "valentinezapdos": {
+    "num": 1734,
+    "name": "Valentine Zapdos",
+    "types": [
+      "Fairy",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 80,
+      "def": 90,
+      "spa": 120,
+      "spd": 100,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Cutecharm"
+    },
+    "heightm": 16,
+    "weightkg": 526,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxydialga": {
+    "num": 1735,
+    "name": "Galaxy Dialga",
+    "types": [
+      "Dark",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 120,
+      "def": 115,
+      "spa": 160,
+      "spd": 80,
+      "spe": 85
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 54,
+    "weightkg": 6830,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironcoil": {
+    "num": 1736,
+    "name": "Iron Coil",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 56,
+      "def": 124,
+      "spa": 168,
+      "spd": 108,
+      "spe": 36
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 25,
+    "weightkg": 18000,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "durshifu": {
+    "num": 1738,
+    "name": "Durshifu",
+    "types": [
+      "Fighting",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 130,
+      "def": 90,
+      "spa": 63,
+      "spd": 80,
+      "spe": 97
+    },
+    "abilities": {
+      "0": "Unseenfist"
+    },
+    "heightm": 19,
+    "weightkg": 850,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "enginechiyu": {
+    "num": 1739,
+    "name": "Engine Chiyu",
+    "types": [
+      "Steel",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 80,
+      "def": 120,
+      "spa": 115,
+      "spd": 100,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Flashfire"
+    },
+    "heightm": 4,
+    "weightkg": 49,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironrunner": {
+    "num": 1740,
+    "name": "Iron Runner",
+    "types": [
+      "Normal",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 98,
+      "def": 94,
+      "spa": 96,
+      "spd": 80,
+      "spe": 134
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 18,
+    "weightkg": 8520,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dengar": {
+    "num": 1741,
+    "name": "Dengar",
+    "types": [
+      "Ghost",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 60,
+      "def": 60,
+      "spa": 130,
+      "spd": 85,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 15,
+    "weightkg": 405,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironpilot": {
+    "num": 1742,
+    "name": "Iron Pilot",
+    "types": [
+      "Normal",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 98,
+      "def": 94,
+      "spa": 96,
+      "spd": 80,
+      "spe": 134
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 18,
+    "weightkg": 8520,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "rotogar": {
+    "num": 1743,
+    "name": "Rotogar",
+    "types": [
+      "Ghost",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 92,
+      "def": 68,
+      "spa": 132,
+      "spd": 84,
+      "spe": 96
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 12,
+    "weightkg": 240,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltadreepy": {
+    "num": 1744,
+    "name": "Delta Dreepy",
+    "types": [
+      "Dragon",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 28,
+      "atk": 40,
+      "def": 30,
+      "spa": 60,
+      "spd": 30,
+      "spe": 82
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 5,
+    "weightkg": 40,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltadrakloak": {
+    "num": 1745,
+    "name": "Delta Drakloak",
+    "types": [
+      "Dragon",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 60,
+      "def": 50,
+      "spa": 80,
+      "spd": 50,
+      "spe": 102
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 14,
+    "weightkg": 320,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltadragapult": {
+    "num": 1746,
+    "name": "Delta Dragapult",
+    "types": [
+      "Dragon",
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 93,
+      "atk": 100,
+      "def": 65,
+      "spa": 120,
+      "spd": 90,
+      "spe": 132
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 24,
+    "weightkg": 320,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "malevorus": {
+    "num": 1747,
+    "name": "Malevorus",
+    "types": [
+      "Dark",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 89,
+      "atk": 100,
+      "def": 102,
+      "spa": 120,
+      "spd": 90,
+      "spe": 99
+    },
+    "abilities": {
+      "0": "Guts"
+    },
+    "heightm": 25,
+    "weightkg": 650,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "valentinearticuno": {
+    "num": 1748,
+    "name": "Valentine Articuno",
+    "types": [
+      "Fairy",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 75,
+      "def": 100,
+      "spa": 100,
+      "spd": 125,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Cloudnine"
+    },
+    "heightm": 17,
+    "weightkg": 509,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "archapult": {
+    "num": 1749,
+    "name": "Archapult",
+    "types": [
+      "Dragon",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 72,
+      "atk": 108,
+      "def": 108,
+      "spa": 116,
+      "spd": 60,
+      "spe": 96
+    },
+    "abilities": {
+      "0": "Stalwart"
+    },
+    "heightm": 21,
+    "weightkg": 1120,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "wisphir": {
+    "num": 1750,
+    "name": "Wisphir",
+    "types": [
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 79,
+      "atk": 101,
+      "def": 41,
+      "spa": 109,
+      "spd": 83,
+      "spe": 157
+    },
+    "abilities": {
+      "0": "Beastboost"
+    },
+    "heightm": 30,
+    "weightkg": 55,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "valentinemoltres": {
+    "num": 1751,
+    "name": "Valentine Moltres",
+    "types": [
+      "Fairy",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 85,
+      "def": 90,
+      "spa": 115,
+      "spd": 100,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Serenegrace"
+    },
+    "heightm": 20,
+    "weightkg": 600,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxykyogre": {
+    "num": 1752,
+    "name": "Galaxy Kyogre",
+    "types": [
+      "Dark",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 90,
+      "def": 90,
+      "spa": 150,
+      "spd": 140,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 45,
+    "weightkg": 3520,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dayquaza": {
+    "num": 1753,
+    "name": "Dayquaza",
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 150,
+      "def": 120,
+      "spa": 130,
+      "spd": 110,
+      "spe": 65
+    },
+    "abilities": {
+      "0": "Sandstream"
+    },
+    "heightm": 70,
+    "weightkg": 2065,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxygroudon": {
+    "num": 1754,
+    "name": "Galaxy Groudon",
+    "types": [
+      "Dark",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 150,
+      "def": 130,
+      "spa": 80,
+      "spd": 90,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Moxie"
+    },
+    "heightm": 35,
+    "weightkg": 9500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltagrowlithe": {
+    "num": 1755,
+    "name": "Delta Growlithe",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 70,
+      "def": 45,
+      "spa": 65,
+      "spd": 50,
+      "spe": 65
+    },
+    "abilities": {
+      "0": "Intimidate"
+    },
+    "heightm": 7,
+    "weightkg": 190,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltaarcanine": {
+    "num": 1756,
+    "name": "Delta Arcanine",
+    "types": [
+      "Water",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 115,
+      "def": 80,
+      "spa": 95,
+      "spd": 80,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Intimidate"
+    },
+    "heightm": 19,
+    "weightkg": 1550,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dnorlax": {
+    "num": 1758,
+    "name": "Dnorlax",
+    "types": [
+      "Normal",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 160,
+      "atk": 100,
+      "def": 65,
+      "spa": 75,
+      "spd": 110,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Waterabsorb"
+    },
+    "heightm": 21,
+    "weightkg": 4600,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "februarymiraidon": {
+    "num": 1759,
+    "name": "February Miraidon",
+    "types": [
+      "Fairy",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 115,
+      "atk": 85,
+      "def": 85,
+      "spa": 125,
+      "spd": 120,
+      "spe": 120
+    },
+    "abilities": {
+      "0": "Pixilate"
+    },
+    "heightm": 35,
+    "weightkg": 2400,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "cosmachi": {
+    "num": 1760,
+    "name": "Cosmachi",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 136,
+      "atk": 84,
+      "def": 72,
+      "spa": 112,
+      "spd": 100,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Helixnebula"
+    },
+    "heightm": 3,
+    "weightkg": 40,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironshades": {
+    "num": 1761,
+    "name": "Iron Shades",
+    "types": [
+      "Dark",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 92,
+      "atk": 140,
+      "def": 104,
+      "spa": 74,
+      "spd": 64,
+      "spe": 96
+    },
+    "abilities": {
+      "0": "Intimidate"
+    },
+    "heightm": 23,
+    "weightkg": 9600,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ironworld": {
+    "num": 1762,
+    "name": "Iron World",
+    "types": [
+      "Grass",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 64,
+      "atk": 132,
+      "def": 150,
+      "spa": 64,
+      "spd": 128,
+      "spe": 32
+    },
+    "abilities": {
+      "0": "Quarkdrive"
+    },
+    "heightm": 18,
+    "weightkg": 4000,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "diancette": {
+    "num": 1763,
+    "name": "Diancette",
+    "types": [
+      "Fairy",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 100,
+      "def": 96,
+      "spa": 120,
+      "spd": 124,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Diamondgrove"
+    },
+    "heightm": 41,
+    "weightkg": 2800,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dew": {
+    "num": 1764,
+    "name": "Dew",
+    "types": [
+      "Psychic",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 90,
+      "def": 90,
+      "spa": 120,
+      "spd": 110,
+      "spe": 110
+    },
+    "abilities": {
+      "0": "Magicguard"
+    },
+    "heightm": 4,
+    "weightkg": 40,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxysuicune": {
+    "num": 1765,
+    "name": "Galaxy Suicune",
+    "types": [
+      "Water",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 75,
+      "def": 115,
+      "spa": 90,
+      "spd": 115,
+      "spe": 85
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 20,
+    "weightkg": 1870,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dragascue": {
+    "num": 1766,
+    "name": "Dragascue",
+    "types": [
+      "Dragon",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 88,
+      "atk": 112,
+      "def": 100,
+      "spa": 88,
+      "spd": 60,
+      "spe": 120
+    },
+    "abilities": {
+      "0": "Clearbody"
+    },
+    "heightm": 30,
+    "weightkg": 600,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dunala": {
+    "num": 1767,
+    "name": "Dunala",
+    "types": [
+      "Psychic",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 137,
+      "atk": 103,
+      "def": 89,
+      "spa": 147,
+      "spd": 107,
+      "spe": 97
+    },
+    "abilities": {
+      "0": "Shadowshield"
+    },
+    "heightm": 45,
+    "weightkg": 1500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dyarados": {
+    "num": 1769,
+    "name": "Dyarados",
+    "types": [
+      "Water",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 125,
+      "def": 74,
+      "spa": 55,
+      "spd": 105,
+      "spe": 86
+    },
+    "abilities": {
+      "0": "Intimidate"
+    },
+    "heightm": 65,
+    "weightkg": 2350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "electisaur": {
+    "num": 1770,
+    "name": "Electisaur",
+    "types": [
+      "Grass",
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 92,
+      "atk": 108,
+      "def": 88,
+      "spa": 112,
+      "spd": 80,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "Motordrive"
+    },
+    "heightm": 20,
+    "weightkg": 1160,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxyraikou": {
+    "num": 1771,
+    "name": "Galaxy Raikou",
+    "types": [
+      "Electric",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 85,
+      "def": 75,
+      "spa": 115,
+      "spd": 100,
+      "spe": 115
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 19,
+    "weightkg": 1780,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "alatianyamask": {
+    "num": 1772,
+    "name": "Alatian Yamask",
+    "types": [
+      "Ghost",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 38,
+      "atk": 50,
+      "def": 65,
+      "spa": 55,
+      "spd": 40,
+      "spe": 55
+    },
+    "abilities": {
+      "0": "Sturdy"
+    },
+    "heightm": 3,
+    "weightkg": 8,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "alatianampularigus": {
+    "num": 1773,
+    "name": "Alatian Ampularigus",
+    "types": [
+      "Ghost",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 70,
+      "def": 125,
+      "spa": 95,
+      "spd": 40,
+      "spe": 95
+    },
+    "abilities": {
+      "0": "Shadowtag"
+    },
+    "heightm": 18,
+    "weightkg": 884,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "florizim": {
+    "num": 1774,
+    "name": "Florizim",
+    "types": [
+      "Poison",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 79,
+      "atk": 83,
+      "def": 61,
+      "spa": 113,
+      "spd": 151,
+      "spe": 83
+    },
+    "abilities": {
+      "0": "Beastboost"
+    },
+    "heightm": 12,
+    "weightkg": 6350,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxypalkia": {
+    "num": 1775,
+    "name": "Galaxy Palkia",
+    "types": [
+      "Dark",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 120,
+      "atk": 120,
+      "def": 90,
+      "spa": 135,
+      "spd": 100,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 42,
+    "weightkg": 3360,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltashuckle": {
+    "num": 1777,
+    "name": "Delta Shuckle",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 20,
+      "atk": 10,
+      "def": 230,
+      "spa": 10,
+      "spd": 230,
+      "spe": 5
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 10,
+    "weightkg": 155,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltashrookle": {
+    "num": 1778,
+    "name": "Delta Shrookle",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 45,
+      "def": 160,
+      "spa": 80,
+      "spd": 160,
+      "spe": 35
+    },
+    "abilities": {
+      "0": "Harvest"
+    },
+    "heightm": 12,
+    "weightkg": 180,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dewtwo": {
+    "num": 1779,
+    "name": "Dewtwo",
+    "types": [
+      "Psychic",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 110,
+      "atk": 100,
+      "def": 95,
+      "spa": 154,
+      "spd": 100,
+      "spe": 130
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 20,
+    "weightkg": 1220,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dlastoise": {
+    "num": 1780,
+    "name": "Dlastoise",
+    "types": [
+      "Fire",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 79,
+      "atk": 90,
+      "def": 90,
+      "spa": 115,
+      "spd": 95,
+      "spe": 61
+    },
+    "abilities": {
+      "0": "Blaze"
+    },
+    "heightm": 16,
+    "weightkg": 555,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "ursanette": {
+    "num": 1781,
+    "name": "Ursanette",
+    "types": [
+      "Normal",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 96,
+      "atk": 128,
+      "def": 76,
+      "spa": 104,
+      "spd": 88,
+      "spe": 68
+    },
+    "abilities": {
+      "0": "Mindseye"
+    },
+    "heightm": 31,
+    "weightkg": 1200,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltayamask": {
+    "num": 1782,
+    "name": "Delta Yamask",
+    "types": [
+      "Ghost",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 38,
+      "atk": 30,
+      "def": 65,
+      "spa": 30,
+      "spd": 85,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Prankster"
+    },
+    "heightm": 5,
+    "weightkg": 15,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltamagirigus": {
+    "num": 1783,
+    "name": "Delta Magirigus",
+    "types": [
+      "Ghost",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 95,
+      "def": 105,
+      "spa": 50,
+      "spd": 145,
+      "spe": 30
+    },
+    "abilities": {
+      "0": "Hocuspocus"
+    },
+    "heightm": 45,
+    "weightkg": 950,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "flydon": {
+    "num": 1784,
+    "name": "Flydon",
+    "types": [
+      "Dark",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 110,
+      "def": 75,
+      "spa": 70,
+      "spd": 75,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Levitate"
+    },
+    "heightm": 20,
+    "weightkg": 820,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dolcarona": {
+    "num": 1785,
+    "name": "Dolcarona",
+    "types": [
+      "Bug",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 60,
+      "def": 60,
+      "spa": 135,
+      "spd": 105,
+      "spe": 105
+    },
+    "abilities": {
+      "0": "Flamebody"
+    },
+    "heightm": 16,
+    "weightkg": 460,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "gholdaton": {
+    "num": 1786,
+    "name": "Gholdaton",
+    "types": [
+      "Fairy",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 92,
+      "atk": 92,
+      "def": 80,
+      "spa": 80,
+      "spd": 120,
+      "spe": 96
+    },
+    "abilities": {
+      "0": "Moldbreaker"
+    },
+    "heightm": 7,
+    "weightkg": 2800,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "galaxygiratina": {
+    "num": 1787,
+    "name": "Galaxy Giratina",
+    "types": [
+      "Dark",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 150,
+      "atk": 100,
+      "def": 120,
+      "spa": 100,
+      "spd": 120,
+      "spe": 90
+    },
+    "abilities": {
+      "0": "Pressure"
+    },
+    "heightm": 45,
+    "weightkg": 7500,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltahoopa": {
+    "num": 1788,
+    "name": "Delta Hoopa",
+    "types": [
+      "Dark",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 150,
+      "def": 125,
+      "spa": 110,
+      "spd": 60,
+      "spe": 75
+    },
+    "abilities": {
+      "0": "Mirage"
+    },
+    "heightm": 5,
+    "weightkg": 90,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "mewrai": {
+    "num": 1789,
+    "name": "Mewrai",
+    "types": [
+      "Psychic",
+      "Dark"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 112,
+      "def": 80,
+      "spa": 112,
+      "spd": 96,
+      "spe": 100
+    },
+    "abilities": {
+      "0": "Feastorfamine"
+    },
+    "heightm": 4,
+    "weightkg": 40,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "radiantmoon": {
+    "num": 1790,
+    "name": "Radiant moon",
+    "types": [
+      "Dragon",
+      "Ghost"
+    ],
+    "baseStats": {
+      "hp": 84,
+      "atk": 100,
+      "def": 76,
+      "spa": 132,
+      "spd": 116,
+      "spe": 92
+    },
+    "abilities": {
+      "0": "Brilliance"
+    },
+    "heightm": 12,
+    "weightkg": 3200,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "engineragingbolt": {
+    "num": 1791,
+    "name": "Engine Ragingbolt",
+    "types": [
+      "Steel",
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 125,
+      "atk": 85,
+      "def": 110,
+      "spa": 120,
+      "spd": 90,
+      "spe": 50
+    },
+    "abilities": {
+      "0": "Filter"
+    },
+    "heightm": 52,
+    "weightkg": 4800,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dardevoir": {
+    "num": 1792,
+    "name": "Dardevoir",
+    "types": [
+      "Grass",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 60,
+      "def": 75,
+      "spa": 130,
+      "spd": 115,
+      "spe": 75
+    },
+    "abilities": {
+      "0": "Leafguard"
+    },
+    "heightm": 16,
+    "weightkg": 484,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltagible": {
+    "num": 1793,
+    "name": "Delta Gible",
+    "types": [
+      "Dragon",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 45,
+      "def": 50,
+      "spa": 60,
+      "spd": 50,
+      "spe": 37
+    },
+    "abilities": {
+      "0": "Slushrush"
+    },
+    "heightm": 7,
+    "weightkg": 195,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltagabite": {
+    "num": 1794,
+    "name": "Delta Gabite",
+    "types": [
+      "Dragon",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 68,
+      "atk": 55,
+      "def": 52,
+      "spa": 85,
+      "spd": 80,
+      "spe": 70
+    },
+    "abilities": {
+      "0": "Slushrush"
+    },
+    "heightm": 14,
+    "weightkg": 470,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltagarchomp": {
+    "num": 1795,
+    "name": "Delta Garchomp",
+    "types": [
+      "Dragon",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 94,
+      "atk": 85,
+      "def": 95,
+      "spa": 120,
+      "spd": 100,
+      "spe": 106
+    },
+    "abilities": {
+      "0": "Slushrush"
+    },
+    "heightm": 19,
+    "weightkg": 950,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "dolgaleo": {
+    "num": 1796,
+    "name": "Dolgaleo",
+    "types": [
+      "Dark",
+      "Steel"
+    ],
+    "baseStats": {
+      "hp": 137,
+      "atk": 147,
+      "def": 117,
+      "spa": 93,
+      "spd": 89,
+      "spe": 97
+    },
+    "abilities": {
+      "0": "Fullmetalbody"
+    },
+    "heightm": 34,
+    "weightkg": 2300,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  },
+  "deltahoopaunbound": {
+    "num": 1797,
+    "name": "Delta Hoopa (Unbound)",
+    "types": [
+      "Dark",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 170,
+      "def": 120,
+      "spa": 160,
+      "spd": 70,
+      "spe": 80
+    },
+    "abilities": {
+      "0": "No Ability"
+    },
+    "heightm": 65,
+    "weightkg": 4900,
+    "color": "Green",
+    "eggGroups": [
+      "Undiscovered"
+    ]
+  }
+}

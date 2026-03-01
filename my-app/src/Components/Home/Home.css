@@ -1,0 +1,360 @@
+.bg-animation {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: -1;
+}
+/* Sidebar Card */
+.action-sidebar {
+    margin-left: 1vw;
+    width: 320px;
+    z-index: 10;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.select-group { margin-bottom: 20px; }
+.select-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: #aaa;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.ps-select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.btn-battle {
+    width: 100%;
+    padding: 18px;
+    background: var(--battle-gradient);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3);
+}
+
+.btn-battle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(245, 87, 108, 0.4);
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 25px 0;
+}
+
+.nav-item {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #ccc;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-item:hover { color: #4facfe; }
+
+/* News Section */
+.news-section { flex-grow: 1; max-width: 500px; }
+.glass { height: 100%; }
+.news-item { margin-bottom: 20px; border-left: 3px solid #4facfe; padding-left: 15px; }
+.news-item span { font-size: 0.8rem; color: #4facfe; }
+
+
+/* Контейнер кастомного селекта */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+}
+
+.custom-select {
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 45px;
+}
+
+.custom-select:hover { border-color: #666; }
+
+/* Мини-иконки команды */
+.team-icons-mini {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+
+.team-icons-mini img {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+
+.empty-dot {
+    width: 6px;
+    height: 6px;
+    background: #444;
+    border-radius: 50%;
+    margin: 0 13px;
+}
+
+.selected-team-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.team-name-text {
+    font-size: 13px;
+    font-weight: bold;
+    color: #4facfe;
+}
+
+/* Выпадающий список */
+.options-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 0 0 4px 4px;
+}
+
+.option-item {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option-item:hover {
+    background: #333;
+}
+
+.opt-name {
+    font-size: 12px;
+    color: #eee;
+}
+
+.arrow { font-size: 10px; color: #777; }
+
+.home-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    column-gap: 1vh;
+    gap: 20px;
+    padding-top: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.players-sidebar-card {
+    width: 280px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.players-list {
+    margin-top: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.player-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.status-dot.online {
+    width: 8px;
+    height: 8px;
+    background: #2ecc71;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    box-shadow: 0 0 5px #2ecc71;
+}
+
+.challenge-btn-mini {
+    background: #e67e22;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.challenge-btn-mini:hover {
+    background: #d35400;
+}
+
+.no-players {
+    color: #666;
+    font-style: italic;
+    font-size: 14px;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+
+/* Модалки */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+}
+
+.challenge-modal {
+    background: #2d2d2d;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #4facfe;
+    box-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-accept { background: #27ae60; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; }
+.btn-decline { background: #e74c3c; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; }
+
+/* Поиск */
+.search-input-group {
+    display: flex;
+    margin-top: 10px;
+}
+
+.search-input-group input {
+    background: #111;
+    border: 1px solid #444;
+    color: white;
+    padding: 8px;
+    border-radius: 4px 0 0 4px;
+    width: 100%;
+}
+
+.btn-search {
+    background: #444;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.search-result-box {
+    margin-top: 15px;
+    padding: 10px;
+    background: #1a1a1a;
+    border-radius: 6px;
+}
+
+.dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+.dot.online { background: #2ecc71; box-shadow: 0 0 5px #2ecc71; }
+.dot.offline { background: #e74c3c; }
+
+.spinner {
+    border: 4px solid rgba(255,255,255,0.1);
+    border-left-color: #4facfe;
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+.search-sidebar{
+    margin-top: 2vh;
+}
+.challenge-modal.preparation {
+    width: 450px;
+    background: #1c1c1c;
+    border: 2px solid #4facfe;
+}
+
+.challenge-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.swords-icon { font-size: 30px; }
+
+.format-badge {
+    background: #333;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #4facfe;
+}
+
+.preparation-box {
+    margin: 25px 0;
+    text-align: left;
+}
+
+.preparation-box label {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+    display: block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

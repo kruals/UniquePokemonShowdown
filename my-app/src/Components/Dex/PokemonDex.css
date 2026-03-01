@@ -1,0 +1,173 @@
+.dex-container {
+    background: #222;
+    color: #eee;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: sans-serif;
+}
+
+/* Фильтры */
+.dex-filter-panel {
+    background: #333;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #444;
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-item label {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ps-input {
+    background: #111;
+    border: 1px solid #555;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.ps-input:focus {
+    border-color: #3e86c1;
+}
+
+.filter-row-extra {
+    margin-top: 10px;
+}
+
+/* Таблица */
+.dex-table-wrapper {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.ps-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.ps-table th {
+    position: sticky;
+    top: 0;
+    background: #444;
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 2px solid #555;
+    z-index: 10;
+}
+
+.dex-tr {
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dex-tr:hover {
+    background: #3e86c133;
+}
+
+.is-custom {
+    border-left: 4px solid #f39c12;
+}
+
+.mon-cell {
+    padding: 8px;
+    min-width: 180px;
+}
+
+.mon-info-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dex-sprite {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.name-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.mon-name {
+    font-weight: bold;
+}
+
+.custom-badge {
+    font-size: 9px;
+    background: #f39c12;
+    color: black;
+    padding: 2px 4px;
+    border-radius: 3px;
+    width: fit-content;
+    margin-top: 2px;
+}
+
+.type-container {
+    display: flex;
+    gap: 4px;
+}
+
+.type-badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Цвета типов */
+.fire { background: #F08030; }
+.water { background: #6890F0; }
+.grass { background: #78C850; }
+.electric { background: #F8D030; color: #333; }
+.normal { background: #A8A878; }
+.ice { background: #98D8D8; color: #333; }
+.fighting { background: #C03028; }
+.poison { background: #A040A0; }
+.ground { background: #E0C068; }
+.flying { background: #A890F0; }
+.psychic { background: #F85888; }
+.bug { background: #A8B820; }
+.rock { background: #B8A038; }
+.ghost { background: #705898; }
+.dragon { background: #7038F8; }
+.dark { background: #705848; }
+.steel { background: #B8B8D0; color: #333; }
+.fairy { background: #EE99AC; }
+
+.stat-val {
+    padding: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    text-align: center;
+}
+
+.bst-val {
+    font-weight: bold;
+    color: #3e86c1;
+}
