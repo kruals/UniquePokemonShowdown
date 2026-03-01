@@ -162,7 +162,7 @@ const TeamBuild=()=>{
     if(!curMon)return[];let ls=curMon.learnset;
     if(!ls?.length)ls=getPokemonCompleteData(curMon.id)?.learnset||[];
     return ls.map(id=>{const m=Moves[id];return{id,name:m?.name||id,type:m?.type||'???',category:m?.category||'???',basePower:m?.basePower||0,pp:m?.pp||'?'};});
-  },[curMon?.id]);
+  },[curMon]);
 
   
   if(view==='list')return <ListScreen teams={teams} onOpen={i=>{setCurIdx(i);setActiveSlot(0);setView('editor');}} onNew={newTeam} onDelete={delTeam}/>;
