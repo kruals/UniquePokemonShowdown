@@ -17,7 +17,7 @@ function App() {
   const [showPlayers, setShowPlayers] = useState(false);
 
   useEffect(() => {
-      const newSocket = io('http://localhost:5000');
+      const newSocket = io(`${process.env.REACT_APP_API_URL}`);
       setSocket(newSocket);
 
       newSocket.on('update_user_list', (list) => {
