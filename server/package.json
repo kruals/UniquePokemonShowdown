@@ -18,6 +18,7 @@
     "@pkmn/protocol": "^0.7.2",
     "@pkmn/sim": "^0.10.6",
     "@pkmn/types": "^4.0.0",
+    "typescript": "^5.9.3",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
@@ -32,7 +33,6 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.3.0",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.9.3"
+    "ts-node-dev": "^2.0.0"
   }
 }
