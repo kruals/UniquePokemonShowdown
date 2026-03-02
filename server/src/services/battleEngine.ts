@@ -15,8 +15,8 @@ let pokedexData: any;
 let movesData: any;
 
 try {
-    const pData = require('../data/pokedex');
-    const mData = require('../data/moves');
+    const pData = require('#pokedex');
+    const mData = require('#moves');
     pokedexData = pData.Pokedex || pData.pokedex;
     movesData = mData.Moves || mData.moves;
 } catch {
