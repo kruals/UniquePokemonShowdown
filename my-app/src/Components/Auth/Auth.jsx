@@ -15,9 +15,10 @@ const Auth = () => {
 
         // Выбираем маршрут в зависимости от режима
         const path = isLogin ? '/api/auth/login' : '/api/auth/register';
+        console.log(path)
         
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}${path}`, {
+            const response = await fetch(`https://${process.env.REACT_APP_API_URL}${path}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
