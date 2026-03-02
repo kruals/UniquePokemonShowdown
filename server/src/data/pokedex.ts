@@ -1,5 +1,5 @@
 
-const Pokedex = {
+const Pokedex : import('../sim/dex-species').SpeciesDataTable= {
   bulbasaur: {
     num: 1,
     name: "Bulbasaur",

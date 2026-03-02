@@ -1,5 +1,6 @@
+import { SparseBoostsTable } from '@pkmn/sim';
 
-const Moves = {
+const Moves : any = {
   "10000000voltthunderbolt": {
     num: 719,
     accuracy: true,
@@ -149,8 +150,8 @@ const Moves = {
     priority: 0,
     flags: { metronome: 1 },
     onHit(target) {
-      const stats = [];
-      let stat;
+      const stats :BoostID[] = [];
+      let stat: BoostID;
       for (stat in target.boosts) {
         if (target.boosts[stat] < 6) {
           stats.push(stat);
@@ -158,7 +159,7 @@ const Moves = {
       }
       if (stats.length) {
         const randomStat = this.sample(stats);
-        const boost = {};
+        const boost : SparseBoostsTable = {};
         boost[randomStat] = 2;
         this.boost(boost);
       } else {
@@ -344,14 +345,14 @@ const Moves = {
         this.effectState.counter = 3;
       },
       onRestart(pokemon) {
-        const counter = this.effectState.counter || 1;
+        const counter : any = this.effectState.counter || 1;
         this.debug(`Ally Switch success chance: ${Math.round(100 / counter)}%`);
         const success = this.randomChance(1, counter);
         if (!success) {
           delete pokemon.volatiles["allyswitch"];
           return false;
         }
-        if (this.effectState.counter < this.effect.counterMax) {
+        if (this.effectState.counter < (this.effect as Condition).counterMax!) {
           this.effectState.counter *= 3;
         }
         this.effectState.duration = 2;
@@ -22114,5 +22115,5 @@ const Moves = {
     type: "Fire",
     contestType: "Beautiful"
   }
-};
+} as any;
 module.exports = { Moves };
