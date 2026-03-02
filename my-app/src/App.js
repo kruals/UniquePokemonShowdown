@@ -33,7 +33,7 @@ useEffect(() => {
         // Добавим небольшую задержку, чтобы сокет точно успел соединиться
         const timer = setTimeout(() => {
             console.log("Отправка set_user для:", user.username);
-            socket.emit('set_user', user.username);
+            socket.emit('set_user', { userId: user.id, username: user.username });
         }, 500);
         return () => clearTimeout(timer);
     }

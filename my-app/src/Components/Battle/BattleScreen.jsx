@@ -347,7 +347,7 @@ const BattleScreen = ({ socket, user }) => {
   const sendAction = useCallback((action) => {
     if (isWaiting || gameState.winner) return;
     setIsWaiting(true);
-    socket.emit('battle_action', { battleId, username: user.username, action });
+    socket.emit('battle_action', { battleId, userId: user.id, action });
   }, [isWaiting, gameState.winner, socket, battleId, user.username]);
 
   const mySide       = playerRole === 'p1' ? gameState.side1 : gameState.side2;

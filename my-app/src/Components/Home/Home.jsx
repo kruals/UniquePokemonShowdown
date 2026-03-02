@@ -42,7 +42,7 @@ const Home = ({ socket, user }) => {
 
     // Регистрация пользователя на сервере при входе на главную
     if (user?.username) {
-        socket.emit('set_user', user.username);
+        socket.emit('set_user', { userId: user.id, username: user.username });
     }
 
     socket.on('update_user_list', (users) => {
@@ -138,8 +138,9 @@ const Home = ({ socket, user }) => {
         
         setChallengeStatus('waiting');
         socket.emit('send_challenge', { 
-            to: foundUser.username, 
-            from: user.username,
+            to: foundUser.id, 
+            from: user.id,
+            fromUsername :user.username,
             team: cleanedMons // ПЕРЕДАЕМ ОЧИЩЕННУЮ КОМАНДУ
         });
     };
@@ -150,10 +151,10 @@ const Home = ({ socket, user }) => {
         if (!myTeam || !myTeam.mons) return alert("Выберите команду для боя!");
         
         const cleanedMons = cleanTeamForServer(myTeam.mons);
-
+        console.log(challengerData)
         socket.emit('challenge_response', { 
-            to: challengerData.from, 
-            from: user.username, 
+            to: challengerData.id, 
+            from: user.id, 
             accepted: true,
             team: cleanedMons, 
             opponentTeam: challengerData.team 
@@ -162,7 +163,7 @@ const Home = ({ socket, user }) => {
         // navigate('/battle', {...}) УДАЛЯЕМ ОТСЮДА! 
         // Переход произойдет автоматически, когда сервер пришлет 'challenge_result'
     } else {
-        socket.emit('challenge_response', { to: challengerData.from, from: user.username, accepted: false });
+        socket.emit('challenge_response', { to: challengerData.id, from: user.id, accepted: false });
         setChallengeStatus('idle');
         setChallengerData(null);
     }
