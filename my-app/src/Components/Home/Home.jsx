@@ -13,7 +13,7 @@ const Home = ({ socket, user }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
 
     // Состояния для поиска и статусов вызова
-    const [searchId, setSearchId] = useState('');
+    const [searchName, setSearchName] = useState('');
     const [foundUser, setFoundUser] = useState(null);
     const [challengeStatus, setChallengeStatus] = useState('idle'); // idle, setup, waiting, received
     const [challengerData, setChallengerData] = useState(null);
@@ -114,14 +114,14 @@ const Home = ({ socket, user }) => {
     // --- ОБРАБОТЧИКИ ---
 
     const handleSearch = () => {
-    const id = searchId.trim();
-    console.log(id)
-    if (!id) return;
+    const name = searchName.trim();
+    console.log(name)
+    if (!name) return;
     
     // Проверяем, есть ли такой юзер в нашем актуальном списке
-    const isOnline = onlineUsersList.includes(id);
+    const isOnline = onlineUsersList.includes(name);
     setFoundUser({
-        username: id,
+        username: name,
         online: isOnline
     });
 };
@@ -213,7 +213,7 @@ const Home = ({ socket, user }) => {
                     <div className="card">
                         <h3>Бросить вызов</h3>
                         <div className="search-input-group">
-                            <input value={searchId} onChange={(e) => setSearchId(e.target.value)} placeholder="Никнейм..." />
+                            <input value={searchName} onChange={(e) => setSearchName(e.target.value)} placeholder="Никнейм..." />
                             <button onClick={handleSearch}>🔍</button>
                         </div>
                         {foundUser && (
