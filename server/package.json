@@ -9,6 +9,11 @@
     "build": "npx tsc",
     "start": "node dist/index.js"
   },
+  {
+  "engines": {
+    "node": "20.19.0"
+  }
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
