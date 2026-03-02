@@ -22116,4 +22116,4 @@ const Moves = {
   }
 };
 //# sourceMappingURL=moves.js.map
-module.exports = moves;
+module.exports = Moves;

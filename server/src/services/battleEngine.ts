@@ -13,10 +13,11 @@ export interface PlayerTeam {
 
 let pokedexData: any;
 let movesData: any;
-
+const test = require('#pokedex')
 try {
     const pData = require('#pokedex');
     const mData = require('#moves');
+    
     pokedexData = pData.Pokedex || pData.pokedex;
     movesData = mData.Moves || mData.moves;
 } catch {
