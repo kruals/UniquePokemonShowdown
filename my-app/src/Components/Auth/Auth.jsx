@@ -17,7 +17,7 @@ const Auth = () => {
         const path = isLogin ? '/api/auth/login' : '/api/auth/register';
         
         try {
-            const response = await fetch(`http://localhost:5000${path}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}${path}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, password }),
