@@ -7,6 +7,7 @@ const Home = ({ socket, user }) => {
     
     // Состояния для команд
     const [onlineUsersList, setOnlineUsersList] = useState([]);
+    console.log(onlineUsersList)
     const [teams, setTeams] = useState([]);
     const [selectedTeamIdx, setSelectedTeamIdx] = useState(0);
     const [isSelectOpen, setIsSelectOpen] = useState(false);
