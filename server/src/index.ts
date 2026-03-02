@@ -12,9 +12,19 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: process.env.CLIENT_URL } });
+const io = new Server(server, { cors: 
+    {
+        origin: process.env.CLIENT_URL ,
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+ });
 
-app.use(cors());
+app.use(cors({
+    origin: process.env.CLIENT_URL, // Ваш адрес на Vercel
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 app.use(express.json());
 app.use('/api/auth', authRoutes);
 
@@ -52,4 +62,5 @@ io.on('connection', (socket) => {
 const PORT = Number(process.env.PORT) || 5000;
 server.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server on port ${PORT}`);
+    console.log(`📡 CORS Origin: ${process.env.CLIENT_URL}`); // Добавьте это
 });
