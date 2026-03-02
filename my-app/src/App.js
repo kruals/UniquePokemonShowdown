@@ -26,7 +26,7 @@ function App() {
 
       return () => newSocket.close();
   }, []);
-
+console.log(process.env.REACT_APP_API_URL)
   // Когда пользователь авторизован, сообщаем его имя сокету
 useEffect(() => {
     if (user && socket) {
