@@ -13,32 +13,42 @@ export interface PlayerTeam {
 
 let pokedexData: any;
 let movesData: any;
-const test = require('#pokedex')
+
 try {
     const pData = require('#pokedex');
     const mData = require('#moves');
-    
-    pokedexData = pData.Pokedex || pData.pokedex;
-    movesData = mData.Moves || mData.moves;
+
+    pokedexData = pData.default || pData;
+    movesData = mData.default || mData;
 } catch {
     console.warn('⚠️ Custom data not loaded');
 }
 
 const setupCustomDex = () => {
-    const gen9 = Dex.forGen(9);
-    const data = gen9.data as any;
+    // Патчим оба — и базовый Dex, и gen9
+    const dexInstances = [Dex, Dex.forGen(9)] as any[];
 
-    if (pokedexData && data.Pokedex) {
-        Object.assign(data.Pokedex, pokedexData);
-        (gen9 as any).speciesCache = new Map();
+    for (const dex of dexInstances) {
+        const data = dex.data as any;
+        if (!data) continue;
+
+        if (pokedexData && data.Pokedex) {
+            Object.assign(data.Pokedex, pokedexData);
+        }
+        if (movesData && data.Moves) {
+            Object.assign(data.Moves, movesData);
+        }
+
+        // Сбрасываем ВСЕ Map-кэши какие есть
+        for (const key of Object.keys(dex)) {
+            if ((dex as any)[key] instanceof Map) {
+                (dex as any)[key].clear();
+            }
+        }
     }
 
-    if (movesData && data.Moves) {
-        Object.assign(data.Moves, movesData);
-        (gen9 as any).movesCache = new Map();
-    }
-
-    console.log('✅ Dex configured');
+    console.log('✅ Dex configured. Pokedex entries:', 
+        Object.keys((Dex as any).data?.Pokedex || {}).length);
 };
 
 setupCustomDex();

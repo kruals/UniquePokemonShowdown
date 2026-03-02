@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "npx tsc",
+    "build": "npx tsc && node -e \"const fs=require('fs');fs.cpSync('data','dist/data',{recursive:true})\"",
     "start": "node dist/index.js"
   },
   "engines": {

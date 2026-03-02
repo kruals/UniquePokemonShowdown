@@ -27139,4 +27139,4 @@ const Pokedex = {
       ]
   },
 };
-module.exports = Pokedex;
+module.exports = Pokedex
