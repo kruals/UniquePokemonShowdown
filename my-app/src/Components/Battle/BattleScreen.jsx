@@ -242,6 +242,8 @@ const BattleScreen = ({ socket, user }) => {
     side1: null, side2: null, logs: [], winner: null, requestState: null,
   });
 
+  
+
   useEffect(() => { logEndRef.current?.scrollIntoView({ behavior:'smooth' }); }, [gameState.logs]);
 
   useEffect(() => {
@@ -340,6 +342,11 @@ const BattleScreen = ({ socket, user }) => {
       });
       setIsWaiting(false);
     };
+
+    if (!user) {
+        navigate('/auth');
+        return null;
+    }
     socket.on('battle_update', handleUpdate);
     return () => socket.off('battle_update');
   }, [socket, user.username, playerRole, processLog]);
