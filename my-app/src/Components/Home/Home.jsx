@@ -7,7 +7,6 @@ const Home = ({ socket, user }) => {
     
     // Состояния для команд
     const [onlineUsersList, setOnlineUsersList] = useState([]);
-    console.log(onlineUsersList)
     const [teams, setTeams] = useState([]);
     const [selectedTeamIdx, setSelectedTeamIdx] = useState(0);
     const [isSelectOpen, setIsSelectOpen] = useState(false);
@@ -115,15 +114,16 @@ const Home = ({ socket, user }) => {
 
     const handleSearch = () => {
     const name = searchName.trim();
-    console.log(name)
     if (!name) return;
     
-    // Проверяем, есть ли такой юзер в нашем актуальном списке
-    const isOnline = onlineUsersList.includes(name);
-    setFoundUser({
-        username: name,
-        online: isOnline
-    });
+    for (let i = 0; i < onlineUsersList.length;i++){
+        if (onlineUsersList[i].name === searchName){
+            setFoundUser({
+            username: name,
+            online: true
+        });
+        }
+    }
 };
 
     const openChallengeSetup = () => {
