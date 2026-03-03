@@ -114,10 +114,11 @@ const Home = ({ socket, user }) => {
 
     const handleSearch = () => {
     const name = searchName.trim();
+    console.log(name)
     if (!name) return;
     
     for (let i = 0; i < onlineUsersList.length;i++){
-        if (onlineUsersList[i].name === searchName){
+        if (onlineUsersList[i].username === searchName){
             setFoundUser({
             username: name,
             online: true
