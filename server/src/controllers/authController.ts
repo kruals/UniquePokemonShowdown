@@ -29,7 +29,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Неверный логин или пароль" });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, { expiresIn: '24h' });
+    const token = jwt.sign({ id: user._id.toString() }, process.env.JWT_SECRET!, { expiresIn: '24h' });
     res.json({ token, user: { id: user._id.toString(), username: user.username, rating: user.rating } });
   } catch (err) {
     res.status(500).json({ error: "Ошибка сервера при входе" });

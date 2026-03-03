@@ -62,6 +62,7 @@ export class BattleInstance {
     public battleId!:string;
 
     constructor(p1: PlayerTeam, p2: PlayerTeam,battleId:string) {
+        this.battleId = battleId
         this.battle = new Battle({
             formatid: 'gen9customgame' as ID,
             dex: Dex.forGen(9),

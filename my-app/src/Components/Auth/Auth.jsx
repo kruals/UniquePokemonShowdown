@@ -32,7 +32,7 @@ const Auth = ({ onLogin }) => {
             if (isLogin) {
                 // Если вошли — сохраняем токен и идем на главную
                 localStorage.setItem('ps_token', data.token);
-                localStorage.setItem('ps_user', JSON.stringify(data.user));
+                // localStorage.setItem('ps_user', JSON.stringify(data.user));
                 onLogin(data.user)
                 navigate('/');
             } else {

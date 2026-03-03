@@ -82,7 +82,8 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
             setTimeout(() => {
                 const battle = activeBattles.get(battleId);
                 if (battle) {
-                    io.to(battleId).emit('battle_update', battle.instance.getInitialState(),battleId);
+                    const state = battle.instance.getInitialState();
+                    io.to(battleId).emit('battle_update', { ...state, battleId }); // battleId внутри объекта
                 }
             }, 300);
 
@@ -96,7 +97,7 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
         socket.join(battleId);
         const battle = activeBattles.get(battleId);
         if (battle) {
-            socket.emit('battle_update', battle.instance.getInitialState());
+            socket.emit('battle_update', { ...battle.instance.getInitialState(), battleId });;
         }
     });
 

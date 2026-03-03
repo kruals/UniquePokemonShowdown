@@ -14,12 +14,7 @@ const useAppStore = create(
       /* ══════════════════════════════════════════
          USER
       ══════════════════════════════════════════ */
-      user: (() => {
-        try {
-            const saved = localStorage.getItem('ps_user');
-            return saved ? JSON.parse(saved) : null;
-        } catch { return null; }
-      })(),
+      user: null,
 
       setUser: (user) => set({ user }),
 
@@ -143,7 +138,7 @@ const useAppStore = create(
       partialize: (state) => ({
         user:         state.user,
         activeBattles: state.activeBattles,
-        battleStates: state.battleStates,
+        // battleStates: state.battleStates,
       }),
     }
   )

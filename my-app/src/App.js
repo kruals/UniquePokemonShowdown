@@ -25,6 +25,13 @@ function App() {
     const socket = io(process.env.REACT_APP_API_URL);
     socketRef.current = socket;
 
+     socket.on('connect', () => {
+        const currentUser = useAppStore.getState().user;
+        if (currentUser) {
+            socket.emit('set_user', { userId: currentUser.id, username: currentUser.username });
+        }
+    });
+    
     // Глобальные listeners живут здесь — не в дочерних компонентах
     socket.on('update_user_list', (list) => {
       setOnlineUsers(list); // [{ id, username }]
