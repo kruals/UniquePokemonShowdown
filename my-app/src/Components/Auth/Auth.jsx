@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
 
-const Auth = () => {
+const Auth = ({ onLogin }) => {
     const [isLogin, setIsLogin] = useState(true);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -33,6 +33,7 @@ const Auth = () => {
                 // Если вошли — сохраняем токен и идем на главную
                 localStorage.setItem('ps_token', data.token);
                 localStorage.setItem('ps_user', JSON.stringify(data.user));
+                onLogin(data.user)
                 navigate('/');
             } else {
                 // Если зарегистрировались — перекидываем на вход
