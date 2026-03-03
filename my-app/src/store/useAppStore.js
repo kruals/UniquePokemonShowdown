@@ -14,7 +14,12 @@ const useAppStore = create(
       /* ══════════════════════════════════════════
          USER
       ══════════════════════════════════════════ */
-      user: null,
+      user: (() => {
+        try {
+            const saved = localStorage.getItem('ps_user');
+            return saved ? JSON.parse(saved) : null;
+        } catch { return null; }
+      })(),
 
       setUser: (user) => set({ user }),
 

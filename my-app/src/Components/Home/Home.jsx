@@ -53,6 +53,7 @@ const Home = ({ socket }) => {
     setFoundUser(found || { username: searchQuery.trim(), online: false });
   }, [searchQuery, onlineUsers]);
 
+    
   // ── Отправить вызов ─────────────────────────────────────────
   const sendChallenge = useCallback(() => {
     if (!user || !foundUser?.id || !socket.current) return;
@@ -291,8 +292,22 @@ const ChallengeCard = ({ challenge, teams, selTeam, setSelTeam, onAccept, onDecl
 
 // ─── TEAM SELECTOR ───────────────────────────────────────────
 const TeamSelector = ({ teams, selTeam, setSelTeam, mini = false }) => {
+
   const [open, setOpen] = useState(false);
   const team = teams[selTeam];
+
+const makeFallback = (name) => {
+  let tries = 0;
+  return (e) => {
+    tries++;
+    const safe     = (name||'').toLowerCase().replace(/[^a-z0-9-]/g, '');
+    const safeName = (name||'').toLowerCase().replace(/\s+/g, '_');
+    if (tries === 1)      e.target.src = `https://play.pokemonshowdown.com/sprites/gen5/${safe}.png`;
+    else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
+    else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.png`;
+    else                  e.target.style.display = 'none';
+  };
+};
 
   if (!teams.length) return <div className="no-teams">Нет команд. <a href="/teambuilder">Создать →</a></div>;
 
@@ -304,7 +319,7 @@ const TeamSelector = ({ teams, selTeam, setSelTeam, mini = false }) => {
             <div className="ts-sprites">
               {team.mons.map((m, i) =>
                 m ? <img key={i} src={getSpriteUrl(m.name)} alt={m.name} className="ts-spr"
-                         onError={e => { e.target.src = `/image_pokemons/${m.name.toLowerCase()}.png`; }} />
+                 onError={makeFallback(m.name)} />
                   : <div key={i} className="ts-empty-slot" />
               )}
             </div>
@@ -321,7 +336,8 @@ const TeamSelector = ({ teams, selTeam, setSelTeam, mini = false }) => {
               <span className="ts-opt-name">{t.name}</span>
               <div className="ts-opt-sprites">
                 {t.mons.map((m, j) =>
-                  m ? <img key={j} src={getSpriteUrl(m.name)} alt={m.name} className="ts-spr-sm" /> : null
+                  m ? <img key={j} src={getSpriteUrl(m.name)} alt={m.name} className="ts-spr-sm"
+                    onError={makeFallback(m.name)} /> : null
                 )}
               </div>
             </div>
