@@ -301,7 +301,7 @@ const makeFallback = (name) => {
   return (e) => {
     tries++;
     const safe     = (name||'').toLowerCase().replace(/[^a-z0-9-]/g, '');
-    const safeName = (name||'').toLowerCase().replace(/\s+/g, '_');
+    const safeName = (name||'').toLowerCase().replace(/\s+/g, '-');
     if (tries === 1)      e.target.src = `https://play.pokemonshowdown.com/sprites/gen5/${safe}.png`;
     else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
     else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.png`;
