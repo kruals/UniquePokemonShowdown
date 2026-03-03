@@ -115,6 +115,7 @@ const BattleScreen = ({ socket }) => {
   const logEndRef    = useRef(null);
 
   const { user, activeBattles, getBattleState, removeBattle } = useAppStore();
+  console.log(getBattleState)
 
   const battleMeta  = activeBattles[battleId];
   const battleState = getBattleState(battleId);
@@ -137,7 +138,7 @@ const BattleScreen = ({ socket }) => {
   : mySide?.requestState === 'switch'      ? 'switch'
   : mySide?.requestState === 'move'        ? 'battle'
   : 'wait';
-
+  console.log(currentPhase)
   // Все хуки выше — проверки после них
 
   // При монтировании / обновлении страницы — реджойним комнату
