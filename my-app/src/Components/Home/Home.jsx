@@ -28,10 +28,7 @@ const getSpriteUrl = (name) =>
 // ─── ГЛАВНЫЙ КОМПОНЕНТ ──────────────────────────────────────
 const Home = ({ socket }) => {
   const navigate = useNavigate();
-  const {
-    user, onlineUsers, pendingChallenges,
-    activeBattles, removeChallenge,
-  } = useAppStore();
+  const { user, onlineUsers, pendingChallenges, activeBattles, removeChallenge, removeBattle } = useAppStore();
 
   // Команды из localStorage (тимбилдер)
   const teams         = JSON.parse(localStorage.getItem('ps_teams') || '[]');
@@ -110,15 +107,22 @@ const Home = ({ socket }) => {
             🏠 Главная
           </button>
           {activeBattleList.map(b => (
+        <div key={b.battleId} className={`stab-wrapper ${activeTab === b.battleId ? 'active' : ''}`}>
             <button
-              key={b.battleId}
-              className={`stab battle-tab ${activeTab === b.battleId ? 'active' : ''}`}
-              onClick={() => { setActiveTab(b.battleId); goToBattle(b.battleId); }}
+            className="stab battle-tab"
+            onClick={() => { setActiveTab(b.battleId); goToBattle(b.battleId); }}
             >
-              ⚔ {b.opponentUsername}
-              <span className="battle-tab-dot" />
+            ⚔ {b.opponentUsername}
+            <span className="battle-tab-dot" />
             </button>
-          ))}
+            <button
+            className="stab-close"
+            onClick={(e) => { e.stopPropagation(); removeBattle(b.battleId); }}
+            >
+            ✕
+            </button>
+        </div>
+        ))}
         </div>
 
         {/* Профиль */}

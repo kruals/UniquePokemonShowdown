@@ -95,7 +95,7 @@ const makeFallback = (name, isBack) => {
   return (e) => {
     tries++;
     const safe     = (name||'').toLowerCase().replace(/[^a-z0-9-]/g,'');
-    const safeName = (name||'').toLowerCase().replace(/\s+/g,'_');
+    const safeName = (name||'').toLowerCase().replace(/\s+/g,'-');
     if (tries === 1) e.target.src = isBack
       ? `https://play.pokemonshowdown.com/sprites/gen5-back/${safe}.png`
       : `https://play.pokemonshowdown.com/sprites/gen5/${safe}.png`;
@@ -123,18 +123,6 @@ const BattleScreen = ({ socket }) => {
   const [showParty, setShowParty] = useState(false);
   const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
   
-  const getUIPhase = () => {
-    if (battleState?.winner) return 'ended';
-    const rs = mySide?.requestState;
-    if (!rs || rs === '') return 'wait';
-    switch(rs) {
-      case 'teampreview': return 'preview';
-      case 'switch':      return 'switch';
-      case 'move':        return 'battle';
-      default:            return 'wait';
-    }
-  };
-
   const myRole      = battleMeta?.myRole;
   const enemyRole   = myRole === 'p1' ? 'p2' : 'p1';
   const mySide      = myRole === 'p1' ? battleState?.side1 : battleState?.side2;
@@ -143,7 +131,12 @@ const BattleScreen = ({ socket }) => {
   const enemyBoosts = battleState?.boosts?.[enemyRole];
   const myHazards   = battleState?.hazards?.[myRole];
   const enemyHazards= battleState?.hazards?.[enemyRole];
-  const currentPhase = getUIPhase()
+  const currentPhase = battleState?.winner
+  ? 'ended'
+  : mySide?.requestState === 'teampreview' ? 'preview'
+  : mySide?.requestState === 'switch'      ? 'switch'
+  : mySide?.requestState === 'move'        ? 'battle'
+  : 'wait';
 
   // Все хуки выше — проверки после них
 

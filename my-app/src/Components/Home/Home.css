@@ -265,6 +265,16 @@
   animation: spin .8s linear infinite;
   margin: 8px auto;
 }
+
+.stab-wrapper { display: flex; align-items: center; }
+.stab-wrapper .stab { flex: 1; }
+.stab-close {
+  background: none; border: none; color: #636e72;
+  cursor: pointer; padding: 4px 6px; font-size: .7rem;
+  border-radius: 4px; flex-shrink: 0;
+}
+.stab-close:hover { color: #e74c3c; background: rgba(231,76,60,.1); }
+
 @keyframes spin { to { transform: rotate(360deg); } }
 
 /* ── GUEST BANNER ─────────────────────────── */

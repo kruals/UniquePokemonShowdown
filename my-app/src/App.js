@@ -58,14 +58,16 @@ function App() {
     });
 
     socket.on('battle_update', (data) => {
-      if (!data) return;
-      // battleId приходит в данных ИЛИ мы знаем его из activeBattles
-      // Обновляем все активные бои (обычно это один)
-      const battles = useAppStore.getState().activeBattles;
-      Object.keys(battles).forEach(battleId => {
-        updateBattleState(battleId, data);
-      });
-    });
+    if (!data?.battleId) return;
+    updateBattleState(data.battleId, data);
+
+    // Авто-удаляем из активных через 30 сек после конца
+    if (data.winner || data.ended) {
+      setTimeout(() => {
+        removeBattle(data.battleId);
+      }, 50000);
+    }
+  });
 
     return () => socket.close();
   }, []); // eslint-disable-line
