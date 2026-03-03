@@ -122,6 +122,28 @@ const BattleScreen = ({ socket }) => {
   const [isWaiting, setIsWaiting] = useState(false);
   const [showParty, setShowParty] = useState(false);
   const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
+  
+  const getUIPhase = () => {
+    if (battleState?.winner) return 'ended';
+    const rs = mySide?.requestState;
+    if (!rs || rs === '') return 'wait';
+    switch(rs) {
+      case 'teampreview': return 'preview';
+      case 'switch':      return 'switch';
+      case 'move':        return 'battle';
+      default:            return 'wait';
+    }
+  };
+
+  const myRole      = battleMeta?.myRole;
+  const enemyRole   = myRole === 'p1' ? 'p2' : 'p1';
+  const mySide      = myRole === 'p1' ? battleState?.side1 : battleState?.side2;
+  const enemySide   = myRole === 'p1' ? battleState?.side2 : battleState?.side1;
+  const myBoosts    = battleState?.boosts?.[myRole];
+  const enemyBoosts = battleState?.boosts?.[enemyRole];
+  const myHazards   = battleState?.hazards?.[myRole];
+  const enemyHazards= battleState?.hazards?.[enemyRole];
+  const currentPhase = getUIPhase()
 
   // Все хуки выше — проверки после них
 
@@ -190,28 +212,8 @@ if (!user) {
     );
   }
 
-  const myRole      = battleMeta.myRole;
-  const enemyRole   = myRole === 'p1' ? 'p2' : 'p1';
-  const mySide      = myRole === 'p1' ? battleState.side1 : battleState.side2;
-  const enemySide   = myRole === 'p1' ? battleState.side2 : battleState.side1;
-  const myBoosts    = battleState.boosts[myRole];
-  const enemyBoosts = battleState.boosts[enemyRole];
-  const myHazards   = battleState.hazards[myRole];
-  const enemyHazards= battleState.hazards[enemyRole];
 
-  const getUIPhase = () => {
-    if (battleState.winner) return 'ended';
-    const rs = mySide?.requestState;
-    if (!rs || rs === '') return 'wait';
-    switch(rs) {
-      case 'teampreview': return 'preview';
-      case 'switch':      return 'switch';
-      case 'move':        return 'battle';
-      default:            return 'wait';
-    }
-  };
-
-  const currentPhase  = getUIPhase();
+  
   const activePokemon = mySide?.pokemon?.[mySide?.activeIdx];
   const activeEnemy   = enemySide?.pokemon?.[enemySide?.activeIdx];
   const activeMoves   = activePokemon?.moveSlots || [];
