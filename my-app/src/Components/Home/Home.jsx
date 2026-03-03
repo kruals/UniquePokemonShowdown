@@ -305,7 +305,7 @@ const makeFallback = (name) => {
     if (tries === 1)      e.target.src = `https://play.pokemonshowdown.com/sprites/gen5/${safe}.png`;
     else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
     else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.png`;
-    else                  e.target.style.display = 'none';
+    else                  e.target.src = `/image_pokemons/${safeName}.PNG`;
   };
 };
 

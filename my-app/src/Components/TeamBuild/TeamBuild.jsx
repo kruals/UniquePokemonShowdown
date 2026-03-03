@@ -59,12 +59,18 @@ const calcStat = (stat, base, iv, ev, level, nat) => {
 const sumEVs = evs => STAT_KEYS.reduce((s,k)=>s+(evs[k]|0),0);
 
 const spr = name => `https://play.pokemonshowdown.com/sprites/ani/${(name||'').toLowerCase().replace(/[^a-z0-9-]/g,'')}.gif`;
-const mkFb = name => {
-  let n=0; return e=>{n++;const s=(name||'').toLowerCase().replace(/[^a-z0-9-]/g,''),cu=(name||'').toLowerCase().replace(/\s+/g,'_');
-    if(n===1)e.target.src=`https://play.pokemonshowdown.com/sprites/gen5/${s}.png`;
-    else if(n===2)e.target.src=`/image_pokemons/${cu}.gif`;
-    else if(n===3)e.target.src=`/image_pokemons/${cu}.png`;
-    else e.target.style.display='none';};
+
+const mkFb = (name) => {
+  let tries = 0;
+  return (e) => {
+    tries++;
+    const safe     = (name||'').toLowerCase().replace(/[^a-z0-9-]/g, '');
+    const safeName = (name||'').toLowerCase().replace(/\s+/g, '-');
+    if (tries === 1)      e.target.src = `https://play.pokemonshowdown.com/sprites/gen5/${safe}.png`;
+    else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
+    else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.png`;
+    else                  e.target.src = `/image_pokemons/${safeName}.PNG`;
+  };
 };
 
 const exportPaste = team => (team.mons||[]).filter(Boolean).map(m=>{
