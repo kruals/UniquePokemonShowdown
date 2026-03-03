@@ -288,7 +288,8 @@ button.ps-input.sel-btn:hover { border-color: var(--accent); }
    SEARCH PANEL
 ══════════════════════════════════════════════ */
 .search-panel {
-  width: 540px; min-width: 400px; flex-shrink: 0;
+  width: 640px; min-width: 400px; flex-shrink: 0;
+  height: 100%;
   background: var(--card); border-left: 2px solid var(--border);
   display: flex; flex-direction: column; overflow: hidden;
 }
@@ -341,7 +342,7 @@ button.ps-input.sel-btn:hover { border-color: var(--accent); }
 .tog-txt { font-size: .72rem; font-weight: 700; color: gold; letter-spacing: .3px; }
 
 /* ── POKEMON TABLE ── */
-.pkmn-tbl-wrap { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+.pkmn-tbl-wrap { display: flex; flex-direction: column; flex: 1; overflow: hidden; height: 100%;}
 .pkmn-thead {
   display: flex; align-items: center;
   background: var(--card2); border-bottom: 1px solid var(--border);
