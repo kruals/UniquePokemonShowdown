@@ -59,8 +59,9 @@ setupCustomDex();
 
 export class BattleInstance {
     public battle: Battle;
+    public battleId!:string;
 
-    constructor(p1: PlayerTeam, p2: PlayerTeam) {
+    constructor(p1: PlayerTeam, p2: PlayerTeam,battleId:string) {
         this.battle = new Battle({
             formatid: 'gen9customgame' as ID,
             dex: Dex.forGen(9),
@@ -155,6 +156,7 @@ export class BattleInstance {
 }
     getInitialState() {
         return {
+            battleId:this.battleId,
             log: this.battle.log,
             side1: this.prepareSideData(0),
             side2: this.prepareSideData(1),
@@ -212,6 +214,7 @@ export class BattleInstance {
     if (c2) this.safeChoose('p2', c2);
 
     return {
+        battleId:this.battleId,
         log: this.battle.log.slice(startLogIdx),
         side1: this.prepareSideData(0),
         side2: this.prepareSideData(1),

@@ -6,7 +6,7 @@ interface ActiveBattle {
     instance: BattleInstance;
     // Храним userId, а не username
     players: { p1: string; p2: string };
-    currentTurns: Record<string, string>;
+    currentTurns: Record<string, string>;  
 }
 
 const activeBattles = new Map<string, ActiveBattle>();
@@ -52,7 +52,8 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
 
             const instance = new BattleInstance(
                 { trainer: p1Username, mons: p1Team },
-                { trainer: p2Username, mons: p2Team }
+                { trainer: p2Username, mons: p2Team },
+                battleId,
             );
 
             activeBattles.set(battleId, {
@@ -81,7 +82,7 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
             setTimeout(() => {
                 const battle = activeBattles.get(battleId);
                 if (battle) {
-                    io.to(battleId).emit('battle_update', battle.instance.getInitialState());
+                    io.to(battleId).emit('battle_update', battle.instance.getInitialState(),battleId);
                 }
             }, 300);
 
@@ -133,7 +134,7 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
                 const p2Action = battle.currentTurns[battle.players.p2] || '';
 
                 const result = battle.instance.executeTurn(p1Action, p2Action);
-                io.to(battleId).emit('battle_update', result);
+                io.to(battleId).emit('battle_update', {...result,battleId});
                 battle.currentTurns = {};
 
                 if (result.winner || result.ended) {
