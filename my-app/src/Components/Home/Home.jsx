@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAppStore from '../../store/useAppStore';
 import './Home.css';
@@ -28,7 +28,7 @@ const getSpriteUrl = (name) =>
 // ─── ГЛАВНЫЙ КОМПОНЕНТ ──────────────────────────────────────
 const Home = ({ socket }) => {
   const navigate = useNavigate();
-  const { user, onlineUsers, pendingChallenges, activeBattles, removeChallenge, removeBattle } = useAppStore();
+  const { user, onlineUsers, pendingChallenges, activeBattles, removeChallenge, removeBattle,outgoingChallenge, setOutgoingChallenge, clearOutgoingChallenge } = useAppStore();
 
   // Команды из localStorage (тимбилдер)
   const teams         = JSON.parse(localStorage.getItem('ps_teams') || '[]');
@@ -41,7 +41,24 @@ const Home = ({ socket }) => {
   const [activeTab,    setActiveTab]    = useState('home'); // home | battle:<id>
 
   const activeBattleList = Object.values(activeBattles);
+  useEffect(() => {
+    if (outgoingChallenge) {
+        setFoundUser({ id: outgoingChallenge.to, username: outgoingChallenge.toUsername });
+        setChallengeUI('waiting');
+    }
+}, []);
 
+useEffect(() => {
+    if (!socket.current) return;
+    const handleConnect = () => {
+        const oc = useAppStore.getState().outgoingChallenge;
+        if (oc) {
+            socket.current.emit('send_challenge', oc);
+        }
+    };
+    socket.current.on('connect', handleConnect);
+    return () => socket.current?.off('connect', handleConnect);
+}, [socket]);
   // ── Поиск игрока ────────────────────────────────────────────
   const handleSearch = useCallback(() => {
     const q = searchQuery.trim().toLowerCase();
@@ -63,6 +80,13 @@ const Home = ({ socket }) => {
       fromUsername: user.username,
       team:        cleanTeamForServer(team.mons),
     });
+    setOutgoingChallenge({
+    to: foundUser.id,
+    toUsername: foundUser.username,
+    from: user.id,
+    fromUsername: user.username,
+    team: cleanTeamForServer(team.mons),
+})  
     setChallengeUI('waiting');
   }, [user, foundUser, teams, selTeam, socket]);
 
@@ -269,7 +293,11 @@ const Home = ({ socket }) => {
             <div className="modal-title">Вызов отправлен!</div>
             <div className="spinner" />
             <p>Ожидаем ответа от {foundUser?.username}...</p>
-            <button className="action-btn danger" onClick={() => setChallengeUI('idle')}>Отмена</button>
+            <button className="action-btn danger"  
+            onClick={() => {
+                setChallengeUI('idle');
+                clearOutgoingChallenge();
+            }}>Отмена</button>
           </div>
         </div>
       )}

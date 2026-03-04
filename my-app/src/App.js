@@ -18,6 +18,7 @@ function App() {
     addChallenge,
     addBattle, removeBattle,
     updateBattleState,
+    clearOutgoingChallenge,
   } = useAppStore();
 
   // ── Инициализация сокета один раз ──────────────────────────
@@ -43,6 +44,7 @@ function App() {
     });
 
     socket.on('challenge_result', (data) => {
+      clearOutgoingChallenge()
       if (!data?.accepted || !data?.teams) return;
       const currentUser = useAppStore.getState().user;
       if (!currentUser) return;
@@ -63,6 +65,10 @@ function App() {
       // Переходим в бой
       navigate(`/battle/${data.battleId}`);
     });
+
+    socket.on('challenge_declined', () => {
+    clearOutgoingChallenge();
+})
 
     socket.on('battle_update', (data) => {
     if (!data?.battleId) return;

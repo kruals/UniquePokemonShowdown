@@ -35,6 +35,14 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
         opponentTeam
     }) => {
         const challengerSocketId = onlineUsers.get(to);
+
+        if (!accepted) {
+        if (challengerSocketId) {
+            io.to(challengerSocketId).emit('challenge_declined', { from });
+        }
+        return;
+        }
+        
         if (!challengerSocketId || !accepted) return;
 
         const battleId = `battle-${[from, to].sort().join('-')}-${Date.now()}`;

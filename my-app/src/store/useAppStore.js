@@ -131,6 +131,12 @@ const useAppStore = create(
         };
       }),
 
+    /* OUTGOING CHALLENGE (персистируется) */
+    outgoingChallenge: null,
+    setOutgoingChallenge: (challenge) => set({ outgoingChallenge: challenge }),
+    clearOutgoingChallenge: () => set({ outgoingChallenge: null }),
+
+
     }),
     {
       name: 'poke-app-store',
@@ -139,6 +145,7 @@ const useAppStore = create(
         user:         state.user,
         activeBattles: state.activeBattles,
         // battleStates: state.battleStates,
+        outgoingChallenge: state.outgoingChallenge
       }),
     }
   )
