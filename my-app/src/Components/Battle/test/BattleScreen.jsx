@@ -39,10 +39,6 @@ const HAZARD_NAMES  = {
   'Toxic Spikes':'Ядовитые шипы','move: Toxic Spikes':'Ядовитые шипы',
   'Sticky Web':'Липкая паутина','move: Sticky Web':'Липкая паутина',
 };
-const FIELD_NAMES = {
-  'move: Trick Room':'Комната трюков','move: Magic Room':'Волшебная комната',
-  'move: Wonder Room':'Комната чудес','move: Gravity':'Гравитация',
-};
 const VOLATILE_NAMES = {
   'move: Taunt':'Провокация','Taunt':'Провокация',
   'move: Encore':'Encore','Encore':'Encore',
@@ -58,6 +54,9 @@ const VOLATILE_NAMES = {
   'move: Curse':'Проклятие',
 };
 const VISIBLE_VOLATILE = Object.keys(VOLATILE_NAMES);
+
+// Задержка перед показом меню свапа (мс) — даёт время увидеть что произошло
+const SWITCH_MENU_DELAY = 2500;
 
 const calcFinalStat = (pokemon, statKey) => {
   if (!pokemon?.baseStats) return null;
@@ -100,10 +99,28 @@ const makeFallback = (name, isBack) => {
   };
 };
 
+// ─── ЛОКАЛЬНЫЙ ПАРСЕР БУСТОВ И СТАТУСОВ ─────────────────────
+// Следим за бустами локально, чтобы сбрасывать при свапе
+const parseBoostEvents = (logs) => {
+  const events = [];
+  for (const line of logs) {
+    const parts = line.split('|');
+    if (parts.length < 2) continue;
+    const type = parts[1];
+    const side = line.includes('|p1') ? 'p1' : 'p2';
+    if (type === '-boost')   events.push({ type: 'boost',   side, stat: parts[3], amount: parseInt(parts[4]) });
+    if (type === '-unboost') events.push({ type: 'unboost', side, stat: parts[3], amount: parseInt(parts[4]) });
+    if (type === '-clearallboost' || type === '-clearboost') events.push({ type: 'clearboost' });
+    if (type === 'switch' || type === 'drag') events.push({ type: 'switch', side });
+  }
+  return events;
+};
+
 const BattleScreen = ({ socket }) => {
   const { battleId } = useParams();
   const navigate     = useNavigate();
   const logEndRef    = useRef(null);
+  const switchTimerRef = useRef(null);
 
   const { user, activeBattles, getBattleState, removeBattle } = useAppStore();
 
@@ -113,13 +130,17 @@ const BattleScreen = ({ socket }) => {
   const [isWaiting, setIsWaiting] = useState(false);
   const [showParty, setShowParty] = useState(false);
   const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
+  // Локальные бусты — сбрасываются при свапе
+  const [localBoosts, setLocalBoosts] = useState({ p1:{}, p2:{} });
+  // Задержка показа меню свапа
+  const [switchPending, setSwitchPending] = useState(false);
 
   const myRole       = battleMeta?.myRole;
   const enemyRole    = myRole === 'p1' ? 'p2' : 'p1';
   const mySide       = myRole === 'p1' ? battleState?.side1 : battleState?.side2;
   const enemySide    = myRole === 'p1' ? battleState?.side2 : battleState?.side1;
-  const myBoosts     = battleState?.boosts?.[myRole]    || {};
-  const enemyBoosts  = battleState?.boosts?.[enemyRole] || {};
+  const myBoosts     = localBoosts[myRole]    || {};
+  const enemyBoosts  = localBoosts[enemyRole] || {};
   const myHazards    = battleState?.hazards?.[myRole]   || [];
   const enemyHazards = battleState?.hazards?.[enemyRole]|| [];
 
@@ -130,14 +151,55 @@ const BattleScreen = ({ socket }) => {
     : mySide?.requestState === 'move'        ? 'battle'
     : 'wait';
 
+  // ── При получении battle_update — обновляем локальные бусты ─
+  useEffect(() => {
+    if (!battleState?.logs) return;
+    // Берём только последние логи (новые события)
+    const recentLogs = battleState.recentLog || [];
+    const events = parseBoostEvents(recentLogs);
+
+    setLocalBoosts(prev => {
+      let next = { p1: {...prev.p1}, p2: {...prev.p2} };
+      for (const ev of events) {
+        if (ev.type === 'switch') {
+          // Сбрасываем бусты при выходе покемона
+          next[ev.side] = {};
+        } else if (ev.type === 'boost') {
+          next[ev.side] = { ...next[ev.side], [ev.stat]: (next[ev.side][ev.stat] || 0) + ev.amount };
+        } else if (ev.type === 'unboost') {
+          next[ev.side] = { ...next[ev.side], [ev.stat]: (next[ev.side][ev.stat] || 0) - ev.amount };
+        } else if (ev.type === 'clearboost') {
+          next = { p1: {}, p2: {} };
+        }
+      }
+      return next;
+    });
+  }, [battleState?.recentLog]);
+
+  // ── Задержка перед меню свапа ────────────────────────────────
+  useEffect(() => {
+    if (currentPhase === 'switch') {
+      setSwitchPending(true);
+      // Очищаем предыдущий таймер если есть
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+      switchTimerRef.current = setTimeout(() => {
+        setShowParty(true);
+        setSwitchPending(false);
+      }, SWITCH_MENU_DELAY);
+    } else {
+      // Фаза сменилась — отменяем ожидание
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+      setSwitchPending(false);
+    }
+    return () => {
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+    };
+  }, [currentPhase]);
+
   useEffect(() => {
     if (!battleId || !battleMeta) { navigate('/'); return; }
     if (socket.current) socket.current.emit('join_battle', battleId);
   }, [battleId]); // eslint-disable-line
-
-  useEffect(() => {
-    if (currentPhase === 'switch') setShowParty(true);
-  }, [currentPhase]);
 
   useEffect(() => {
     if (!socket?.current) return;
@@ -162,6 +224,7 @@ const BattleScreen = ({ socket }) => {
   const sendAction = useCallback((action) => {
     if (isWaiting || battleState?.winner || !socket?.current || !user) return;
     setIsWaiting(true);
+    setShowParty(false);
     socket.current.emit('battle_action', { battleId, userId: user.id, action });
   }, [isWaiting, battleState?.winner, socket, battleId, user]);
 
@@ -246,6 +309,9 @@ const BattleScreen = ({ socket }) => {
             <WinScreen winner={battleState.winner} myName={user.username} onExit={handleExit} />
           ) : (currentPhase === 'wait' || isWaiting) ? (
             <WaitingPanel lastMove={battleState.lastMove} />
+          ) : currentPhase === 'switch' && switchPending ? (
+            // Показываем "ожидание" пока не истечёт задержка
+            <SwitchPendingPanel />
           ) : currentPhase === 'preview' ? (
             <div className="waiting-text">👆 Выберите первого покемона выше</div>
           ) : (
@@ -268,6 +334,17 @@ const BattleScreen = ({ socket }) => {
     </div>
   );
 };
+
+// ── Панель ожидания перед меню свапа ────────────────────────
+const SwitchPendingPanel = () => (
+  <div className="waiting-panel">
+    <div className="waiting-spinner" />
+    <div className="waiting-text">Выберите следующего покемона...</div>
+    <div className="switch-countdown-bar">
+      <div className="switch-countdown-fill" />
+    </div>
+  </div>
+);
 
 const WeatherBadge = ({ weather, turns }) => (
   <div className="weather-badge" style={{ borderColor:WEATHER_CLR[weather]||'#aaa', color:WEATHER_CLR[weather]||'#aaa' }}>
@@ -312,17 +389,55 @@ const TrainerInfo = ({ name, side, isPlayer }) => {
   );
 };
 
+// ── PARTY ICONS с тултипом HP% ───────────────────────────────
 const PartyIcons = ({ side, position }) => {
   if (!side?.pokemon) return null;
   const sorted = [...side.pokemon].sort((a,b)=>a.num-b.num);
   return (
     <div className={`party-icons party-icons-${position}`}>
-      {sorted.map(p=>(
-        <div key={p.num} className={`party-icon-wrap ${p.fainted?'pi-fainted':p.active?'pi-active':'pi-alive'}`} title={p.name}>
-          <img src={getSpriteFront(p.name)} alt={p.name} className="party-icon-sprite" onError={makeFallback(p.name,false)}/>
-          {p.fainted && <div className="pi-fainted-overlay">✕</div>}
-        </div>
+      {sorted.map(p => (
+        <PartyIconItem key={p.num} p={p} />
       ))}
+    </div>
+  );
+};
+
+const PartyIconItem = ({ p }) => {
+  const [showTip, setShowTip] = useState(false);
+  const hpPct = p.maxhp > 0 ? Math.ceil((p.hp / p.maxhp) * 100) : 0;
+  const hpCls = hpPct < 20 ? 'critical' : hpPct < 50 ? 'low' : 'good';
+
+  return (
+    <div
+      className={`party-icon-wrap ${p.fainted?'pi-fainted':p.active?'pi-active':'pi-alive'}`}
+      title=""
+      onMouseEnter={() => setShowTip(true)}
+      onMouseLeave={() => setShowTip(false)}
+    >
+      <img
+        src={getSpriteFront(p.name)}
+        alt={p.name}
+        className="party-icon-sprite"
+        onError={makeFallback(p.name, false)}
+      />
+      {p.fainted && <div className="pi-fainted-overlay">✕</div>}
+
+      {showTip && (
+        <div className="party-icon-tooltip">
+          <div className="pit-name">{p.name}</div>
+          <div className="pit-hp-bar">
+            <div className={`pit-hp-fill ${hpCls}`} style={{ width: `${Math.max(0, hpPct)}%` }} />
+          </div>
+          <div className="pit-hp-text">
+            {p.fainted ? 'К.О.' : `${hpPct}%`}
+          </div>
+          {p.status && (
+            <div className="pit-status" style={{ color: STATUS_COLORS[p.status] || '#aaa' }}>
+              {STATUS_NAMES[p.status] || p.status}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
@@ -392,7 +507,6 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
 const PokemonTooltip = ({ pokemon, isEnemy, boosts, status, volatiles, seenMoves }) => {
   const hpPct = pokemon.maxhp>0?(pokemon.hp/pokemon.maxhp)*100:0;
   return (
-    // Враг вверху экрана — tooltip открываем ВНИЗ (top:110%), свой — ВВЕРХ (bottom:110%)
     <div className={`poke-tooltip ${isEnemy?'tooltip-left':'tooltip-right'}`}
          style={isEnemy ? { bottom:'auto', top:'110%' } : {}}>
       <div className="tooltip-header">
@@ -618,7 +732,7 @@ const PreviewPhase = ({ side, enemySide, sendAction, isWaiting }) => {
 
 const LogPanel = ({ logs, logEndRef }) => (
   <div className="log-container">
-    {logs.map((log,i)=><div key={i} className={`log-entry ${log.cls||''}`}>{log.text}</div>)}
+    {logs.map((log,i)=><div key={i} className={`log-entry ${log.cls||''} log-entry-anim`}>{log.text}</div>)}
     <div ref={logEndRef}/>
   </div>
 );
