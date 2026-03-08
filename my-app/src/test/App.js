@@ -26,26 +26,35 @@ function App() {
     const socket = io(process.env.REACT_APP_API_URL);
     socketRef.current = socket;
 
-    // Сначала регистрируем ВСЕ listeners...
+     socket.on('connect', () => {
+        const currentUser = useAppStore.getState().user;
+        if (currentUser) {
+            socket.emit('set_user', { userId: currentUser.id, username: currentUser.username });
+        }
+    });
+    
+    // Глобальные listeners живут здесь — не в дочерних компонентах
     socket.on('update_user_list', (list) => {
-      setOnlineUsers(list);
+      setOnlineUsers(list); // [{ id, username }]
     });
 
     socket.on('incoming_challenge', (data) => {
+      // data: { from: userId, fromUsername, team }
       addChallenge(data);
     });
 
     socket.on('challenge_result', (data) => {
-      clearOutgoingChallenge();
+      clearOutgoingChallenge()
       if (!data?.accepted || !data?.teams) return;
       const currentUser = useAppStore.getState().user;
       if (!currentUser) return;
 
       const myId       = currentUser.id;
-      const myRole     = data.roles[myId];
+      const myRole     = data.roles[myId];   // 'p1' | 'p2'
       const opponentId = Object.keys(data.roles).find(id => id !== myId);
       const opponentUsername = data.usernames?.[opponentId] || opponentId;
 
+      // Сохраняем метаданные боя в store
       addBattle(data.battleId, {
         opponentId,
         opponentUsername,
@@ -53,46 +62,40 @@ function App() {
         startedAt: Date.now(),
       });
 
+      // Переходим в бой
       navigate(`/battle/${data.battleId}`);
     });
 
     socket.on('challenge_declined', () => {
-      clearOutgoingChallenge();
-    });
+    clearOutgoingChallenge();
+})
 
     socket.on('battle_update', (data) => {
-      if (!data?.battleId) return;
-      updateBattleState(data.battleId, data);
+    if (!data?.battleId) return;
+    updateBattleState(data.battleId, data);
 
-      if (data.winner || data.ended) {
-        setTimeout(() => {
-          removeBattle(data.battleId);
-        }, 50000);
-      }
-    });
-
-    // ...и только ПОТОМ отправляем set_user при connect/reconnect
-    // Это гарантирует что incoming_challenge не придёт раньше чем слушатель готов
-    socket.on('connect', () => {
-      const currentUser = useAppStore.getState().user;
-      if (currentUser) {
-        socket.emit('set_user', { userId: currentUser.id, username: currentUser.username });
-      }
-    });
+    // Авто-удаляем из активных через 30 сек после конца
+    if (data.winner || data.ended) {
+      setTimeout(() => {
+        removeBattle(data.battleId);
+      }, 50000);
+    }
+  });
 
     return () => socket.close();
   }, []); // eslint-disable-line
 
   // ── Регистрация пользователя при логине ────────────────────
-  // (когда user появляется уже после mount — например, после входа)
   useEffect(() => {
     if (!user || !socketRef.current) return;
-    // Отправляем только если сокет уже подключён
-    // connect handler выше справится с первичной регистрацией
-    if (socketRef.current.connected) {
+    const timer = setTimeout(() => {
       socketRef.current.emit('set_user', { userId: user.id, username: user.username });
-    }
+    }, 300);
+    return () => clearTimeout(timer);
   }, [user]);
+
+  // ── Загрузка user из localStorage при старте ───────────────
+
 
   const handleLogout = () => {
     clearUser();
@@ -115,6 +118,7 @@ function App() {
   );
 }
 
+// ── Хедер ───────────────────────────────────────────────────
 const AppHeader = ({ user, onLogout, navigate }) => (
   <header className="main-header">
     <div className="logo" onClick={() => navigate('/')} style={{ cursor:'pointer' }}>
