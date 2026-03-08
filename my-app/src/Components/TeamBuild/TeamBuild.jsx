@@ -8,6 +8,7 @@ import React, {
 import './TeamBuild.css';
 import { getAllPokemonsList, getPokemonCompleteData } from '../../utils/pokemonData';
 import { Moves } from '../../Data/moves';
+import { Items } from '../../Data/items';
 
 /* ── CONSTANTS ──────────────────────────────────────────────── */
 const ALL_NATURES = [
@@ -45,6 +46,42 @@ const TIERS           = ['Uber','OU','UUBL','UU','RUBL','RU','NUBL','NU','PUBL',
 const GENERATIONS     = [1,2,3,4,5,6,7,8,9];
 const GEN_RANGES      = [{gen:1,min:1,max:151},{gen:2,min:152,max:251},{gen:3,min:252,max:386},{gen:4,min:387,max:493},{gen:5,min:494,max:649},{gen:6,min:650,max:721},{gen:7,min:722,max:809},{gen:8,min:810,max:905},{gen:9,min:906,max:1025}];
 const MOVE_CATEGORIES = ['Physical','Special','Status'];
+
+// Приоритет категорий предметов (меньше = выше в списке)
+const ITEM_CATEGORY_PRIORITY = {
+  berries: 1,        // Ягоды (Leftovers, Sitrus и т.д.)
+  held: 2,           // Обычные held items
+  choice: 3,         // Choice Band / Specs / Scarf
+  boots: 4,          // Heavy-Duty Boots и утилиты
+  orbs: 5,           // Орбы (Life Orb, Flame Orb)
+  plates: 6,         // Plates
+  drives: 7,         // Drives
+  memories: 8,       // Memories
+  zmoves: 9,         // Z-кристаллы
+  mega: 10,          // Мега-камни
+  pokeball: 11,      // Покеболы
+  other: 12,         // Всё остальное
+  nonstandard: 99,   // Future / Past
+};
+
+const getItemCategory = (id, item) => {
+  if (item.isNonstandard) return 'nonstandard';
+  if (item.isPokeball) return 'pokeball';
+  if (item.megaStone) return 'mega';
+  if (item.zMove || item.zMoveFrom || item.zMoveType) return 'zmoves';
+  if (item.onPlate || id.endsWith('plate')) return 'plates';
+  if (id.endsWith('drive')) return 'drives';
+  if (id.endsWith('memory')) return 'memories';
+  const n = id.toLowerCase();
+  if (n === 'leftovers' || n === 'blacksludge' || n.startsWith('sitrus') || item.isBerry) return 'berries';
+  if (n.includes('choiceband') || n.includes('choicespecs') || n.includes('choicescarf') || n === 'choiceband' || n === 'choicespecs' || n === 'choicescarf') return 'choice';
+  if (n === 'lifeorb' || n === 'flameorb' || n === 'toxicorb' || n.endsWith('orb')) return 'orbs';
+  if (n === 'heavydutyboots' || n === 'assaultvest' || n === 'eviolite' || n === 'rockyhelmet' || n === 'airballoon') return 'boots';
+  if (item.fling || item.onBasePower || item.boosts) return 'held';
+  return 'other';
+};
+
+const itemPriority = (id, item) => ITEM_CATEGORY_PRIORITY[getItemCategory(id, item)] ?? 99;
 const ROW_H           = 42;
 
 /* ── HELPERS ────────────────────────────────────────────────── */
@@ -157,6 +194,7 @@ const TeamBuild=()=>{
   const updStat=useCallback((type,stat,raw)=>{const max=type==='evs'?252:31,val=Math.max(0,Math.min(max,parseInt(raw)||0));updTeam(t=>{const m=t.mons[activeSlot];if(!m)return;t.mons[activeSlot]={...m,[type]:{...m[type],[stat]:val}};});},[updTeam,activeSlot]);
   const pickPkmn=useCallback(p=>{const full=getPokemonCompleteData(p.id)||p;updTeam(t=>{t.mons[activeSlot]=mkDefault(full);});setSelectMode(null);},[updTeam,activeSlot]);
   const pickMove=useCallback(mv=>{updTeam(t=>{const m=t.mons[activeSlot];if(!m)return;const moves=[...m.moves];moves[activeMI]=mv.name;t.mons[activeSlot]={...m,moves};});setSelectMode(null);},[updTeam,activeSlot,activeMI]);
+  const pickItem=useCallback(it=>{updMon('item',it.name);setSelectMode(null);},[updMon]);
   const openS=useCallback((mode,mi=0)=>{setSelectMode(mode);setActiveMI(mi);},[]);
   const closeS=useCallback(()=>setSelectMode(null),[]);
   const clearSlot=useCallback(()=>updTeam(t=>{t.mons[activeSlot]=null;}),[updTeam,activeSlot]);
@@ -188,11 +226,11 @@ const TeamBuild=()=>{
         <div className="editor-left">
           {curMon
             ?<MonEditor mon={curMon} statTab={statTab} setStatTab={setStatTab} onUpdate={updMon} onStat={updStat}
-                onSelectPkmn={()=>openS('pkmn')} onSelectMove={i=>openS('move',i)} onClear={clearSlot}/>
+                onSelectPkmn={()=>openS('pkmn')} onSelectMove={i=>openS('move',i)} onSelectItem={()=>openS('item')} onClear={clearSlot}/>
             :<div className="empty-slot-box" onClick={()=>openS('pkmn')}><div className="esb-ico">+</div><span>Нажмите для добавления покемона</span></div>
           }
         </div>
-        {selectMode&&<SearchPanel mode={selectMode} moveList={monMoves} onClose={closeS} onPickPkmn={pickPkmn} onPickMove={pickMove}/>}
+        {selectMode&&<SearchPanel mode={selectMode} moveList={monMoves} onClose={closeS} onPickPkmn={pickPkmn} onPickMove={pickMove} onPickItem={pickItem}/>}
       </div>
     </div>
   );
@@ -255,7 +293,7 @@ const ImportModal=memo(({value,onChange,onImport,onClose})=>(
 ));
 
 /* ── MON EDITOR ─────────────────────────────────────────────── */
-const MonEditor=memo(({mon,statTab,setStatTab,onUpdate,onStat,onSelectPkmn,onSelectMove,onClear})=>{
+const MonEditor=memo(({mon,statTab,setStatTab,onUpdate,onStat,onSelectPkmn,onSelectMove,onSelectItem,onClear})=>{
   const clrMv=useCallback(i=>{const m=[...mon.moves];m[i]='';onUpdate('moves',m);},[mon.moves,onUpdate]);
   return(
     <div className="mon-editor">
@@ -268,7 +306,12 @@ const MonEditor=memo(({mon,statTab,setStatTab,onUpdate,onStat,onSelectPkmn,onSel
         <div className="mon-basic">
           <F label="Никнейм"><input className="ps-input" value={mon.nickname} onChange={e=>onUpdate('nickname',e.target.value)} placeholder={mon.name}/></F>
           <F label="Покемон"><button className="ps-input sel-btn" onClick={onSelectPkmn}>{mon.name}</button></F>
-          <F label="Предмет"><input className="ps-input" value={mon.item} onChange={e=>onUpdate('item',e.target.value)} placeholder="Нет"/></F>
+          <F label="Предмет">
+            <button className="ps-input sel-btn item-sel-btn" onClick={onSelectItem}>
+              {mon.item||<span className="mv-ph">— Нет предмета</span>}
+              {mon.item&&<span className="mv-x" onClick={e=>{e.stopPropagation();onUpdate('item','');}}>✕</span>}
+            </button>
+          </F>
           <F label="Способность">
             <select className="ps-input" value={mon.ability} onChange={e=>onUpdate('ability',e.target.value)}>
               {mon.abilities&&Object.entries(mon.abilities).map(([k,v])=><option key={k} value={v}>{v}{k==='H'?' (H)':''}</option>)}
@@ -358,7 +401,7 @@ const StatRow=memo(({stat,mon,nm,statTab,onStat})=>{
 });
 
 /* ── SEARCH PANEL ───────────────────────────────────────────── */
-const SearchPanel=memo(({mode,moveList,onClose,onPickPkmn,onPickMove})=>{
+const SearchPanel=memo(({mode,moveList,onClose,onPickPkmn,onPickMove,onPickItem})=>{
   const ref=useRef(null);
   const[q,setQ]=useState('');
   const[sKey,setSKey]=useState('num');
@@ -371,11 +414,24 @@ const SearchPanel=memo(({mode,moveList,onClose,onPickPkmn,onPickMove})=>{
   const[fMT,setFMT]=useState('');
   const[mSKey,setMSKey]=useState('name');
   const[mSDir,setMSDir]=useState(1);
+  const[iSKey,setISKey]=useState('priority');
+  const[iSDir,setISDir]=useState(1);
+  const[fItemCat,setFItemCat]=useState('');
 
   useEffect(()=>{ref.current?.focus();},[mode]);
 
   const togSort=useCallback(key=>{setSKey(p=>{if(p===key){setSDir(d=>d*-1);return key;}setSDir(1);return key;});},[]);
   const togMSort=useCallback(key=>{setMSKey(p=>{if(p===key){setMSDir(d=>d*-1);return key;}setMSDir(1);return key;});},[]);
+  const togISort=useCallback(key=>{setISKey(p=>{if(p===key){setISDir(d=>d*-1);return key;}setISDir(1);return key;});},[]);
+
+  const onPickPkmnCb=useCallback(p=>{onPickPkmn(p);},[onPickPkmn]);
+  const onPickMoveCb=useCallback(m=>{onPickMove(m);},[onPickMove]);
+  const onPickItemCb=useCallback(it=>{onPickItem(it);},[onPickItem]);
+
+  // Кешируем список предметов
+  const itemList=useMemo(()=>
+    Object.entries(Items||{}).map(([id,item])=>({id,name:item.name||id,num:item.num||0,gen:item.gen||0,category:getItemCategory(id,item),priority:itemPriority(id,item),isNonstandard:item.isNonstandard||null}))
+  ,[]);
 
   const pkmnList=useMemo(()=>{
     const all=getCache(),ql=q.toLowerCase();
@@ -411,10 +467,30 @@ const SearchPanel=memo(({mode,moveList,onClose,onPickPkmn,onPickMove})=>{
     });
   },[moveList,q,fCat,fMT,mSKey,mSDir]);
 
+  const itemsFlt=useMemo(()=>{
+    const ql=q.toLowerCase();
+    return itemList.filter(it=>{
+      if(ql&&!it.name.toLowerCase().includes(ql))return false;
+      if(fItemCat&&it.category!==fItemCat)return false;
+      return true;
+    }).sort((a,b)=>{
+      if(iSKey==='name')return iSDir*a.name.localeCompare(b.name);
+      if(iSKey==='gen')return iSDir*((a.gen||0)-(b.gen||0));
+      // По умолчанию — сортировка по приоритету (популярные вверху)
+      const pd=a.priority-b.priority;
+      if(pd!==0)return iSDir===1?pd:-pd;
+      return a.name.localeCompare(b.name);
+    });
+  },[itemList,q,fItemCat,iSKey,iSDir]);
+
+  const ITEM_CAT_LABELS={held:'Обычные',berries:'Ягоды',choice:'Choice',orbs:'Орбы',boots:'Утилиты',plates:'Пластины',drives:'Диски',memories:'Памяти',zmoves:'Z-кристаллы',mega:'Мега-камни',pokeball:'Покеболы',other:'Другие',nonstandard:'Нестандарт'};
+
+  const modeLabel = mode==='pkmn'?'🔍 Выбор покемона':mode==='move'?'🔍 Выбор атаки':'🎒 Выбор предмета';
+
   return(
     <div className="search-panel">
-      <div className="sp-hdr"><span className="sp-title">{mode==='pkmn'?'🔍 Выбор покемона':'🔍 Выбор атаки'}</span><button className="sp-close" onClick={onClose}>✕</button></div>
-      <div className="sp-search"><input ref={ref} className="search-main" placeholder={mode==='pkmn'?'Поиск покемона...':'Поиск атаки...'} value={q} onChange={e=>setQ(e.target.value)}/></div>
+      <div className="sp-hdr"><span className="sp-title">{modeLabel}</span><button className="sp-close" onClick={onClose}>✕</button></div>
+      <div className="sp-search"><input ref={ref} className="search-main" placeholder={mode==='pkmn'?'Поиск покемона...':mode==='move'?'Поиск атаки...':'Поиск предмета...'} value={q} onChange={e=>setQ(e.target.value)}/></div>
 
       {mode==='pkmn'&&(
         <div className="filter-bar">
@@ -445,9 +521,19 @@ const SearchPanel=memo(({mode,moveList,onClose,onPickPkmn,onPickMove})=>{
           <span className="f-cnt">{movesFlt.length} атак</span>
         </div>
       )}
+      {mode==='item'&&(
+        <div className="filter-bar">
+          <select className="f-sel" value={fItemCat} onChange={e=>setFItemCat(e.target.value)}>
+            <option value="">Все категории</option>
+            {Object.entries(ITEM_CAT_LABELS).map(([k,l])=><option key={k} value={k}>{l}</option>)}
+          </select>
+          <span className="f-cnt">{itemsFlt.length} предм.</span>
+        </div>
+      )}
 
-      {mode==='pkmn'&&<PkmnTable list={pkmnList} sKey={sKey} sDir={sDir} onSort={togSort} onPick={onPickPkmn}/>}
-      {mode==='move'&&<MoveTable list={movesFlt} sKey={mSKey} sDir={mSDir} onSort={togMSort} onPick={onPickMove}/>}
+      {mode==='pkmn'&&<PkmnTable list={pkmnList} sKey={sKey} sDir={sDir} onSort={togSort} onPick={onPickPkmnCb}/>}
+      {mode==='move'&&<MoveTable list={movesFlt} sKey={mSKey} sDir={mSDir} onSort={togMSort} onPick={onPickMoveCb}/>}
+      {mode==='item'&&<ItemTable list={itemsFlt} sKey={iSKey} sDir={iSDir} onSort={togISort} onPick={onPickItemCb}/>}
     </div>
   );
 });
@@ -520,6 +606,53 @@ const MoveRow=memo(({m,onPick})=>(
     <div className="mrc" style={{width:76}}><span className={`cat-pip ${(m.category||'').toLowerCase()}`}>{m.category}</span></div>
     <div className="mrc bp" style={{width:44}}>{m.basePower||'—'}</div>
     <div className="mrc" style={{width:40}}>{m.pp||'—'}</div>
+  </div>
+));
+
+/* ── ITEM TABLE ─────────────────────────────────────────────── */
+const ITEM_CAT_ICONS={held:'⚔️',berries:'🍓',choice:'🎯',orbs:'🔮',boots:'🛡️',plates:'📋',drives:'💾',memories:'🧬',zmoves:'💎',mega:'🔷',pokeball:'⚪',other:'📦',nonstandard:'🚫'};
+
+const IH=[
+  {k:'',l:'',w:36},
+  {k:'name',l:'Предмет',w:null},
+  {k:'',l:'Категория',w:110},
+  {k:'gen',l:'Gen',w:40},
+];
+
+const ItemTable=memo(({list,sKey,sDir,onSort,onPick})=>{
+  const renderRow=useCallback((it,i)=><ItemRow key={it.id||i} it={it} onPick={onPick}/>,[onPick]);
+  return(
+    <div className="pkmn-tbl-wrap">
+      <div className="pkmn-thead">
+        {IH.map((h,i)=>(
+          <div key={i} className={`phc${h.k?' sort':''}`} style={{width:h.w||undefined,flex:h.w?'none':1}}
+            onClick={h.k?()=>onSort(h.k):undefined}>
+            {h.l}{h.k&&sKey===h.k&&<span className="sarr">{sDir===1?'▲':'▼'}</span>}
+          </div>
+        ))}
+      </div>
+      <VirtualList items={list} rowH={ROW_H} render={renderRow} height={440}/>
+    </div>
+  );
+});
+
+const ITEM_CAT_COLORS={held:'#6890f0',berries:'#78c850',choice:'#f08030',orbs:'#f85888',boots:'#b8b8d0',plates:'#f8d030',drives:'#98d8d8',memories:'#a890f0',zmoves:'#705898',mega:'#7038f8',pokeball:'#a8a878',other:'#888',nonstandard:'#555'};
+
+const itemSprUrl=(id)=>`https://play.pokemonshowdown.com/sprites/itemicons/${id}.png`;
+
+const ItemRow=memo(({it,onPick})=>(
+  <div className="pkmn-row" style={{height:ROW_H}} onClick={()=>onPick(it)}>
+    <div className="prc" style={{width:36,fontSize:16,textAlign:'center'}}>
+      <img src={itemSprUrl(it.name.toLowerCase().replace(/\s+/g, '-'))} alt="" style={{width:24,height:24,objectFit:'contain',verticalAlign:'middle'}}
+        onError={e=>{e.target.style.display='none';}}/>
+    </div>
+    <div className="prc pk-name" style={{flex:1}}>{it.name}</div>
+    <div className="prc" style={{width:110}}>
+      <span className="tier-b" style={{background:ITEM_CAT_COLORS[it.category]||'#888',color:'#fff',fontSize:11,padding:'2px 6px',borderRadius:4}}>
+        {ITEM_CAT_ICONS[it.category]||'📦'} {it.category}
+      </span>
+    </div>
+    <div className="prc pk-stat" style={{width:40}}>{it.gen||'—'}</div>
   </div>
 ));
 

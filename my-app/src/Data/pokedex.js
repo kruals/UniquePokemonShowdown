@@ -21085,7 +21085,9 @@ const Pokedex = {
           "spe": 140
       },
       "abilities": {
-          "0": "Windrider"
+          "0": "Windrider",
+          "1": "Aerilate",
+          "H": "Magicbounce"
       },
       "heightm": 3,
       "weightkg": 1,
@@ -21134,7 +21136,9 @@ const Pokedex = {
           "spe": 54
       },
       "abilities": {
-          "0": "Shielddust"
+          "0": "Shielddust",
+          "1": "Hugepower",
+          "H": "Serenegrace"
       },
       "heightm": 3,
       "weightkg": 30,
@@ -21159,7 +21163,9 @@ const Pokedex = {
           "spe": 110
       },
       "abilities": {
-          "0": "Shielddust"
+          "0": "Shielddust",
+          "1": "Hugepower",
+          "H": "Serenegrace"
       },
       "heightm": 10,
       "weightkg": 70,
@@ -21183,7 +21189,8 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Blaze"
+          "0": "Blaze",
+          "H": "Sturdy"
       },
       "heightm": 5,
       "weightkg": 57,
@@ -21207,7 +21214,8 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Blaze"
+          "0": "Blaze",
+          "H": "Sturdy"
       },
       "heightm": 11,
       "weightkg": 208,
@@ -21232,7 +21240,8 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Blaze"
+          "0": "Blaze",
+          "H": "Goodasgold"
       },
       "heightm": 22,
       "weightkg": 5100,
@@ -21256,7 +21265,8 @@ const Pokedex = {
           "spe": 45
       },
       "abilities": {
-          "0": "Torrent"
+          "0": "Torrent",
+          "H": "Anticipation"
       },
       "heightm": 5,
       "weightkg": 110,
@@ -21280,7 +21290,8 @@ const Pokedex = {
           "spe": 75
       },
       "abilities": {
-          "0": "Torrent"
+          "0": "Torrent",
+          "H": "Anticipation"
       },
       "heightm": 8,
       "weightkg": 280,
@@ -21305,7 +21316,8 @@ const Pokedex = {
           "spe": 115
       },
       "abilities": {
-          "0": "Torrent"
+          "0": "Torrent",
+          "H": "Magicbounce"
       },
       "heightm": 18,
       "weightkg": 1150,
@@ -21354,7 +21366,8 @@ const Pokedex = {
           "spe": 24
       },
       "abilities": {
-          "0": "Supersweetsyrup"
+          "0": "Supersweetsyrup",
+          "H": "Unaware"
       },
       "heightm": 2,
       "weightkg": 3,
@@ -21379,7 +21392,8 @@ const Pokedex = {
           "spe": 74
       },
       "abilities": {
-          "0": "Supersweetsyrup"
+          "0": "Supersweetsyrup",
+          "H": "Heatproof"
       },
       "heightm": 15,
       "weightkg": 658,
@@ -21403,7 +21417,9 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Windrider"
+          "0": "Windrider",
+          "1": "Technician",
+          "H": "Aerilate"
       },
       "heightm": 6,
       "weightkg": 105,
@@ -21428,7 +21444,9 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Windpower"
+          "0": "Windpower",
+          "1": "Lightningrod",
+          "H": "Aerilate"
       },
       "heightm": 16,
       "weightkg": 620,
@@ -21453,7 +21471,9 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Windrider"
+          "0": "Windrider",
+          "1": "Technician",
+          "H": "Aerilate"
       },
       "heightm": 15,
       "weightkg": 9999,
@@ -21777,7 +21797,9 @@ const Pokedex = {
           "spe": 30
       },
       "abilities": {
-          "0": "Shedskin"
+          "0": "Shedskin",
+          "1": "Compoundeyes",
+          "H": "Poisonpoint"
       },
       "heightm": 4,
       "weightkg": 406,
@@ -21802,7 +21824,9 @@ const Pokedex = {
           "spe": 120
       },
       "abilities": {
-          "0": "Moldbreaker"
+          "0": "Moldbreaker",
+          "1": "Compoundeyes",
+          "H": "Dragonsmaw"
       },
       "heightm": 16,
       "weightkg": 505,
@@ -21826,7 +21850,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Shedskin"
+          "0": "Shedskin",
+          "1": "Compoundeyes",
+          "H": "Poisonpoint"
       },
       "heightm": 3,
       "weightkg": 30,
@@ -21851,7 +21877,9 @@ const Pokedex = {
           "spe": 76
       },
       "abilities": {
-          "0": "Victorystar"
+          "0": "Victorystar",
+          "1": "Owntempo",
+          "H": "Flamebody"
       },
       "heightm": 8,
       "weightkg": 55,
@@ -21876,7 +21904,9 @@ const Pokedex = {
           "spe": 102
       },
       "abilities": {
-          "0": "Victorystar"
+          "0": "Victorystar",
+          "1": "Owntempo",
+          "H": "Flamebody"
       },
       "heightm": 16,
       "weightkg": 110,
@@ -21901,7 +21931,9 @@ const Pokedex = {
           "spe": 58
       },
       "abilities": {
-          "0": "Shadowtag"
+          "0": "Shadowtag",
+          "1": "Gluttony",
+          "H": "Perishbody"
       },
       "heightm": 21,
       "weightkg": 9999,
@@ -21951,7 +21983,9 @@ const Pokedex = {
           "spe": 114
       },
       "abilities": {
-          "0": "Perishbody"
+          "0": "Perishbody",
+          "1": "Effectspore",
+          "H": "Adaptability"
       },
       "heightm": 1,
       "weightkg": 9,
@@ -21976,7 +22010,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Magnetpull"
+          "0": "Magnetpull",
+          "1": "Analytic",
+          "H": "Costar"
       },
       "heightm": 8,
       "weightkg": 952,
@@ -22001,7 +22037,9 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Magnetpull"
+          "0": "Magnetpull",
+          "1": "Analytic",
+          "H": "Costar"
       },
       "heightm": 11,
       "weightkg": 2025,
@@ -22026,7 +22064,9 @@ const Pokedex = {
           "spe": 20
       },
       "abilities": {
-          "0": "Sturdy"
+          "0": "Sturdy",
+          "1": "Solidrock",
+          "H": "Thermalexchange"
       },
       "heightm": 10,
       "weightkg": 970,
@@ -22051,7 +22091,8 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Rockypayload"
+          "0": "Rockypayload",
+          "H": "Rockhead"
       },
       "heightm": 16,
       "weightkg": 1190,
@@ -22076,7 +22117,9 @@ const Pokedex = {
           "spe": 30
       },
       "abilities": {
-          "0": "Regenerator"
+          "0": "Regenerator",
+          "1": "Solidrock",
+          "H": "Triage"
       },
       "heightm": 12,
       "weightkg": 1190,
@@ -22101,7 +22144,9 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "1": "Solidrock",
+          "H": "Powerspot"
       },
       "heightm": 12,
       "weightkg": 1190,
@@ -22126,7 +22171,9 @@ const Pokedex = {
           "spe": 35
       },
       "abilities": {
-          "0": "Swiftswim"
+          "0": "Swiftswim",
+          "1": "Overcoat",
+          "H": "Windrider"
       },
       "heightm": 5,
       "weightkg": 10,
@@ -22151,7 +22198,9 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Swiftswim"
+          "0": "Swiftswim",
+          "1": "Overcoat",
+          "H": "Windrider"
       },
       "heightm": 10,
       "weightkg": 15,
@@ -22176,7 +22225,8 @@ const Pokedex = {
           "spe": 20
       },
       "abilities": {
-          "0": "Comatose"
+          "0": "Comatose",
+          "H": "Comatose"
       },
       "heightm": 13,
       "weightkg": 1,
@@ -22201,7 +22251,8 @@ const Pokedex = {
           "spe": 20
       },
       "abilities": {
-          "0": "Baddreams"
+          "0": "Baddreams",
+          "H": "Baddreams"
       },
       "heightm": 13,
       "weightkg": 1,
@@ -22226,7 +22277,8 @@ const Pokedex = {
           "spe": 45
       },
       "abilities": {
-          "0": "Comatose"
+          "0": "Comatose",
+          "H": "Comatose"
       },
       "heightm": 15,
       "weightkg": 1.2,
@@ -22250,7 +22302,9 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "1": "Download",
+          "H": "Surgesurfer"
       },
       "heightm": 8,
       "weightkg": 365,
@@ -22274,7 +22328,9 @@ const Pokedex = {
           "spe": 130
       },
       "abilities": {
-          "0": "Motordrive"
+          "0": "Motordrive",
+          "1": "Download",
+          "H": "Surgesurfer"
       },
       "heightm": 9,
       "weightkg": 340,
@@ -22298,7 +22354,9 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "1": "Download",
+          "H": "Surgesurfer"
       },
       "heightm": 6,
       "weightkg": 325,
@@ -22323,7 +22381,9 @@ const Pokedex = {
           "spe": 71
       },
       "abilities": {
-          "0": "Aftermath"
+          "0": "Aftermath",
+          "1": "Bulletproof",
+          "H": "Reckless"
       },
       "heightm": 4,
       "weightkg": 50,
@@ -22423,7 +22483,9 @@ const Pokedex = {
           "spe": 104
       },
       "abilities": {
-          "0": "Aftermath"
+          "0": "Aftermath",
+          "1": "Bulletproof",
+          "H": "Reckless"
       },
       "heightm": 9,
       "weightkg": 125,
@@ -22522,7 +22584,9 @@ const Pokedex = {
           "spe": 58
       },
       "abilities": {
-          "0": "Frisk"
+          "0": "Frisk",
+          "1": "Owntempo",
+          "H": "Reckless"
       },
       "heightm": 3,
       "weightkg": 32,
@@ -22547,7 +22611,9 @@ const Pokedex = {
           "spe": 111
       },
       "abilities": {
-          "0": "Superluck"
+          "0": "Superluck",
+          "1": "Cursedbody",
+          "H": "Reckless"
       },
       "heightm": 8,
       "weightkg": 164,
@@ -22571,7 +22637,8 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Soundproof"
+          "0": "Soundproof",
+          "H": "Punkrock"
       },
       "heightm": 17,
       "weightkg": 2100,
@@ -22596,7 +22663,9 @@ const Pokedex = {
           "spe": 20
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Leafguard",
+          "H": "Dragonsmaw"
       },
       "heightm": 2,
       "weightkg": 5,
@@ -22621,7 +22690,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Raindish",
+          "H": "Dragonsmaw"
       },
       "heightm": 2,
       "weightkg": 5,
@@ -22646,7 +22717,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Raindish",
+          "H": "Dragonsmaw"
       },
       "heightm": 4,
       "weightkg": 1260,
@@ -22671,7 +22744,9 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Flowerveil",
+          "H": "Dragonsmaw"
       },
       "heightm": 2,
       "weightkg": 5,
@@ -22696,7 +22771,9 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Flowerveil",
+          "H": "Dragonsmaw"
       },
       "heightm": 2,
       "weightkg": 5,
@@ -22721,7 +22798,9 @@ const Pokedex = {
           "spe": 140
       },
       "abilities": {
-          "0": "Sharpness"
+          "0": "Sharpness",
+          "1": "Supremeoverlord",
+          "H": "Darkaura"
       },
       "heightm": 17,
       "weightkg": 330,
@@ -22770,7 +22849,9 @@ const Pokedex = {
           "spe": 20
       },
       "abilities": {
-          "0": "Sandspit"
+          "0": "Sandspit",
+          "1": "Flamebody",
+          "H": "Sandstream"
       },
       "heightm": 7,
       "weightkg": 350,
@@ -22794,7 +22875,9 @@ const Pokedex = {
           "spe": 30
       },
       "abilities": {
-          "0": "Sandspit"
+          "0": "Sandspit",
+          "1": "Flamebody",
+          "H": "Sandstream"
       },
       "heightm": 8,
       "weightkg": 550,
@@ -22819,7 +22902,9 @@ const Pokedex = {
           "spe": 15
       },
       "abilities": {
-          "0": "Icebody"
+          "0": "Icebody",
+          "1": "Snowcloak",
+          "H": "Snowwarning"
       },
       "heightm": 5,
       "weightkg": 700,
@@ -22844,7 +22929,9 @@ const Pokedex = {
           "spe": 35
       },
       "abilities": {
-          "0": "Icebody"
+          "0": "Icebody",
+          "1": "Snowcloak",
+          "H": "Snowwarning"
       },
       "heightm": 13,
       "weightkg": 2500,
@@ -22869,7 +22956,9 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Telepathy"
+          "0": "Telepathy",
+          "1": "Static",
+          "H": "Surgesurfer"
       },
       "heightm": 10,
       "weightkg": 1080,
@@ -22894,7 +22983,9 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Eartheater"
+          "0": "Eartheater",
+          "1": "Stakeout",
+          "H": "Mirrorarmor"
       },
       "heightm": 7,
       "weightkg": 10,
@@ -22919,7 +23010,9 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Eartheater"
+          "0": "Eartheater",
+          "1": "Stakeout",
+          "H": "Mirrorarmor"
       },
       "heightm": 30,
       "weightkg": 1200,
@@ -22944,7 +23037,8 @@ const Pokedex = {
           "spe": 75
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "H": "Levitate"
       },
       "heightm": 10,
       "weightkg": 350,
@@ -22994,7 +23088,8 @@ const Pokedex = {
           "spe": 104
       },
       "abilities": {
-          "0": "Overgrow"
+          "0": "Overgrow",
+          "H": "Keeneye"
       },
       "heightm": 4,
       "weightkg": 90,
@@ -23019,7 +23114,8 @@ const Pokedex = {
           "spe": 104
       },
       "abilities": {
-          "0": "Overgrow"
+          "0": "Overgrow",
+          "H": "Keeneye"
       },
       "heightm": 7,
       "weightkg": 240,
@@ -23044,7 +23140,8 @@ const Pokedex = {
           "spe": 124
       },
       "abilities": {
-          "0": "Overgrow"
+          "0": "Overgrow",
+          "H": "Windrider"
       },
       "heightm": 17,
       "weightkg": 1270,
@@ -23094,7 +23191,8 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Adaptability"
+          "0": "Adaptability",
+          "H": "Scrappy"
       },
       "heightm": 3,
       "weightkg": 8,
@@ -23143,7 +23241,9 @@ const Pokedex = {
           "spe": 48
       },
       "abilities": {
-          "0": "Steadfast"
+          "0": "Steadfast",
+          "1": "Fluffy",
+          "H": "Guarddog"
       },
       "heightm": 6,
       "weightkg": 97,
@@ -23167,7 +23267,9 @@ const Pokedex = {
           "spe": 88
       },
       "abilities": {
-          "0": "Steadfast"
+          "0": "Steadfast",
+          "1": "Fluffy",
+          "H": "Guarddog"
       },
       "heightm": 13,
       "weightkg": 500,
@@ -23192,7 +23294,9 @@ const Pokedex = {
           "spe": 125
       },
       "abilities": {
-          "0": "Pickup"
+          "0": "Pickup",
+          "1": "Symbiosis",
+          "H": "Dancer"
       },
       "heightm": 2,
       "weightkg": 9,
@@ -23217,7 +23321,9 @@ const Pokedex = {
           "spe": 125
       },
       "abilities": {
-          "0": "Longreach"
+          "0": "Longreach",
+          "1": "Sharpness",
+          "H": "Prankster"
       },
       "heightm": 2,
       "weightkg": 9,
@@ -23242,7 +23348,9 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Sturdy",
+          "H": "Superluck"
       },
       "heightm": 7,
       "weightkg": 88,
@@ -23292,7 +23400,9 @@ const Pokedex = {
           "spe": 68
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Sturdy",
+          "H": "Dazzling"
       },
       "heightm": 7,
       "weightkg": 88,
@@ -23317,7 +23427,8 @@ const Pokedex = {
           "spe": 85
       },
       "abilities": {
-          "0": "Megalauncher"
+          "0": "Megalauncher",
+          "H": "Megalauncher"
       },
       "heightm": 16,
       "weightkg": 455,
@@ -23342,7 +23453,9 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Soundproof"
+          "0": "Soundproof",
+          "1": "Sturdy",
+          "H": "Weakarmor"
       },
       "heightm": 7,
       "weightkg": 88,
@@ -23367,7 +23480,9 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Emergencyexit"
+          "0": "Emergencyexit",
+          "1": "Swarm",
+          "H": "Steelyspirit"
       },
       "heightm": 20,
       "weightkg": 1080,
@@ -23392,7 +23507,9 @@ const Pokedex = {
           "spe": 99
       },
       "abilities": {
-          "0": "Magician"
+          "0": "Magician",
+          "1": "Anticipation",
+          "H": "Costar"
       },
       "heightm": 21,
       "weightkg": 51,
@@ -23417,7 +23534,9 @@ const Pokedex = {
           "spe": 79
       },
       "abilities": {
-          "0": "Magician"
+          "0": "Magician",
+          "1": "Anticipation",
+          "H": "Costar"
       },
       "heightm": 6,
       "weightkg": 48,
@@ -23442,7 +23561,9 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Steadfast"
+          "0": "Steadfast",
+          "1": "Hugepower",
+          "H": "Sapsipper"
       },
       "heightm": 10,
       "weightkg": 405,
@@ -23491,7 +23612,8 @@ const Pokedex = {
           "spe": 45
       },
       "abilities": {
-          "0": "Baddreams"
+          "0": "Baddreams",
+          "H": "Baddreams"
       },
       "heightm": 15,
       "weightkg": 1.2,
@@ -23516,7 +23638,9 @@ const Pokedex = {
           "spe": 65
       },
       "abilities": {
-          "0": "Serenegrace"
+          "0": "Serenegrace",
+          "1": "Owntempo",
+          "H": "Aftermath"
       },
       "heightm": 11,
       "weightkg": 153,
@@ -23541,7 +23665,9 @@ const Pokedex = {
           "spe": 42
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Sturdy",
+          "H": "Friendguard"
       },
       "heightm": 3,
       "weightkg": 57,
@@ -23566,7 +23692,9 @@ const Pokedex = {
           "spe": 42
       },
       "abilities": {
-          "0": "Soundproof"
+          "0": "Soundproof",
+          "1": "Sturdy",
+          "H": "Magicbounce"
       },
       "heightm": 3,
       "weightkg": 57,
@@ -23591,7 +23719,9 @@ const Pokedex = {
           "spe": 42
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Sturdy",
+          "H": "Hospitality"
       },
       "heightm": 3,
       "weightkg": 57,
@@ -23616,7 +23746,8 @@ const Pokedex = {
           "spe": 21
       },
       "abilities": {
-          "0": "Steelworker"
+          "0": "Steelworker",
+          "H": "Steelyspirit"
       },
       "heightm": 42,
       "weightkg": 2100,
@@ -23641,7 +23772,8 @@ const Pokedex = {
           "spe": 85
       },
       "abilities": {
-          "0": "Longreach"
+          "0": "Longreach",
+          "H": "Justified"
       },
       "heightm": 30,
       "weightkg": 620,
@@ -23666,7 +23798,8 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Skilllink"
+          "0": "Skilllink",
+          "H": "Bulletproof"
       },
       "heightm": 60,
       "weightkg": 517,
@@ -23691,7 +23824,9 @@ const Pokedex = {
           "spe": 82
       },
       "abilities": {
-          "0": "Pickup"
+          "0": "Pickup",
+          "1": "Symbiosis",
+          "H": "Dancer"
       },
       "heightm": 1,
       "weightkg": 1,
@@ -23716,7 +23851,9 @@ const Pokedex = {
           "spe": 45
       },
       "abilities": {
-          "0": "Mimicry"
+          "0": "Mimicry",
+          "1": "Serenegrace",
+          "H": "Contrary"
       },
       "heightm": 3,
       "weightkg": 15,
@@ -23740,7 +23877,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Dryskin"
+          "0": "Dryskin",
+          "1": "Clearbody",
+          "H": "Flareboost"
       },
       "heightm": 12,
       "weightkg": 330,
@@ -23765,7 +23904,8 @@ const Pokedex = {
           "spe": 110
       },
       "abilities": {
-          "0": "Toughclaws"
+          "0": "Toughclaws",
+          "H": "Toughclaws"
       },
       "heightm": 16,
       "weightkg": 564,
@@ -23790,7 +23930,9 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Sharpness"
+          "0": "Sharpness",
+          "1": "Clearbody",
+          "H": "Prankster"
       },
       "heightm": 16,
       "weightkg": 520,
@@ -23815,7 +23957,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Triage"
+          "0": "Triage",
+          "H": "Triage"
       },
       "heightm": 16,
       "weightkg": 484,
@@ -23840,7 +23983,9 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Insomnia"
+          "0": "Insomnia",
+          "1": "Clearbody",
+          "H": "Triage"
       },
       "heightm": 16,
       "weightkg": 484,
@@ -23865,7 +24010,9 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Lightningrod"
+          "0": "Lightningrod",
+          "1": "Motordrive",
+          "H": "Technician"
       },
       "heightm": 10,
       "weightkg": 920,
@@ -23890,7 +24037,9 @@ const Pokedex = {
           "spe": 85
       },
       "abilities": {
-          "0": "Lightningrod"
+          "0": "Lightningrod",
+          "1": "Motordrive",
+          "H": "Technician"
       },
       "heightm": 28,
       "weightkg": 3300,
@@ -23915,7 +24064,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Liquidooze"
+          "0": "Liquidooze",
+          "1": "Corrosion",
+          "H": "Gooey"
       },
       "heightm": 12,
       "weightkg": 1505,
@@ -23940,7 +24091,9 @@ const Pokedex = {
           "spe": 110
       },
       "abilities": {
-          "0": "Stormdrain"
+          "0": "Stormdrain",
+          "1": "Raindish",
+          "H": "Gooey"
       },
       "heightm": 20,
       "weightkg": 1405,
@@ -23965,7 +24118,9 @@ const Pokedex = {
           "spe": 39
       },
       "abilities": {
-          "0": "Magician"
+          "0": "Magician",
+          "1": "Anticipation",
+          "H": "Costar"
       },
       "heightm": 5,
       "weightkg": 34,
@@ -23990,7 +24145,9 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Flashfire"
+          "0": "Flashfire",
+          "1": "Clearbody",
+          "H": "Rockypayload"
       },
       "heightm": 22,
       "weightkg": 1350,
@@ -24015,7 +24172,9 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Waterabsorb"
+          "0": "Waterabsorb",
+          "1": "Clearbody",
+          "H": "Waterbubble"
       },
       "heightm": 22,
       "weightkg": 1350,
@@ -24040,7 +24199,9 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Insomnia"
+          "0": "Insomnia",
+          "1": "Clearbody",
+          "H": "Triage"
       },
       "heightm": 8,
       "weightkg": 202,
@@ -24065,7 +24226,8 @@ const Pokedex = {
           "spe": 127
       },
       "abilities": {
-          "0": "Megalauncher"
+          "0": "Megalauncher",
+          "H": "Megalauncher"
       },
       "heightm": 13,
       "weightkg": 575,
@@ -24090,7 +24252,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Megalauncher"
+          "0": "Megalauncher",
+          "H": "Megalauncher"
       },
       "heightm": 12,
       "weightkg": 540,
@@ -24115,7 +24278,9 @@ const Pokedex = {
           "spe": 65
       },
       "abilities": {
-          "0": "Mimicry"
+          "0": "Mimicry",
+          "1": "Serenegrace",
+          "H": "Contrary"
       },
       "heightm": 9,
       "weightkg": 185,
@@ -24140,7 +24305,8 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Serenegrace"
+          "0": "Serenegrace",
+          "H": "Serenegrace"
       },
       "heightm": 6,
       "weightkg": 65,
@@ -24165,7 +24331,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Punkrock"
+          "0": "Punkrock",
+          "H": "Punkrock"
       },
       "heightm": 6,
       "weightkg": 65,
@@ -24190,7 +24357,9 @@ const Pokedex = {
           "spe": 20
       },
       "abilities": {
-          "0": "Tanglinghair"
+          "0": "Tanglinghair",
+          "1": "Wellbakedbody",
+          "H": "Chlorophyll"
       },
       "heightm": 2,
       "weightkg": 15,
@@ -24215,7 +24384,9 @@ const Pokedex = {
           "spe": 15
       },
       "abilities": {
-          "0": "Wonderskin"
+          "0": "Wonderskin",
+          "1": "Wellbakedbody",
+          "H": "Contrary"
       },
       "heightm": 2,
       "weightkg": 15,
@@ -24239,7 +24410,9 @@ const Pokedex = {
           "spe": 18
       },
       "abilities": {
-          "0": "Sapsipper"
+          "0": "Sapsipper",
+          "1": "Stakeout",
+          "H": "Shadowtag"
       },
       "heightm": 4,
       "weightkg": 70,
@@ -24264,7 +24437,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Insomnia"
+          "0": "Insomnia",
+          "1": "Clearbody",
+          "H": "Triage"
       },
       "heightm": 4,
       "weightkg": 66,
@@ -24289,7 +24464,9 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Poisontouch"
+          "0": "Poisontouch",
+          "1": "Ironbarbs",
+          "H": "Toxicdebris"
       },
       "heightm": 3,
       "weightkg": 20,
@@ -24314,7 +24491,9 @@ const Pokedex = {
           "spe": 105
       },
       "abilities": {
-          "0": "Merciless"
+          "0": "Merciless",
+          "1": "Ironbarbs",
+          "H": "Toxicdebris"
       },
       "heightm": 9,
       "weightkg": 145,
@@ -24339,7 +24518,9 @@ const Pokedex = {
           "spe": 45
       },
       "abilities": {
-          "0": "Tanglinghair"
+          "0": "Tanglinghair",
+          "1": "Wellbakedbody",
+          "H": "Chlorophyll"
       },
       "heightm": 10,
       "weightkg": 115,
@@ -24364,7 +24545,9 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Wonderskin"
+          "0": "Wonderskin",
+          "1": "Wellbakedbody",
+          "H": "Contrary"
       },
       "heightm": 10,
       "weightkg": 115,
@@ -24389,7 +24572,8 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Powerspot"
+          "0": "Powerspot",
+          "H": "Powerspot"
       },
       "heightm": 25,
       "weightkg": 5200,
@@ -24414,7 +24598,9 @@ const Pokedex = {
           "spe": 82
       },
       "abilities": {
-          "0": "Grasspelt"
+          "0": "Grasspelt",
+          "1": "Rattled",
+          "H": "Regenerator"
       },
       "heightm": 10,
       "weightkg": 350,
@@ -24438,7 +24624,9 @@ const Pokedex = {
           "spe": 5
       },
       "abilities": {
-          "0": "Sapsipper"
+          "0": "Sapsipper",
+          "1": "Stakeout",
+          "H": "Shadowtag"
       },
       "heightm": 15,
       "weightkg": 710,
@@ -24463,7 +24651,9 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Wimpout"
+          "0": "Wimpout",
+          "1": "Swarm",
+          "H": "Steelyspirit"
       },
       "heightm": 5,
       "weightkg": 120,
@@ -24488,7 +24678,9 @@ const Pokedex = {
           "spe": 145
       },
       "abilities": {
-          "0": "Flashfire"
+          "0": "Flashfire",
+          "1": "Rockhead",
+          "H": "Speedboost"
       },
       "heightm": 17,
       "weightkg": 1200,
@@ -24513,7 +24705,9 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Flashfire"
+          "0": "Flashfire",
+          "1": "Rockhead",
+          "H": "Speedboost"
       },
       "heightm": 6,
       "weightkg": 400,
@@ -24538,7 +24732,9 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Swiftswim"
+          "0": "Swiftswim",
+          "1": "Sheerforce",
+          "H": "Noguard"
       },
       "heightm": 13,
       "weightkg": 400,
@@ -24563,7 +24759,9 @@ const Pokedex = {
           "spe": 85
       },
       "abilities": {
-          "0": "Swiftswim"
+          "0": "Swiftswim",
+          "1": "Compoundeyes",
+          "H": "Noguard"
       },
       "heightm": 7,
       "weightkg": 125,
@@ -24588,7 +24786,9 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Runaway"
+          "0": "Runaway",
+          "1": "Shedskin",
+          "H": "Seedsower"
       },
       "heightm": 152,
       "weightkg": 800,
@@ -24613,7 +24813,9 @@ const Pokedex = {
           "spe": 28
       },
       "abilities": {
-          "0": "Pickup"
+          "0": "Pickup",
+          "1": "Suctioncups",
+          "H": "Gluttony"
       },
       "heightm": 5,
       "weightkg": 80,
@@ -24638,7 +24840,9 @@ const Pokedex = {
           "spe": 40
       },
       "abilities": {
-          "0": "Runaway"
+          "0": "Runaway",
+          "1": "Shedskin",
+          "H": "Seedsower"
       },
       "heightm": 7,
       "weightkg": 100,
@@ -24663,7 +24867,9 @@ const Pokedex = {
           "spe": 30
       },
       "abilities": {
-          "0": "Pickup"
+          "0": "Pickup",
+          "1": "Suctioncups",
+          "H": "Gluttony"
       },
       "heightm": 28,
       "weightkg": 800,
@@ -24688,7 +24894,8 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Flamebody"
+          "0": "Flamebody",
+          "H": "Voltabsorb"
       },
       "heightm": 8,
       "weightkg": 410,
@@ -24712,7 +24919,8 @@ const Pokedex = {
           "spe": 30
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "H": "Lightmetal"
       },
       "heightm": 6,
       "weightkg": 476,
@@ -24737,7 +24945,8 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Eartheater"
+          "0": "Eartheater",
+          "H": "Clearbody"
       },
       "heightm": 12,
       "weightkg": 1350,
@@ -24762,7 +24971,8 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Eartheater"
+          "0": "Eartheater",
+          "H": "Clearbody"
       },
       "heightm": 16,
       "weightkg": 5500,
@@ -24787,7 +24997,9 @@ const Pokedex = {
           "spe": 82
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Infiltrator",
+          "H": "Cursedbody"
       },
       "heightm": 5,
       "weightkg": 20,
@@ -24812,7 +25024,9 @@ const Pokedex = {
           "spe": 102
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Infiltrator",
+          "H": "Cursedbody"
       },
       "heightm": 14,
       "weightkg": 110,
@@ -24837,7 +25051,9 @@ const Pokedex = {
           "spe": 142
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Infiltrator",
+          "H": "Cursedbody"
       },
       "heightm": 30,
       "weightkg": 750,
@@ -24862,7 +25078,8 @@ const Pokedex = {
           "spe": 35
       },
       "abilities": {
-          "0": "Refrigerate"
+          "0": "Refrigerate",
+          "H": "Noguard"
       },
       "heightm": 10,
       "weightkg": 920,
@@ -24887,7 +25104,8 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Refrigerate"
+          "0": "Refrigerate",
+          "H": "Noguard"
       },
       "heightm": 28,
       "weightkg": 3300,
@@ -24911,7 +25129,9 @@ const Pokedex = {
           "spe": 146
       },
       "abilities": {
-          "0": "Desolateland"
+          "0": "Desolateland",
+          "1": "Fairyaura",
+          "H": "Leafguard"
       },
       "heightm": 10,
       "weightkg": 255,
@@ -24984,7 +25204,8 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Leafguard"
+          "0": "Leafguard",
+          "H": "Chlorophyll"
       },
       "heightm": 17,
       "weightkg": 2300,
@@ -25009,7 +25230,9 @@ const Pokedex = {
           "spe": 120
       },
       "abilities": {
-          "0": "Sandveil"
+          "0": "Sandveil",
+          "1": "Arenatrap",
+          "H": "Sandforce"
       },
       "heightm": 50,
       "weightkg": 666,
@@ -25033,7 +25256,9 @@ const Pokedex = {
           "spe": 146
       },
       "abilities": {
-          "0": "Primordialsea"
+          "0": "Primordialsea",
+          "1": "Magicguard",
+          "H": "Waterabsorb"
       },
       "heightm": 134,
       "weightkg": 2950,
@@ -25058,7 +25283,8 @@ const Pokedex = {
           "spe": 110
       },
       "abilities": {
-          "0": "Synchronize"
+          "0": "Synchronize",
+          "H": "Magicbounce"
       },
       "heightm": 9,
       "weightkg": 265,
@@ -25083,7 +25309,8 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Flashfire"
+          "0": "Flashfire",
+          "H": "Guts"
       },
       "heightm": 9,
       "weightkg": 750,
@@ -25108,7 +25335,8 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Snowwarning"
+          "0": "Snowwarning",
+          "H": "Weakarmor"
       },
       "heightm": 8,
       "weightkg": 4690,
@@ -25133,7 +25361,8 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Quickfeet"
+          "0": "Quickfeet",
+          "H": "Noguard"
       },
       "heightm": 16,
       "weightkg": 540,
@@ -25157,7 +25386,9 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Hypercutter"
+          "0": "Hypercutter",
+          "1": "Shellarmor",
+          "H": "Sheerforce"
       },
       "heightm": 13,
       "weightkg": 900,
@@ -25182,7 +25413,8 @@ const Pokedex = {
           "spe": 105
       },
       "abilities": {
-          "0": "Ironbarbs"
+          "0": "Ironbarbs",
+          "H": "Clearbody"
       },
       "heightm": 6,
       "weightkg": 810,
@@ -25206,7 +25438,8 @@ const Pokedex = {
           "spe": 95
       },
       "abilities": {
-          "0": "Leafguard"
+          "0": "Leafguard",
+          "H": "Chlorophyll"
       },
       "heightm": 10,
       "weightkg": 255,
@@ -25231,7 +25464,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Roughskin"
+          "0": "Roughskin",
+          "H": "Speedboost"
       },
       "heightm": 24,
       "weightkg": 1568,
@@ -25256,7 +25490,9 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Sturdy"
+          "0": "Sturdy",
+          "1": "Shellarmor",
+          "H": "Weakarmor"
       },
       "heightm": 15,
       "weightkg": 5900,
@@ -25281,7 +25517,9 @@ const Pokedex = {
           "spe": 65
       },
       "abilities": {
-          "0": "Poisonpoint"
+          "0": "Poisonpoint",
+          "1": "Speedboost",
+          "H": "Intimidate"
       },
       "heightm": 30,
       "weightkg": 1210,
@@ -25306,7 +25544,8 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "H": "Infiltrator"
       },
       "heightm": 10,
       "weightkg": 2160,
@@ -25331,7 +25570,8 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Cutecharm"
+          "0": "Cutecharm",
+          "H": "Pixilate"
       },
       "heightm": 10,
       "weightkg": 365,
@@ -25356,7 +25596,8 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Intimidate"
+          "0": "Intimidate",
+          "H": "Moldbreaker"
       },
       "heightm": 17,
       "weightkg": 475,
@@ -25381,7 +25622,8 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Waterabsorb"
+          "0": "Waterabsorb",
+          "H": "Magicguard"
       },
       "heightm": 10,
       "weightkg": 560,
@@ -25406,7 +25648,8 @@ const Pokedex = {
           "spe": 55
       },
       "abilities": {
-          "0": "Filter"
+          "0": "Filter",
+          "H": "Technician"
       },
       "heightm": 16,
       "weightkg": 2360,
@@ -25431,7 +25674,8 @@ const Pokedex = {
           "spe": 60
       },
       "abilities": {
-          "0": "Overcoat"
+          "0": "Overcoat",
+          "H": "Filter"
       },
       "heightm": 18,
       "weightkg": 1200,
@@ -25455,7 +25699,9 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Runaway"
+          "0": "Runaway",
+          "1": "Pickup",
+          "H": "Owntempo"
       },
       "heightm": 6,
       "weightkg": 182,
@@ -25480,7 +25726,9 @@ const Pokedex = {
           "spe": 64
       },
       "abilities": {
-          "0": "Moldbreaker"
+          "0": "Moldbreaker",
+          "1": "Flashfire",
+          "H": "Opportunist"
       },
       "heightm": 4,
       "weightkg": 89,
@@ -25505,7 +25753,9 @@ const Pokedex = {
           "spe": 105
       },
       "abilities": {
-          "0": "Moldbreaker"
+          "0": "Moldbreaker",
+          "1": "Flashfire",
+          "H": "Opportunist"
       },
       "heightm": 7,
       "weightkg": 1128,
@@ -25530,7 +25780,9 @@ const Pokedex = {
           "spe": 82
       },
       "abilities": {
-          "0": "Moldbreaker"
+          "0": "Moldbreaker",
+          "1": "Flashfire",
+          "H": "Opportunist"
       },
       "heightm": 7,
       "weightkg": 591,
@@ -25555,7 +25807,8 @@ const Pokedex = {
           "spe": 33
       },
       "abilities": {
-          "0": "Overcoat"
+          "0": "Overcoat",
+          "H": "Slowstart"
       },
       "heightm": 10,
       "weightkg": 350,
@@ -25580,7 +25833,8 @@ const Pokedex = {
           "spe": 79
       },
       "abilities": {
-          "0": "Beastboost"
+          "0": "Beastboost",
+          "H": "Beastboost"
       },
       "heightm": 48,
       "weightkg": 1320,
@@ -25605,7 +25859,9 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Steadfast"
+          "0": "Steadfast",
+          "1": "Innerfocus",
+          "H": "Defiant"
       },
       "heightm": 12,
       "weightkg": 540,
@@ -25655,7 +25911,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "H": "Unnerve"
       },
       "heightm": 21,
       "weightkg": 1980,
@@ -25680,7 +25937,8 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "H": "Steadfast"
       },
       "heightm": 16,
       "weightkg": 5500,
@@ -25705,7 +25963,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Cutecharm"
+          "0": "Cutecharm",
+          "1": "Pastelveil"
       },
       "heightm": 16,
       "weightkg": 526,
@@ -25730,7 +25989,9 @@ const Pokedex = {
           "spe": 85
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "1": "Innerfocus",
+          "H": "Steadfast"
       },
       "heightm": 54,
       "weightkg": 6830,
@@ -25780,7 +26041,8 @@ const Pokedex = {
           "spe": 97
       },
       "abilities": {
-          "0": "Unseenfist"
+          "0": "Unseenfist",
+          "H": "Multiscale"
       },
       "heightm": 19,
       "weightkg": 850,
@@ -25805,7 +26067,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Flashfire"
+          "0": "Flashfire",
+          "H": "Heatproof"
       },
       "heightm": 4,
       "weightkg": 49,
@@ -25855,7 +26118,8 @@ const Pokedex = {
           "spe": 110
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "H": "Mistysurge"
       },
       "heightm": 15,
       "weightkg": 405,
@@ -25905,7 +26169,9 @@ const Pokedex = {
           "spe": 96
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "1": "Cursedbody",
+          "H": "Trace"
       },
       "heightm": 12,
       "weightkg": 240,
@@ -25930,7 +26196,9 @@ const Pokedex = {
           "spe": 82
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Defiant",
+          "H": "Flashfire"
       },
       "heightm": 5,
       "weightkg": 40,
@@ -25955,7 +26223,9 @@ const Pokedex = {
           "spe": 102
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Defiant",
+          "H": "Flashfire"
       },
       "heightm": 14,
       "weightkg": 320,
@@ -25980,7 +26250,9 @@ const Pokedex = {
           "spe": 132
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "1": "Defiant",
+          "H": "Flashfire"
       },
       "heightm": 24,
       "weightkg": 320,
@@ -26005,7 +26277,8 @@ const Pokedex = {
           "spe": 99
       },
       "abilities": {
-          "0": "Guts"
+          "0": "Guts",
+          "H": "Vitalspirit"
       },
       "heightm": 25,
       "weightkg": 650,
@@ -26030,7 +26303,8 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Cloudnine"
+          "0": "Cloudnine",
+          "H": "Serenegrace"
       },
       "heightm": 17,
       "weightkg": 509,
@@ -26055,7 +26329,9 @@ const Pokedex = {
           "spe": 96
       },
       "abilities": {
-          "0": "Stalwart"
+          "0": "Stalwart",
+          "1": "Infiltrator",
+          "H": "Levitate"
       },
       "heightm": 21,
       "weightkg": 1120,
@@ -26079,7 +26355,8 @@ const Pokedex = {
           "spe": 157
       },
       "abilities": {
-          "0": "Beastboost"
+          "0": "Beastboost",
+          "H": "Beastboost"
       },
       "heightm": 30,
       "weightkg": 55,
@@ -26104,7 +26381,8 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Serenegrace"
+          "0": "Serenegrace",
+          "H": "Mistysurge"
       },
       "heightm": 20,
       "weightkg": 600,
@@ -26129,7 +26407,9 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "1": "Hydration",
+          "H": "Infiltrator"
       },
       "heightm": 45,
       "weightkg": 3520,
@@ -26154,7 +26434,8 @@ const Pokedex = {
           "spe": 65
       },
       "abilities": {
-          "0": "Sandstream"
+          "0": "Sandstream",
+          "H": "Airlock"
       },
       "heightm": 70,
       "weightkg": 2065,
@@ -26179,7 +26460,8 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Moxie"
+          "0": "Moxie",
+          "H": "Armortail"
       },
       "heightm": 35,
       "weightkg": 9500,
@@ -26203,7 +26485,9 @@ const Pokedex = {
           "spe": 65
       },
       "abilities": {
-          "0": "Intimidate"
+          "0": "Intimidate",
+          "1": "Waterabsorb",
+          "H": "Justified"
       },
       "heightm": 7,
       "weightkg": 190,
@@ -26228,7 +26512,9 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Intimidate"
+          "0": "Intimidate",
+          "1": "Owntempo",
+          "H": "Justified"
       },
       "heightm": 19,
       "weightkg": 1550,
@@ -26253,7 +26539,9 @@ const Pokedex = {
           "spe": 30
       },
       "abilities": {
-          "0": "Waterabsorb"
+          "0": "Waterabsorb",
+          "1": "Thickfat",
+          "H": "Gluttony"
       },
       "heightm": 21,
       "weightkg": 4600,
@@ -26278,7 +26566,9 @@ const Pokedex = {
           "spe": 120
       },
       "abilities": {
-          "0": "Pixilate"
+          "0": "Pixilate",
+          "1": "Mistysurge",
+          "H": "Serenegrace"
       },
       "heightm": 35,
       "weightkg": 2400,
@@ -26327,7 +26617,9 @@ const Pokedex = {
           "spe": 96
       },
       "abilities": {
-          "0": "Intimidate"
+          "0": "Intimidate",
+          "1": "Moxie",
+          "H": "Angerpoint"
       },
       "heightm": 23,
       "weightkg": 9600,
@@ -26402,7 +26694,8 @@ const Pokedex = {
           "spe": 85
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "H": "Unnerve"
       },
       "heightm": 20,
       "weightkg": 1870,
@@ -26427,7 +26720,8 @@ const Pokedex = {
           "spe": 120
       },
       "abilities": {
-          "0": "Clearbody"
+          "0": "Clearbody",
+          "H": "Aftermath"
       },
       "heightm": 30,
       "weightkg": 600,
@@ -26452,7 +26746,8 @@ const Pokedex = {
           "spe": 97
       },
       "abilities": {
-          "0": "Shadowshield"
+          "0": "Shadowshield",
+          "H": "Magicbounce"
       },
       "heightm": 45,
       "weightkg": 1500,
@@ -26477,7 +26772,8 @@ const Pokedex = {
           "spe": 86
       },
       "abilities": {
-          "0": "Intimidate"
+          "0": "Intimidate",
+          "H": "Cursedbody"
       },
       "heightm": 65,
       "weightkg": 2350,
@@ -26502,7 +26798,9 @@ const Pokedex = {
           "spe": 80
       },
       "abilities": {
-          "0": "Motordrive"
+          "0": "Motordrive",
+          "1": "Chlorophyll",
+          "H": "Angerpoint"
       },
       "heightm": 20,
       "weightkg": 1160,
@@ -26527,7 +26825,8 @@ const Pokedex = {
           "spe": 115
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "H": "Innerfocus"
       },
       "heightm": 19,
       "weightkg": 1780,
@@ -26602,7 +26901,8 @@ const Pokedex = {
           "spe": 83
       },
       "abilities": {
-          "0": "Beastboost"
+          "0": "Beastboost",
+          "H": "Beastboost"
       },
       "heightm": 12,
       "weightkg": 6350,
@@ -26627,7 +26927,9 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "1": "Unnerve",
+          "H": "Innerfocus"
       },
       "heightm": 42,
       "weightkg": 3360,
@@ -26652,7 +26954,9 @@ const Pokedex = {
           "spe": 5
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Effectspore",
+          "H": "Contrary"
       },
       "heightm": 10,
       "weightkg": 155,
@@ -26677,7 +26981,9 @@ const Pokedex = {
           "spe": 35
       },
       "abilities": {
-          "0": "Harvest"
+          "0": "Harvest",
+          "1": "Effectspore",
+          "H": "Contrary"
       },
       "heightm": 12,
       "weightkg": 180,
@@ -26702,7 +27008,8 @@ const Pokedex = {
           "spe": 130
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "H": "Regenerator"
       },
       "heightm": 20,
       "weightkg": 1220,
@@ -26727,7 +27034,8 @@ const Pokedex = {
           "spe": 61
       },
       "abilities": {
-          "0": "Blaze"
+          "0": "Blaze",
+          "H": "Solarpower"
       },
       "heightm": 16,
       "weightkg": 555,
@@ -26752,7 +27060,9 @@ const Pokedex = {
           "spe": 68
       },
       "abilities": {
-          "0": "Mindseye"
+          "0": "Mindseye",
+          "1": "Prankster",
+          "H": "Analytic"
       },
       "heightm": 31,
       "weightkg": 1200,
@@ -26827,7 +27137,8 @@ const Pokedex = {
           "spe": 100
       },
       "abilities": {
-          "0": "Levitate"
+          "0": "Levitate",
+          "H": "Moxie"
       },
       "heightm": 20,
       "weightkg": 820,
@@ -26852,7 +27163,8 @@ const Pokedex = {
           "spe": 105
       },
       "abilities": {
-          "0": "Flamebody"
+          "0": "Flamebody",
+          "H": "Unnerve"
       },
       "heightm": 16,
       "weightkg": 460,
@@ -26877,7 +27189,9 @@ const Pokedex = {
           "spe": 96
       },
       "abilities": {
-          "0": "Moldbreaker"
+          "0": "Moldbreaker",
+          "1": "Goodasgold",
+          "H": "Surgesurfer"
       },
       "heightm": 7,
       "weightkg": 2800,
@@ -26902,7 +27216,9 @@ const Pokedex = {
           "spe": 90
       },
       "abilities": {
-          "0": "Pressure"
+          "0": "Pressure",
+          "1": "Unnerve",
+          "H": "Darkaura"
       },
       "heightm": 45,
       "weightkg": 7500,
@@ -27002,7 +27318,8 @@ const Pokedex = {
           "spe": 50
       },
       "abilities": {
-          "0": "Filter"
+          "0": "Filter",
+          "H": "Lightmetal"
       },
       "heightm": 52,
       "weightkg": 4800,
@@ -27027,7 +27344,9 @@ const Pokedex = {
           "spe": 75
       },
       "abilities": {
-          "0": "Leafguard"
+          "0": "Leafguard",
+          "1": "Trace",
+          "H": "Telepathy"
       },
       "heightm": 16,
       "weightkg": 484,
@@ -27052,7 +27371,8 @@ const Pokedex = {
           "spe": 37
       },
       "abilities": {
-          "0": "Slushrush"
+          "0": "Slushrush",
+          "H": "Owntempo"
       },
       "heightm": 7,
       "weightkg": 195,
@@ -27077,7 +27397,8 @@ const Pokedex = {
           "spe": 70
       },
       "abilities": {
-          "0": "Slushrush"
+          "0": "Slushrush",
+          "H": "Owntempo"
       },
       "heightm": 14,
       "weightkg": 470,
@@ -27102,7 +27423,8 @@ const Pokedex = {
           "spe": 106
       },
       "abilities": {
-          "0": "Slushrush"
+          "0": "Slushrush",
+          "H": "Owntempo"
       },
       "heightm": 19,
       "weightkg": 950,
@@ -27127,7 +27449,8 @@ const Pokedex = {
           "spe": 97
       },
       "abilities": {
-          "0": "Fullmetalbody"
+          "0": "Fullmetalbody",
+          "H": "Defiant"
       },
       "heightm": 34,
       "weightkg": 2300,
