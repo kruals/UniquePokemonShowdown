@@ -95,12 +95,7 @@ function App() {
   }, [user]);
 
   // ── Загрузка user из localStorage при старте ───────────────
-  useEffect(() => {
-    const saved = localStorage.getItem('ps_user');
-    if (saved) {
-      try { setUser(JSON.parse(saved)); } catch { /* ignore */ }
-    }
-  }, []);
+
 
   const handleLogout = () => {
     clearUser();
