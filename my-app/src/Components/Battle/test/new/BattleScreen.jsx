@@ -235,7 +235,7 @@ const BattleScreen = ({ socket }) => {
                 <div className="ps-cdbar"><div className="ps-cdfill" style={{animationDuration:`${SWITCH_DELAY}ms`}}/></div>
               </div>
             )}
-            {phase==='preview' && <PreviewPanel mySide={mySide} enemySide={enemySide} sendAction={sendAction}/>}
+            {phase==='preview' && <PreviewPanel mySide={mySide} sendAction={sendAction}/>}
             {phase==='battle' && !isWaiting && (
               <MovePanel moves={moves} sendAction={sendAction} onSwitch={()=>setShowFullParty(true)}/>
             )}
@@ -325,34 +325,15 @@ const MovePanel = ({moves, sendAction, onSwitch}) => (
 );
 
 /* ── Preview ── */
-const PreviewPanel = ({mySide, enemySide, sendAction}) => (
-  <div className="ps-preview-wrap">
-    {enemySide?.pokemon?.length > 0 && (
-      <div className="ps-preview-section">
-        <div className="ps-preview-label">Opponent's team</div>
-        <div className="ps-preview">
-          {[...(enemySide.pokemon||[])].sort((a,b)=>a.num-b.num).map(p=>(
-            <div key={p.num} className="ps-prev-card ps-prev-enemy">
-              <img src={spriteFront(p.name)} alt={p.name} className="prev-spr" onError={makeFallback(p.name,false)}/>
-              <span className="prev-name">{p.name}</span>
-              <div className="prev-types">{p.types?.map(t=><span key={t} className="ib-t" style={{background:TYPE_COLORS[t]||'#777',fontSize:'.52rem'}}>{t}</span>)}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
-    <div className="ps-preview-section">
-      <div className="ps-preview-label">Your team — pick your lead:</div>
-      <div className="ps-preview">
-        {[...(mySide?.pokemon||[])].sort((a,b)=>a.num-b.num).map(p=>(
-          <button key={p.num} className="ps-prev-card" onClick={()=>sendAction(`team ${p.num}`)}>
-            <img src={spriteFront(p.name)} alt={p.name} className="prev-spr" onError={makeFallback(p.name,false)}/>
-            <span className="prev-name">{p.name}</span>
-            <div className="prev-types">{p.types?.map(t=><span key={t} className="ib-t" style={{background:TYPE_COLORS[t]||'#777',fontSize:'.52rem'}}>{t}</span>)}</div>
-          </button>
-        ))}
-      </div>
-    </div>
+const PreviewPanel = ({mySide, sendAction}) => (
+  <div className="ps-preview">
+    {[...(mySide?.pokemon||[])].sort((a,b)=>a.num-b.num).map(p=>(
+      <button key={p.num} className="ps-prev-card" onClick={()=>sendAction(`team ${p.num}`)}>
+        <img src={spriteFront(p.name)} alt={p.name} className="prev-spr" onError={makeFallback(p.name,false)}/>
+        <span className="prev-name">{p.name}</span>
+        <div className="prev-types">{p.types?.map(t=><span key={t} className="ib-t" style={{background:TYPE_COLORS[t]||'#777',fontSize:'.55rem'}}>{t}</span>)}</div>
+      </button>
+    ))}
   </div>
 );
 
