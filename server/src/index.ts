@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth';
-import { registerBattleHandlers } from './sockets/battleSocket';
+import { registerBattleHandlers ,pendingChallenges } from './sockets/battleSocket';
 import { onlineUsers, userIdToUsername, getOnlineUsers } from './state';
 
 dotenv.config();
@@ -34,6 +34,20 @@ io.on('connection', (socket) => {
 
         console.log(`👤 ${username} (${userId}) онлайн. Всего: ${onlineUsers.size}`);
         io.emit('update_user_list', getOnlineUsers());
+
+        // 🆕 Переотправить все pending challenges для этого пользователя
+    // (на случай если он обновил страницу)
+    for (const [key, challenge] of pendingChallenges.entries()) {
+        const [, toId] = key.split('->');
+        // Не старше 5 минут
+        if (toId === userId && Date.now() - challenge.sentAt < 5 * 60 * 1000) {
+            socket.emit('incoming_challenge', {
+                from: challenge.from,
+                fromUsername: challenge.fromUsername,
+                team: challenge.team,
+            });
+        }
+    }
     });
 
     registerBattleHandlers(io, socket);

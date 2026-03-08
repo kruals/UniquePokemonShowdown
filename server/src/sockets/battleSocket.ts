@@ -10,6 +10,7 @@ interface ActiveBattle {
 }
 
 const activeBattles = new Map<string, ActiveBattle>();
+const pendingChallenges = new Map<string, { from: string; fromUsername: string; team: any; sentAt: number }>();
 const processingBattles = new Set<string>();
 
 export const registerBattleHandlers = (io: Server, socket: Socket) => {
@@ -22,6 +23,8 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
         team
     }) => {
         const targetSocketId = onlineUsers.get(to);
+
+        pendingChallenges.set(`${from}->${to}`, { from, fromUsername, team, sentAt: Date.now() });
         if (targetSocketId) {
             io.to(targetSocketId).emit('incoming_challenge', { from, fromUsername, team });
         }
@@ -35,8 +38,9 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
         opponentTeam
     }) => {
         const challengerSocketId = onlineUsers.get(to);
-
+        pendingChallenges.delete(`${to}->${from}`)
         if (!accepted) {
+               pendingChallenges.delete(`${to}->${from}`);
         if (challengerSocketId) {
             io.to(challengerSocketId).emit('challenge_declined', { from });
         }
@@ -69,7 +73,6 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
                 players: { p1: p1Id, p2: p2Id }, // ← userId, не username
                 currentTurns: {}
             });
-
             socket.join(battleId);
             const challengerSocket = io.sockets.sockets.get(challengerSocketId);
             if (challengerSocket) challengerSocket.join(battleId);
@@ -163,3 +166,5 @@ export const registerBattleHandlers = (io: Server, socket: Socket) => {
         // TODO: можно добавить forfeit при дисконнекте
     });
 };
+
+export { pendingChallenges };
