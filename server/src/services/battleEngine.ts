@@ -142,6 +142,8 @@ export class BattleInstance {
                 types: p.types,
                 ability: p.ability,
                 item: p.item,
+                canMegaEvo: !!(p.item && Dex.items.get(p.item).megaStone),  // ← добавить
+                canZMove:   !!(p.item && Dex.items.get(p.item).zMove),    
                 baseStats: p.species.baseStats,
                 moveSlots: p.moveSlots.map(move => ({
                     id: move.id,
