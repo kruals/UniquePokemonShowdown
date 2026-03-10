@@ -148,6 +148,7 @@ export class BattleInstance {
                 moveSlots: p.moveSlots.map(move => ({
                     id: move.id,
                     move: move.move,
+                    type: Dex.moves.get(move.id)?.type || null,  // ← правильно
                     pp: move.pp,
                     maxpp: move.maxpp,
                     target: move.target,

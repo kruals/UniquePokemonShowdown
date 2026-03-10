@@ -3,102 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useAppStore from '../../store/useAppStore';
 import './BattleScreen.css';
 
-// ── Встроенные стили для Мега/Z кнопок и тултипов ─────────────
-const INJECTED_STYLES = `
-.mega-z-bar { display:flex; gap:8px; align-items:center; margin-left:auto; }
-
-.mega-btn, .zmove-btn {
-  display:flex; align-items:center; gap:5px;
-  padding:6px 14px; border-radius:20px; border:none; cursor:pointer;
-  font-size:12px; font-weight:700; letter-spacing:.5px;
-  transition:all .2s; position:relative; overflow:hidden;
-}
-.mega-btn {
-  background:linear-gradient(135deg,#8e44ad,#c0392b);
-  color:#fff; box-shadow:0 0 12px rgba(192,57,43,.4);
-}
-.mega-btn:hover:not(:disabled) {
-  background:linear-gradient(135deg,#9b59b6,#e74c3c);
-  box-shadow:0 0 20px rgba(192,57,43,.7); transform:scale(1.05);
-}
-.mega-btn.mega-active {
-  background:linear-gradient(135deg,#e74c3c,#c0392b);
-  box-shadow:0 0 24px rgba(231,76,60,.9); animation:mega-pulse 1s infinite;
-}
-.mega-btn.mega-done { background:#2c3e50; color:#7f8c8d; box-shadow:none; cursor:default; }
-
-.zmove-btn {
-  background:linear-gradient(135deg,#f39c12,#d35400);
-  color:#fff; box-shadow:0 0 12px rgba(243,156,18,.4);
-}
-.zmove-btn:hover:not(:disabled) {
-  background:linear-gradient(135deg,#f1c40f,#e67e22);
-  box-shadow:0 0 20px rgba(243,156,18,.7); transform:scale(1.05);
-}
-.zmove-btn.zmove-active {
-  background:linear-gradient(135deg,#f1c40f,#f39c12);
-  color:#1a1a1a; box-shadow:0 0 24px rgba(241,196,15,.9); animation:mega-pulse 1s infinite;
-}
-.zmove-btn.zmove-done { background:#2c3e50; color:#7f8c8d; box-shadow:none; cursor:default; }
-.mega-icon, .zmove-icon { font-size:14px; }
-
-@keyframes mega-pulse {
-  0%,100% { transform:scale(1); }
-  50%      { transform:scale(1.06); }
-}
-
-.move-z-active {
-  border:2px solid #f1c40f !important;
-  box-shadow:0 0 14px rgba(241,196,15,.5) !important;
-}
-.move-z-dimmed { opacity:.35; filter:grayscale(.6); }
-
-.move-type-badge {
-  font-size:9px; font-weight:700; padding:1px 5px; border-radius:8px;
-  color:#fff; text-transform:uppercase; letter-spacing:.3px; margin-left:4px;
-}
-
-/* pit- tooltip классы */
-.pit-head { display:flex; align-items:center; gap:5px; margin-bottom:4px; font-weight:700; }
-.pit-name { color:#e8eaf6; font-size:13px; }
-.pit-lv   { color:#8892a4; font-size:11px; margin-left:auto; }
-.pit-status-badge { font-size:9px; padding:1px 5px; border-radius:6px; color:#fff; }
-.pit-types { display:flex; gap:3px; margin-bottom:5px; }
-.pit-hp-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
-.pit-hp-bar { flex:1; height:6px; background:#1e2433; border-radius:3px; overflow:hidden; }
-.pit-hp-fill { height:100%; border-radius:3px; transition:width .3s; }
-.pit-hp-fill.good     { background:#27ae60; }
-.pit-hp-fill.low      { background:#f39c12; }
-.pit-hp-fill.critical { background:#e74c3c; }
-.pit-hp-text { font-size:11px; color:#8892a4; white-space:nowrap; }
-.pit-stats { display:flex; flex-direction:column; gap:2px; margin-bottom:5px; }
-.pit-stat-row { display:flex; align-items:center; gap:4px; }
-.pit-stat-name { width:20px; font-size:10px; color:#8892a4; flex-shrink:0; }
-.pit-stat-bar { flex:1; height:4px; background:#1e2433; border-radius:2px; overflow:hidden; }
-.pit-stat-val   { font-size:10px; color:#c8d0e0; width:24px; text-align:right; flex-shrink:0; }
-.pit-stat-final { font-size:10px; color:#5dade2; }
-.pit-moves { border-top:1px solid #2a3050; padding-top:5px; margin-top:3px; }
-.pit-move-row { display:flex; justify-content:space-between; font-size:11px; padding:1px 0; }
-.pit-move-name { color:#c8d0e0; }
-.pit-move-pp   { color:#8892a4; }
-.pit-move-disabled .pit-move-name { color:#e74c3c; }
-.pit-row { font-size:11px; color:#8892a4; margin-top:2px; }
-.pit-row b { color:#c8d0e0; }
-`;
-
-const StyleInjector = () => {
-  useEffect(() => {
-    const id = 'bs-injected-styles';
-    if (!document.getElementById(id)) {
-      const s = document.createElement('style');
-      s.id = id; s.textContent = INJECTED_STYLES;
-      document.head.appendChild(s);
-    }
-    return () => { /* не убираем при анмаунте — стили нужны */ };
-  }, []);
-  return null;
-};
-
 const STATUS_NAMES  = { brn:'Ожог', par:'Паралич', psn:'Отравление', tox:'Сильное отравление', slp:'Сон', frz:'Заморозка' };
 const STATUS_COLORS = { brn:'#e67e22', par:'#f1c40f', psn:'#9b59b6', tox:'#8e44ad', slp:'#95a5a6', frz:'#3498db' };
 const STAT_NAMES    = { hp:'HP', atk:'Атака', def:'Защита', spa:'Сп.Атк', spd:'Сп.Защ', spe:'Скорость', acc:'Точность', eva:'Уклонение' };
@@ -151,29 +55,6 @@ const VOLATILE_NAMES = {
 };
 const VISIBLE_VOLATILE = Object.keys(VOLATILE_NAMES);
 
-// Маппинг тип → название Z-атаки
-const Z_MOVE_NAMES = {
-  Normal:'Breakneck Blitz', Fire:'Inferno Overdrive', Water:'Hydro Vortex',
-  Electric:'Gigavolt Havoc', Grass:'Bloom Doom', Ice:'Subzero Slammer',
-  Fighting:'All-Out Pummeling', Poison:'Acid Downpour', Ground:'Tectonic Rage',
-  Flying:'Supersonic Skystrike', Psychic:'Shattered Psyche', Bug:'Savage Spin-Out',
-  Rock:'Continental Crush', Ghost:'Never-Ending Nightmare', Dragon:'Devastating Drake',
-  Dark:'Black Hole Eclipse', Steel:'Corkscrew Crash', Fairy:'Twinkle Tackle',
-};
-
-// Получить имя мега-формы покемона
-const getMegaName = (name) => {
-  if (!name) return name;
-  // Уже мега — не меняем
-  if (name.includes('-Mega')) return name;
-  // Charizard/Mewtwo X/Y
-  const specialMega = {
-    'Charizard':'Charizard-Mega-X', 'Mewtwo':'Mewtwo-Mega-X',
-  };
-  // Стандартная мега: "Gengar" → "Gengar-Mega"
-  return name + '-Mega';
-};
-
 
 const calcFinalStat = (pokemon, statKey) => {
   if (!pokemon?.baseStats) return null;
@@ -218,7 +99,6 @@ const makeFallback = (name, isBack) => {
 };
 
 // ─── ЛОКАЛЬНЫЙ ПАРСЕР БУСТОВ И СТАТУСОВ ─────────────────────
-// Следим за бустами локально, чтобы сбрасывать при свапе
 const parseBoostEvents = (logs) => {
   const events = [];
   for (const line of logs) {
@@ -234,11 +114,46 @@ const parseBoostEvents = (logs) => {
   return events;
 };
 
+// Парсим мега-эволюции из логов: |-mega|p2a: Gengar|Gengar|Gengarite
+const parseMegaFromLogs = (logs) => {
+  const megas = {}; // { p1: 'Gengar-Mega', p2: 'Blastoise-Mega' }
+  for (const line of logs) {
+    const parts = line.split('|');
+    if (parts[1] === '-mega') {
+      // parts[2] = "p1a: Gengar", parts[3] = "Gengar", parts[4] = "Gengarite"
+      const side = parts[2]?.startsWith('p1') ? 'p1' : 'p2';
+      const baseName = parts[3]?.trim();
+      if (baseName) megas[side] = baseName + '-Mega';
+    }
+  }
+  return megas;
+};
+
+// Парсим использованные ходы врага из логов: |move|p2a: Gengar|Hypnosis|p1a: ...
+const parseSeenMoves = (logs, enemyRole) => {
+  const seen = {}; // { 'Gengar': { 'Hypnosis': { pp: N, seen: true } } }
+  for (const line of logs) {
+    const parts = line.split('|');
+    if (parts[1] !== 'move') continue;
+    const slotStr = parts[2] || ''; // "p2a: Gengar"
+    if (!slotStr.startsWith(enemyRole)) continue;
+    const pokeName = slotStr.replace(/^p[12][a-z]:\s*/, '').trim();
+    const moveName = parts[3]?.trim();
+    if (!pokeName || !moveName || moveName === 'Struggle') continue;
+    if (!seen[pokeName]) seen[pokeName] = {};
+    if (!seen[pokeName][moveName]) seen[pokeName][moveName] = 0;
+    seen[pokeName][moveName]++;
+  }
+  return seen;
+};
+
 const BattleScreen = ({ socket }) => {
   const { battleId } = useParams();
   const navigate     = useNavigate();
   const logEndRef    = useRef(null);
   const { user, activeBattles, getBattleState, removeBattle } = useAppStore();
+
+  useEffect(() => { injectStyles(); }, []);
 
   const battleMeta  = activeBattles[battleId];
   const battleState = getBattleState(battleId);
@@ -246,11 +161,15 @@ const BattleScreen = ({ socket }) => {
   const [isWaiting, setIsWaiting] = useState(false);
   const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
   const [localBoosts, setLocalBoosts] = useState({ p1:{}, p2:{} });
-  // Мега/Z — храним в sessionStorage чтобы не сбрасывались при перезаходе в бой
+  // Мега/Z — sessionStorage чтобы не сбрасывались при перезаходе в бой
   const [megaUsed,  setMegaUsed]  = useState(() => sessionStorage.getItem(`mega_${battleId}`) === '1');
   const [zMoveUsed, setZMoveUsed] = useState(() => sessionStorage.getItem(`zmove_${battleId}`) === '1');
   const [megaPending,  setMegaPending]  = useState(false);
   const [zMovePending, setZMovePending] = useState(false);
+  // Мега-имена обоих игроков (парсятся из логов)
+  const [megaNames, setMegaNames] = useState({ p1: null, p2: null });
+  // Seen moves врага { pokeName: { moveName: count } }
+  const [seenMovesMap, setSeenMovesMap] = useState({});
 
   const myRole       = battleMeta?.myRole;
   const enemyRole    = myRole === 'p1' ? 'p2' : 'p1';
@@ -268,12 +187,32 @@ const BattleScreen = ({ socket }) => {
     : mySide?.requestState === 'move'        ? 'battle'
     : 'wait';
 
+  // ── Парсим мега и seen moves из ПОЛНОГО лога ────────────────
+  useEffect(() => {
+    const allLogs = battleState?.logs?.map(l => l.raw || l.text || '') || [];
+    // Мега из логов — для обоих игроков
+    const newMegas = parseMegaFromLogs(allLogs);
+    if (Object.keys(newMegas).length > 0) {
+      setMegaNames(prev => ({ ...prev, ...newMegas }));
+    }
+    // Seen moves врага
+    if (enemyRole) {
+      const seen = parseSeenMoves(allLogs, enemyRole);
+      setSeenMovesMap(seen);
+    }
+  }, [battleState?.logs?.length]); // eslint-disable-line
+
   // ── При получении battle_update — обновляем локальные бусты ─
   useEffect(() => {
     if (!battleState?.logs) return;
-    // Берём только последние логи (новые события)
     const recentLogs = battleState.recentLog || [];
     const events = parseBoostEvents(recentLogs);
+
+    // Также проверяем мегу в новых логах
+    const newMegas = parseMegaFromLogs(recentLogs);
+    if (Object.keys(newMegas).length > 0) {
+      setMegaNames(prev => ({ ...prev, ...newMegas }));
+    }
 
     setLocalBoosts(prev => {
       let next = { p1: {...prev.p1}, p2: {...prev.p2} };
@@ -327,18 +266,18 @@ const BattleScreen = ({ socket }) => {
     }
   }, [isWaiting]);
 
-  const sendAction = useCallback((action) => {
+  const sendAction = useCallback((action, isZMove = false) => {
     if (isWaiting || battleState?.winner || !socket?.current || !user) return;
     let finalAction = action;
-    if (megaPending && action.startsWith('move')) finalAction = action + ' mega';
-    else if (zMovePending && action.startsWith('move')) finalAction = action + ' zmove';
+    if (megaPending && action.startsWith('move'))        finalAction = action + ' mega';
+    else if (isZMove && action.startsWith('move'))       finalAction = action + ' zmove';
     setIsWaiting(true);
-    if (megaPending)  { setMegaUsed(true);  sessionStorage.setItem(`mega_${battleId}`, '1'); }
-    if (zMovePending) { setZMoveUsed(true); sessionStorage.setItem(`zmove_${battleId}`, '1'); }
+    if (megaPending) { setMegaUsed(true); sessionStorage.setItem(`mega_${battleId}`, '1'); }
+    if (isZMove)     { setZMoveUsed(true); sessionStorage.setItem(`zmove_${battleId}`, '1'); }
     setMegaPending(false);
     setZMovePending(false);
-        socket.current.emit('battle_action', { battleId, userId: user.id, action: finalAction });
-  }, [isWaiting, battleState?.winner, socket, battleId, user, megaPending, zMovePending]);
+    socket.current.emit('battle_action', { battleId, userId: user.id, action: finalAction });
+  }, [isWaiting, battleState?.winner, socket, battleId, user, megaPending]);
 
   const handleExit = useCallback(() => {
     sessionStorage.removeItem(`mega_${battleId}`);
@@ -366,7 +305,6 @@ const BattleScreen = ({ socket }) => {
 
   return (
     <div className="battle-wrapper">
-      <StyleInjector />
       {battleState.weather && <WeatherOverlay weather={battleState.weather} />}
 
       <div className="battle-header">
@@ -394,7 +332,8 @@ const BattleScreen = ({ socket }) => {
                   statuses={battleState.statuses || {}}
                   volatiles={battleState.volatiles || {}}
                   isHit={animHit[enemyRole]}
-                  seenMoves={battleState.seenMoves?.[activeEnemy.name] || []}
+                  seenMoves={seenMovesMap[activeEnemy.name] || {}}
+                  megaName={megaNames[enemyRole]}
                 />
               )}
             </div>
@@ -406,8 +345,8 @@ const BattleScreen = ({ socket }) => {
                   statuses={battleState.statuses || {}}
                   volatiles={battleState.volatiles || {}}
                   isHit={animHit[myRole]}
-                  seenMoves={[]}
-                  megaUsed={megaUsed}
+                  seenMoves={{}}
+                  megaName={megaNames[myRole]}
                 />
               )}
               <HazardDisplay hazards={myHazards} flip />
@@ -533,16 +472,7 @@ const PartyIconItem = ({ p, isEnemy }) => {
       {p.fainted && <div className="pi-fainted-overlay">✕</div>}
 
       {showTip && (
-        <div className={`party-icon-tooltip ${isEnemy ? 'pit-enemy' : 'pit-player'}`} style={{
-          position:'absolute', zIndex:9999, minWidth:180,
-          background:'#1a1f2e', border:'1px solid #3a4466',
-          borderRadius:8, padding:'8px 10px', fontSize:12, color:'#c8d0e0',
-          boxShadow:'0 4px 20px rgba(0,0,0,0.6)',
-          ...(isEnemy
-            ? { bottom:'110%', left:'50%', transform:'translateX(-50%)' }
-            : { top:'110%',   left:'50%', transform:'translateX(-50%)' }
-          )
-        }}>
+        <div className={`party-icon-tooltip ${isEnemy ? 'pit-enemy' : 'pit-player'}`}>
           {/* Шапка */}
           <div className="pit-head">
             <span className="pit-name">{p.name}</span>
@@ -610,7 +540,7 @@ const PartyIconItem = ({ p, isEnemy }) => {
   );
 };
 
-const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves, megaUsed }) => {
+const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves, megaName }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const status    = statuses[pokemon.name];
   const myVols    = (volatiles[pokemon.name]||[]).filter(e=>VISIBLE_VOLATILE.includes(e));
@@ -619,9 +549,9 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
   const hpCls     = hpPct<20?'critical':hpPct<50?'low':'';
   const hasBoosts = boosts&&Object.values(boosts).some(v=>v!==0);
 
-  // Мега-спрайт для своего покемона если megaUsed
-  const displayName = (!isEnemy && megaUsed) ? getMegaName(pokemon.name) : pokemon.name;
-  const spriteUrl = isEnemy ? getSpriteFront(displayName) : getSpriteBack(displayName);
+  // Мега-спрайт: если в логах пришёл -mega для этого покемона
+  const displayName = megaName || pokemon.name;
+  const spriteUrl   = isEnemy ? getSpriteFront(displayName) : getSpriteBack(displayName);
 
   return (
     <div className={`pokemon-field-wrap ${isEnemy?'pfw-enemy':'pfw-player'}`}>
@@ -746,10 +676,15 @@ const PokemonTooltip = ({ pokemon, isEnemy, boosts, status, volatiles, seenMoves
           ))}
         </div>
       )}
-      {isEnemy&&seenMoves?.length>0&&(
+      {isEnemy && Object.keys(seenMoves||{}).length > 0 && (
         <div className="tooltip-moves">
           <div className="ts-title">Замеченные атаки</div>
-          {seenMoves.map((m,i)=><div key={i} className="tm-row"><span>{m}</span></div>)}
+          {Object.entries(seenMoves).map(([moveName, uses], i) => (
+            <div key={i} className="tm-row">
+              <span>{moveName}</span>
+              <span className="tm-pp" title="Раз использовано">×{uses}</span>
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -759,6 +694,7 @@ const PokemonTooltip = ({ pokemon, isEnemy, boosts, status, volatiles, seenMoves
 const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSwitch,
   megaUsed, zMoveUsed, megaPending, zMovePending, onMegaToggle, onZMoveToggle }) => {
 
+  // Проверяем можно ли мегаэволюция/Z-ход для активного покемона
   const canMega  = !megaUsed  && activePokemon?.canMegaEvo;
   const canZMove = !zMoveUsed && activePokemon?.canZMove;
 
@@ -773,8 +709,10 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
           ))}
         </span>
       )}
-      {isForceSwitch && <span className="force-switch-hint">⚠ Выберите замену ниже</span>}
-
+      {isForceSwitch && (
+        <span className="force-switch-hint">⚠ Выберите замену ниже</span>
+      )}
+      {/* Мега / Z кнопки */}
       {!isForceSwitch && (canMega || canZMove || megaUsed || zMoveUsed) && (
         <div className="mega-z-bar">
           {(canMega || megaUsed) && (
@@ -782,10 +720,9 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
               className={`mega-btn ${megaPending?'mega-active':''} ${megaUsed?'mega-done':''}`}
               onClick={!megaUsed ? onMegaToggle : undefined}
               disabled={isWaiting || megaUsed}
-              title={megaUsed ? 'Мега-эволюция уже использована' : 'Активировать мега-эволюцию'}
+              title={megaUsed ? 'Мега-эволюция уже использована' : 'Мега-эволюция'}
             >
-              <span className="mega-icon">🔮</span>
-              <span className="mega-label">{megaUsed ? 'Мега ✓' : megaPending ? 'МЕГА!' : 'Мега'}</span>
+              {megaUsed ? '✓ Мега' : megaPending ? '⬡ Мега ВКЛ' : '⬡ Мега'}
             </button>
           )}
           {(canZMove || zMoveUsed) && (
@@ -793,16 +730,14 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
               className={`zmove-btn ${zMovePending?'zmove-active':''} ${zMoveUsed?'zmove-done':''}`}
               onClick={!zMoveUsed ? onZMoveToggle : undefined}
               disabled={isWaiting || zMoveUsed}
-              title={zMoveUsed ? 'Z-ход уже использован' : 'Активировать Z-ход (выберите атаку нужного типа)'}
+              title={zMoveUsed ? 'Z-ход уже использован' : 'Z-Ход'}
             >
-              <span className="zmove-icon">⚡</span>
-              <span className="zmove-label">{zMoveUsed ? 'Z-Ход ✓' : zMovePending ? 'Z-ХОД!' : 'Z-Ход'}</span>
+              {zMoveUsed ? '✓ Z-Ход' : zMovePending ? '◈ Z-Ход ВКЛ' : '◈ Z-Ход'}
             </button>
           )}
         </div>
       )}
     </div>
-
     <div className={`moves-layout${isForceSwitch?' moves-blocked':''}`}>
       {moves.length>0
         ? moves.map((m,i) => (
@@ -822,6 +757,7 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
             isStruggle
           />
       }
+      }
     </div>
     <div className="action-sidebar">
       <button className="act-btn run-btn" onClick={()=>window.location.href='/'}>↩ СБЕЖАТЬ</button>
@@ -830,21 +766,38 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
   );
 };
 
+// Маппинг тип → Z-название
+const Z_MOVE_NAMES = {
+  Normal:'Breakneck Blitz', Fire:'Inferno Overdrive', Water:'Hydro Vortex',
+  Electric:'Gigavolt Havoc', Grass:'Bloom Doom', Ice:'Subzero Slammer',
+  Fighting:'All-Out Pummeling', Poison:'Acid Downpour', Ground:'Tectonic Rage',
+  Flying:'Supersonic Skystrike', Psychic:'Shattered Psyche', Bug:'Savage Spin-Out',
+  Rock:'Continental Crush', Ghost:'Never-Ending Nightmare', Dragon:'Devastating Drake',
+  Dark:'Black Hole Eclipse', Steel:'Corkscrew Crash', Fairy:'Twinkle Tackle',
+};
+
 const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePending, pokemonTypes }) => {
   const allPpZero = !isStruggle && move.pp === 0 && move.maxpp > 0;
   const isActualStruggle = isStruggle || allPpZero;
-  const displayMove = allPpZero ? { move:'Struggle', pp:1, maxpp:1, disabled:false, type:null } : move;
+  const displayMove = allPpZero ? { move:'Struggle', pp:1, maxpp:1, disabled:false } : move;
 
-  // Z-логика: доступна только если тип атаки совпадает с типом покемона
-  const moveType   = displayMove.type || null;
-  const typeMatch  = zMovePending && moveType && pokemonTypes?.includes(moveType);
-  const zDisabled  = zMovePending && !typeMatch && !isActualStruggle;
-  const zMoveName  = typeMatch ? (Z_MOVE_NAMES[moveType] || displayMove.move) : null;
+  const moveType = displayMove.type || null;
+  // Z совместим только если тип атаки совпадает с типом покемона
+  const isZCompatible = zMovePending && moveType && pokemonTypes?.some(t => t === moveType);
+  // Несовместимые атаки при Z-режиме — затемняем, но не блокируем (игрок может отменить Z и ударить)
+  const isZIncompatible = zMovePending && !isZCompatible && !isActualStruggle;
+
+  const zName = isZCompatible ? (Z_MOVE_NAMES[moveType] || displayMove.move) : null;
 
   const ppPct = displayMove.maxpp>0?(displayMove.pp/displayMove.maxpp)*100:0;
   const ppCls = ppPct<=25?'pp-critical':ppPct<=50?'pp-low':'';
+  const typeClr = moveType ? (TYPE_COLORS[moveType]||'#555') : null;
 
-  const typeColor = moveType ? (TYPE_COLORS[moveType]||'#555') : '#555';
+  const handleClick = () => {
+    if (isActualStruggle) { sendAction('move 1', false); return; }
+    // Передаём флаг isZ чтобы sendAction добавил суффикс только для совместимых атак
+    sendAction(`move ${index+1}`, isZCompatible);
+  };
 
   return (
     <button
@@ -852,18 +805,19 @@ const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePendi
         'move-card',
         displayMove.disabled && !isActualStruggle ? 'move-disabled' : '',
         isActualStruggle ? 'move-struggle' : '',
-        zMovePending && typeMatch ? 'move-z-active' : '',
-        zDisabled ? 'move-z-dimmed' : '',
+        isZCompatible   ? 'move-z-active' : '',
+        isZIncompatible ? 'move-z-dim'    : '',
       ].filter(Boolean).join(' ')}
-      onClick={()=>sendAction(isActualStruggle?'move 1':`move ${index+1}`)}
-      disabled={isWaiting || (displayMove.disabled && !isActualStruggle) || zDisabled}
-      style={moveType ? {'--move-type-color': typeColor} : {}}
+      onClick={handleClick}
+      disabled={isWaiting || (displayMove.disabled && !isActualStruggle)}
+      title={isZIncompatible ? 'Тип не совпадает с Z-кристаллом — выберите совместимую атаку' : undefined}
     >
       <div className="move-top">
-        <span className="move-name">{zMovePending && zMoveName ? zMoveName : displayMove.move}</span>
-        {moveType && <span className="move-type-badge" style={{background:typeColor}}>{moveType}</span>}
+        <span className="move-name">{zName || displayMove.move}</span>
+        {typeClr && <span className="move-type-badge" style={{background:typeClr}}>{moveType}</span>}
         {displayMove.disabled && !isActualStruggle && <span className="move-locked">🔒</span>}
         {isActualStruggle && <span className="move-locked">⚡</span>}
+        {isZCompatible && <span className="move-z-icon">⚡Z</span>}
       </div>
       <div className="move-bottom">
         {isActualStruggle
@@ -1011,11 +965,47 @@ const PreviewPhase = ({ side, enemySide, sendAction, isWaiting }) => {
   );
 };
 
-const LogPanel = ({ logs, logEndRef }) => (
-  <div className="log-container">
-    {logs.map((log,i)=><div key={i} className={`log-entry ${log.cls||''} log-entry-anim`}>{log.text}</div>)}
-    <div ref={logEndRef}/>
-  </div>
-);
+const LogPanel = ({ logs, logEndRef }) => {
+  // Дедупликация: убираем подряд идущие одинаковые строки
+  const deduped = logs.filter((log, i) => {
+    if (i === 0) return true;
+    return log.text !== logs[i-1].text;
+  });
+  return (
+    <div className="log-container">
+      {deduped.map((log,i)=><div key={i} className={`log-entry ${log.cls||''} log-entry-anim`}>{log.text}</div>)}
+      <div ref={logEndRef}/>
+    </div>
+  );
+};
+
+// ── Инжектируемые стили для мега/Z/тип-бейджа ───────────────
+const injectStyles = () => {
+  if (document.getElementById('bs-extra-styles')) return;
+  const s = document.createElement('style');
+  s.id = 'bs-extra-styles';
+  s.textContent = `
+    .mega-z-bar { display:flex; gap:8px; align-items:center; margin-left:auto; }
+    .mega-btn, .zmove-btn {
+      display:flex; align-items:center; gap:5px; padding:5px 13px;
+      border-radius:20px; border:none; cursor:pointer; font-size:12px;
+      font-weight:700; letter-spacing:.4px; transition:all .2s;
+    }
+    .mega-btn { background:linear-gradient(135deg,#8e44ad,#c0392b); color:#fff; box-shadow:0 0 10px rgba(192,57,43,.35); }
+    .mega-btn:hover:not(:disabled) { transform:scale(1.05); box-shadow:0 0 18px rgba(192,57,43,.6); }
+    .mega-btn.mega-active { background:linear-gradient(135deg,#e74c3c,#c0392b); box-shadow:0 0 22px rgba(231,76,60,.8); animation:mz-pulse 1s infinite; }
+    .mega-btn.mega-done   { background:#2a2f3e; color:#555; cursor:default; box-shadow:none; }
+    .zmove-btn { background:linear-gradient(135deg,#e67e22,#f39c12); color:#fff; box-shadow:0 0 10px rgba(243,156,18,.3); }
+    .zmove-btn:hover:not(:disabled) { transform:scale(1.05); box-shadow:0 0 18px rgba(243,156,18,.6); }
+    .zmove-btn.zmove-active { background:linear-gradient(135deg,#f1c40f,#f39c12); color:#1a1a1a; box-shadow:0 0 22px rgba(241,196,15,.8); animation:mz-pulse 1s infinite; }
+    .zmove-btn.zmove-done   { background:#2a2f3e; color:#555; cursor:default; box-shadow:none; }
+    @keyframes mz-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+    .move-z-active { border:2px solid #f1c40f !important; box-shadow:0 0 12px rgba(241,196,15,.5) !important; }
+    .move-z-dim    { opacity:.4; filter:grayscale(.5); }
+    .move-z-icon   { font-size:10px; font-weight:900; color:#f1c40f; margin-left:4px; text-shadow:0 0 6px #f1c40f; }
+    .move-type-badge { font-size:9px; font-weight:700; padding:1px 5px; border-radius:8px; color:#fff; text-transform:uppercase; margin-left:auto; }
+  `;
+  document.head.appendChild(s);
+};
 
 export default BattleScreen;
