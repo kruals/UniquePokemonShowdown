@@ -698,6 +698,8 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
   // Проверяем можно ли мегаэволюция/Z-ход для активного покемона
   const canMega  = !megaUsed  && activePokemon?.canMegaEvo;
   const canZMove = !zMoveUsed && activePokemon?.canZMove;
+  // Тип Z-кристалла определяем по предмету покемона
+  const zCrystalType = activePokemon?.item ? (Z_CRYSTAL_TYPE[activePokemon.item] ?? null) : null;
 
   return (
   <div className="battle-menu">
@@ -731,7 +733,7 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
               className={`zmove-btn ${zMovePending?'zmove-active':''} ${zMoveUsed?'zmove-done':''}`}
               onClick={!zMoveUsed ? onZMoveToggle : undefined}
               disabled={isWaiting || zMoveUsed}
-              title={zMoveUsed ? 'Z-ход уже использован' : 'Z-Ход'}
+              title={zMoveUsed ? 'Z-ход уже использован' : `Z-Ход${zCrystalType ? ` (${zCrystalType})` : ''}`}
             >
               {zMoveUsed ? '✓ Z-Ход' : zMovePending ? '◈ Z-Ход ВКЛ' : '◈ Z-Ход'}
             </button>
@@ -747,7 +749,7 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
               sendAction={sendAction}
               isWaiting={isWaiting||isForceSwitch}
               zMovePending={zMovePending}
-              pokemonTypes={activePokemon?.types || []}
+              zCrystalType={zCrystalType}
             />
           ))
         : <MoveButton
@@ -766,6 +768,16 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
   );
 };
 
+// Маппинг предмет → тип Z-кристалла
+const Z_CRYSTAL_TYPE = {
+  'Normalium Z':'Normal',   'Firium Z':'Fire',       'Waterium Z':'Water',
+  'Electrium Z':'Electric', 'Grassium Z':'Grass',    'Icium Z':'Ice',
+  'Fightinium Z':'Fighting','Poisonium Z':'Poison',  'Groundium Z':'Ground',
+  'Flyinium Z':'Flying',    'Psychium Z':'Psychic',  'Buginium Z':'Bug',
+  'Rockinium Z':'Rock',     'Ghostium Z':'Ghost',    'Dragonium Z':'Dragon',
+  'Darkinium Z':'Dark',     'Steelium Z':'Steel',    'Fairium Z':'Fairy',
+};
+
 // Маппинг тип → Z-название
 const Z_MOVE_NAMES = {
   Normal:'Breakneck Blitz', Fire:'Inferno Overdrive', Water:'Hydro Vortex',
@@ -776,19 +788,21 @@ const Z_MOVE_NAMES = {
   Dark:'Black Hole Eclipse', Steel:'Corkscrew Crash', Fairy:'Twinkle Tackle',
 };
 
-const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePending, pokemonTypes }) => {
+const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePending, zCrystalType }) => {
   const allPpZero = !isStruggle && move.pp === 0 && move.maxpp > 0;
   const isActualStruggle = isStruggle || allPpZero;
   const displayMove = allPpZero ? { move:'Struggle', pp:1, maxpp:1, disabled:false } : move;
 
-  // Тип атаки: берём из поля type, но проверяем что это реальный тип покемона (а не название атаки)
+  // Тип атаки — валидируем что это реальный тип (не имя атаки)
   const rawType  = displayMove.type || null;
   const moveType = (rawType && TYPE_COLORS[rawType]) ? rawType : null;
 
-  // Z совместим только если тип атаки совпадает с типом покемона
-  const isZCompatible   = zMovePending && moveType && pokemonTypes?.some(t => t === moveType);
-  const isZIncompatible = zMovePending && !isZCompatible && !isActualStruggle;
-  const zName = isZCompatible ? (Z_MOVE_NAMES[moveType] || displayMove.move) : null;
+  // Z совместим если тип АТАКИ совпадает с типом Z-КРИСТАЛЛА
+  // (Psychium Z + Psychic атака = можно, независимо от типа покемона)
+  // Если zCrystalType неизвестен — разрешаем все атаки (fallback)
+  const isZCompatible   = zMovePending && (!zCrystalType || (moveType && moveType === zCrystalType));
+  const isZIncompatible = zMovePending && zCrystalType && !isZCompatible && !isActualStruggle;
+  const zName = (isZCompatible && moveType) ? (Z_MOVE_NAMES[moveType] || displayMove.move) : null;
 
   const ppPct = displayMove.maxpp>0?(displayMove.pp/displayMove.maxpp)*100:0;
   const ppCls = ppPct<=25?'pp-critical':ppPct<=50?'pp-low':'';
@@ -811,7 +825,7 @@ const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePendi
       ].filter(Boolean).join(' ')}
       onClick={handleClick}
       disabled={isWaiting || (displayMove.disabled && !isActualStruggle)}
-      title={isZIncompatible ? 'Тип не совпадает с Z-кристаллом — выберите совместимую атаку' : undefined}
+      title={isZIncompatible ? `Нужна атака типа ${zCrystalType}` : undefined}
     >
       <div className="move-top">
         <span className="move-name">{zName || displayMove.move}</span>

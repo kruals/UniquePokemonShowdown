@@ -99,7 +99,6 @@ const makeFallback = (name, isBack) => {
 };
 
 // ─── ЛОКАЛЬНЫЙ ПАРСЕР БУСТОВ И СТАТУСОВ ─────────────────────
-// Следим за бустами локально, чтобы сбрасывать при свапе
 const parseBoostEvents = (logs) => {
   const events = [];
   for (const line of logs) {
@@ -115,24 +114,62 @@ const parseBoostEvents = (logs) => {
   return events;
 };
 
+// Парсим мега-эволюции из логов: |-mega|p2a: Gengar|Gengar|Gengarite
+// Возвращает { p1: { base: 'Gengar', mega: 'Gengar-Mega' }, p2: ... }
+const parseMegaFromLogs = (logs) => {
+  const megas = {};
+  for (const line of logs) {
+    const parts = line.split('|');
+    if (parts[1] === '-mega') {
+      const side     = parts[2]?.startsWith('p1') ? 'p1' : 'p2';
+      const baseName = parts[3]?.trim();
+      if (baseName) megas[side] = { base: baseName, mega: baseName + '-Mega' };
+    }
+  }
+  return megas;
+};
+
+// Парсим использованные ходы врага из логов: |move|p2a: Gengar|Hypnosis|p1a: ...
+const parseSeenMoves = (logs, enemyRole) => {
+  const seen = {}; // { 'Gengar': { 'Hypnosis': { pp: N, seen: true } } }
+  for (const line of logs) {
+    const parts = line.split('|');
+    if (parts[1] !== 'move') continue;
+    const slotStr = parts[2] || ''; // "p2a: Gengar"
+    if (!slotStr.startsWith(enemyRole)) continue;
+    const pokeName = slotStr.replace(/^p[12][a-z]:\s*/, '').trim();
+    const moveName = parts[3]?.trim();
+    if (!pokeName || !moveName || moveName === 'Struggle') continue;
+    if (!seen[pokeName]) seen[pokeName] = {};
+    if (!seen[pokeName][moveName]) seen[pokeName][moveName] = 0;
+    seen[pokeName][moveName]++;
+  }
+  return seen;
+};
+
 const BattleScreen = ({ socket }) => {
   const { battleId } = useParams();
   const navigate     = useNavigate();
   const logEndRef    = useRef(null);
   const { user, activeBattles, getBattleState, removeBattle } = useAppStore();
 
+  useEffect(() => { injectStyles(); }, []);
+
   const battleMeta  = activeBattles[battleId];
   const battleState = getBattleState(battleId);
 
   const [isWaiting, setIsWaiting] = useState(false);
   const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
-  // Локальные бусты — сбрасываются при свапе
   const [localBoosts, setLocalBoosts] = useState({ p1:{}, p2:{} });
-  // Мега и Z-ход
-  const [megaUsed, setMegaUsed]   = useState(false);
-  const [zMoveUsed, setZMoveUsed] = useState(false);
-  const [megaPending, setMegaPending]   = useState(false);
+  // Мега/Z — sessionStorage чтобы не сбрасывались при перезаходе в бой
+  const [megaUsed,  setMegaUsed]  = useState(() => sessionStorage.getItem(`mega_${battleId}`) === '1');
+  const [zMoveUsed, setZMoveUsed] = useState(() => sessionStorage.getItem(`zmove_${battleId}`) === '1');
+  const [megaPending,  setMegaPending]  = useState(false);
   const [zMovePending, setZMovePending] = useState(false);
+  // Мега-данные обоих игроков: { p1: { base: 'Gengar', mega: 'Gengar-Mega' } | null }
+  const [megaNames, setMegaNames] = useState({ p1: null, p2: null });
+  // Seen moves врага { pokeName: { moveName: count } }
+  const [seenMovesMap, setSeenMovesMap] = useState({});
 
   const myRole       = battleMeta?.myRole;
   const enemyRole    = myRole === 'p1' ? 'p2' : 'p1';
@@ -150,12 +187,32 @@ const BattleScreen = ({ socket }) => {
     : mySide?.requestState === 'move'        ? 'battle'
     : 'wait';
 
+  // ── Парсим мега и seen moves из ПОЛНОГО лога ────────────────
+  useEffect(() => {
+    const allLogs = battleState?.logs?.map(l => l.raw || l.text || '') || [];
+    // Мега из логов — для обоих игроков
+    const newMegas = parseMegaFromLogs(allLogs);
+    if (Object.keys(newMegas).length > 0) {
+      setMegaNames(prev => ({ ...prev, ...newMegas }));
+    }
+    // Seen moves врага
+    if (enemyRole) {
+      const seen = parseSeenMoves(allLogs, enemyRole);
+      setSeenMovesMap(seen);
+    }
+  }, [battleState?.logs?.length]); // eslint-disable-line
+
   // ── При получении battle_update — обновляем локальные бусты ─
   useEffect(() => {
     if (!battleState?.logs) return;
-    // Берём только последние логи (новые события)
     const recentLogs = battleState.recentLog || [];
     const events = parseBoostEvents(recentLogs);
+
+    // Также проверяем мегу в новых логах
+    const newMegas = parseMegaFromLogs(recentLogs);
+    if (Object.keys(newMegas).length > 0) {
+      setMegaNames(prev => ({ ...prev, ...newMegas }));
+    }
 
     setLocalBoosts(prev => {
       let next = { p1: {...prev.p1}, p2: {...prev.p2} };
@@ -209,20 +266,22 @@ const BattleScreen = ({ socket }) => {
     }
   }, [isWaiting]);
 
-  const sendAction = useCallback((action) => {
+  const sendAction = useCallback((action, isZMove = false) => {
     if (isWaiting || battleState?.winner || !socket?.current || !user) return;
     let finalAction = action;
-    if (megaPending && action.startsWith('move')) finalAction = action + ' mega';
-    else if (zMovePending && action.startsWith('move')) finalAction = action + ' zmove';
+    if (megaPending && action.startsWith('move'))        finalAction = action + ' mega';
+    else if (isZMove && action.startsWith('move'))       finalAction = action + ' zmove';
     setIsWaiting(true);
-    if (megaPending)  setMegaUsed(true);
-    if (zMovePending) setZMoveUsed(true);
+    if (megaPending) { setMegaUsed(true); sessionStorage.setItem(`mega_${battleId}`, '1'); }
+    if (isZMove)     { setZMoveUsed(true); sessionStorage.setItem(`zmove_${battleId}`, '1'); }
     setMegaPending(false);
     setZMovePending(false);
-        socket.current.emit('battle_action', { battleId, userId: user.id, action: finalAction });
-  }, [isWaiting, battleState?.winner, socket, battleId, user, megaPending, zMovePending]);
+    socket.current.emit('battle_action', { battleId, userId: user.id, action: finalAction });
+  }, [isWaiting, battleState?.winner, socket, battleId, user, megaPending]);
 
   const handleExit = useCallback(() => {
+    sessionStorage.removeItem(`mega_${battleId}`);
+    sessionStorage.removeItem(`zmove_${battleId}`);
     removeBattle(battleId);
     navigate('/');
   }, [removeBattle, battleId, navigate]);
@@ -273,7 +332,8 @@ const BattleScreen = ({ socket }) => {
                   statuses={battleState.statuses || {}}
                   volatiles={battleState.volatiles || {}}
                   isHit={animHit[enemyRole]}
-                  seenMoves={battleState.seenMoves?.[activeEnemy.name] || []}
+                  seenMoves={seenMovesMap[activeEnemy.name] || {}}
+                  megaData={megaNames[enemyRole]}
                 />
               )}
             </div>
@@ -285,7 +345,8 @@ const BattleScreen = ({ socket }) => {
                   statuses={battleState.statuses || {}}
                   volatiles={battleState.volatiles || {}}
                   isHit={animHit[myRole]}
-                  seenMoves={[]}
+                  seenMoves={{}}
+                  megaData={megaNames[myRole]}
                 />
               )}
               <HazardDisplay hazards={myHazards} flip />
@@ -479,7 +540,7 @@ const PartyIconItem = ({ p, isEnemy }) => {
   );
 };
 
-const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves }) => {
+const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves, megaData }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const status    = statuses[pokemon.name];
   const myVols    = (volatiles[pokemon.name]||[]).filter(e=>VISIBLE_VOLATILE.includes(e));
@@ -487,6 +548,11 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
   const hpPct     = pokemon.maxhp>0?(pokemon.hp/pokemon.maxhp)*100:0;
   const hpCls     = hpPct<20?'critical':hpPct<50?'low':'';
   const hasBoosts = boosts&&Object.values(boosts).some(v=>v!==0);
+
+  // Мега-спрайт только если активный покемон — именно тот, кто эволюционировал
+  const isMega      = megaData && megaData.base === pokemon.name;
+  const displayName = isMega ? megaData.mega : pokemon.name;
+  const spriteUrl   = isEnemy ? getSpriteFront(displayName) : getSpriteBack(displayName);
 
   return (
     <div className={`pokemon-field-wrap ${isEnemy?'pfw-enemy':'pfw-player'}`}>
@@ -525,9 +591,9 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
         ))}
         <img
           className={`sprite ${isEnemy?'sprite-front':'sprite-back'}`}
-          src={isEnemy?getSpriteFront(pokemon.name):getSpriteBack(pokemon.name)}
-          alt={pokemon.name}
-          onError={makeFallback(pokemon.name,!isEnemy)}
+          src={spriteUrl}
+          alt={displayName}
+          onError={makeFallback(displayName, !isEnemy)}
         />
         {showTooltip&&(
           <PokemonTooltip
@@ -611,10 +677,15 @@ const PokemonTooltip = ({ pokemon, isEnemy, boosts, status, volatiles, seenMoves
           ))}
         </div>
       )}
-      {isEnemy&&seenMoves?.length>0&&(
+      {isEnemy && Object.keys(seenMoves||{}).length > 0 && (
         <div className="tooltip-moves">
           <div className="ts-title">Замеченные атаки</div>
-          {seenMoves.map((m,i)=><div key={i} className="tm-row"><span>{m}</span></div>)}
+          {Object.entries(seenMoves).map(([moveName, uses], i) => (
+            <div key={i} className="tm-row">
+              <span>{moveName}</span>
+              <span className="tm-pp" title="Раз использовано">×{uses}</span>
+            </div>
+          ))}
         </div>
       )}
     </div>
@@ -670,13 +741,19 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
     </div>
     <div className={`moves-layout${isForceSwitch?' moves-blocked':''}`}>
       {moves.length>0
-        ?moves.map((m,i)=><MoveButton key={i} move={m} index={i} sendAction={sendAction} isWaiting={isWaiting||isForceSwitch} isForceSwitch={isForceSwitch}
-            megaPending={megaPending} zMovePending={zMovePending}/>)
-        :<MoveButton
+        ? moves.map((m,i) => (
+            <MoveButton
+              key={i} move={m} index={i}
+              sendAction={sendAction}
+              isWaiting={isWaiting||isForceSwitch}
+              zMovePending={zMovePending}
+              pokemonTypes={activePokemon?.types || []}
+            />
+          ))
+        : <MoveButton
             key="struggle"
             move={{ move:'Struggle', pp:1, maxpp:1, disabled:false, id:'struggle' }}
-            index={0}
-            sendAction={sendAction}
+            index={0} sendAction={sendAction}
             isWaiting={isWaiting||isForceSwitch}
             isStruggle
           />
@@ -689,24 +766,59 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
   );
 };
 
-const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle }) => {
+// Маппинг тип → Z-название
+const Z_MOVE_NAMES = {
+  Normal:'Breakneck Blitz', Fire:'Inferno Overdrive', Water:'Hydro Vortex',
+  Electric:'Gigavolt Havoc', Grass:'Bloom Doom', Ice:'Subzero Slammer',
+  Fighting:'All-Out Pummeling', Poison:'Acid Downpour', Ground:'Tectonic Rage',
+  Flying:'Supersonic Skystrike', Psychic:'Shattered Psyche', Bug:'Savage Spin-Out',
+  Rock:'Continental Crush', Ghost:'Never-Ending Nightmare', Dragon:'Devastating Drake',
+  Dark:'Black Hole Eclipse', Steel:'Corkscrew Crash', Fairy:'Twinkle Tackle',
+};
+
+const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePending, pokemonTypes }) => {
   const allPpZero = !isStruggle && move.pp === 0 && move.maxpp > 0;
-  // Если все PP = 0, это фактически Struggle
+  const isActualStruggle = isStruggle || allPpZero;
   const displayMove = allPpZero ? { move:'Struggle', pp:1, maxpp:1, disabled:false } : move;
+
+  // Тип атаки: берём из поля type, но проверяем что это реальный тип покемона (а не название атаки)
+  const rawType  = displayMove.type || null;
+  const moveType = (rawType && TYPE_COLORS[rawType]) ? rawType : null;
+
+  // Z совместим только если тип атаки совпадает с типом покемона
+  const isZCompatible   = zMovePending && moveType && pokemonTypes?.some(t => t === moveType);
+  const isZIncompatible = zMovePending && !isZCompatible && !isActualStruggle;
+  const zName = isZCompatible ? (Z_MOVE_NAMES[moveType] || displayMove.move) : null;
+
   const ppPct = displayMove.maxpp>0?(displayMove.pp/displayMove.maxpp)*100:0;
   const ppCls = ppPct<=25?'pp-critical':ppPct<=50?'pp-low':'';
-  const isActualStruggle = isStruggle || allPpZero;
+  const typeClr = moveType ? (TYPE_COLORS[moveType]||'#555') : null;
+
+  const handleClick = () => {
+    if (isActualStruggle) { sendAction('move 1', false); return; }
+    // Передаём флаг isZ чтобы sendAction добавил суффикс только для совместимых атак
+    sendAction(`move ${index+1}`, isZCompatible);
+  };
 
   return (
     <button
-      className={`move-card ${displayMove.disabled&&!isActualStruggle?'move-disabled':''} ${isActualStruggle?'move-struggle':''}`}
-      onClick={()=>sendAction(isActualStruggle?'move 1':`move ${index+1}`)}
-      disabled={isWaiting||(displayMove.disabled&&!isActualStruggle)}
+      className={[
+        'move-card',
+        displayMove.disabled && !isActualStruggle ? 'move-disabled' : '',
+        isActualStruggle ? 'move-struggle' : '',
+        isZCompatible   ? 'move-z-active' : '',
+        isZIncompatible ? 'move-z-dim'    : '',
+      ].filter(Boolean).join(' ')}
+      onClick={handleClick}
+      disabled={isWaiting || (displayMove.disabled && !isActualStruggle)}
+      title={isZIncompatible ? 'Тип не совпадает с Z-кристаллом — выберите совместимую атаку' : undefined}
     >
       <div className="move-top">
-        <span className="move-name">{displayMove.move}</span>
-        {displayMove.disabled&&!isActualStruggle&&<span className="move-locked">🔒</span>}
-        {isActualStruggle&&<span className="move-locked">⚡</span>}
+        <span className="move-name">{zName || displayMove.move}</span>
+        {typeClr && <span className="move-type-badge" style={{background:typeClr}}>{moveType}</span>}
+        {displayMove.disabled && !isActualStruggle && <span className="move-locked">🔒</span>}
+        {isActualStruggle && <span className="move-locked">⚡</span>}
+        {isZCompatible && <span className="move-z-icon">⚡Z</span>}
       </div>
       <div className="move-bottom">
         {isActualStruggle
@@ -854,11 +966,86 @@ const PreviewPhase = ({ side, enemySide, sendAction, isWaiting }) => {
   );
 };
 
-const LogPanel = ({ logs, logEndRef }) => (
-  <div className="log-container">
-    {logs.map((log,i)=><div key={i} className={`log-entry ${log.cls||''} log-entry-anim`}>{log.text}</div>)}
-    <div ref={logEndRef}/>
-  </div>
-);
+const LogPanel = ({ logs, logEndRef }) => {
+  // Дедупликация: убираем подряд идущие одинаковые строки
+  const deduped = logs.filter((log, i) => {
+    if (i === 0) return true;
+    return log.text !== logs[i-1].text;
+  });
+  return (
+    <div className="log-container">
+      {deduped.map((log,i)=><div key={i} className={`log-entry ${log.cls||''} log-entry-anim`}>{log.text}</div>)}
+      <div ref={logEndRef}/>
+    </div>
+  );
+};
+
+// ── Инжектируемые стили для мега/Z/тип-бейджа и тултипов ────
+const injectStyles = () => {
+  if (document.getElementById('bs-extra-styles')) return;
+  const s = document.createElement('style');
+  s.id = 'bs-extra-styles';
+  s.textContent = `
+    /* ── Мега / Z кнопки ── */
+    .mega-z-bar { display:flex; gap:8px; align-items:center; margin-left:auto; }
+    .mega-btn, .zmove-btn {
+      display:flex; align-items:center; gap:5px; padding:5px 13px;
+      border-radius:20px; border:none; cursor:pointer; font-size:12px;
+      font-weight:700; letter-spacing:.4px; transition:all .2s;
+    }
+    .mega-btn { background:linear-gradient(135deg,#8e44ad,#c0392b); color:#fff; box-shadow:0 0 10px rgba(192,57,43,.35); }
+    .mega-btn:hover:not(:disabled) { transform:scale(1.05); box-shadow:0 0 18px rgba(192,57,43,.6); }
+    .mega-btn.mega-active { background:linear-gradient(135deg,#e74c3c,#c0392b); box-shadow:0 0 22px rgba(231,76,60,.8); animation:mz-pulse 1s infinite; }
+    .mega-btn.mega-done   { background:#2a2f3e; color:#555; cursor:default; box-shadow:none; }
+    .zmove-btn { background:linear-gradient(135deg,#e67e22,#f39c12); color:#fff; box-shadow:0 0 10px rgba(243,156,18,.3); }
+    .zmove-btn:hover:not(:disabled) { transform:scale(1.05); box-shadow:0 0 18px rgba(243,156,18,.6); }
+    .zmove-btn.zmove-active { background:linear-gradient(135deg,#f1c40f,#f39c12); color:#1a1a1a; box-shadow:0 0 22px rgba(241,196,15,.8); animation:mz-pulse 1s infinite; }
+    .zmove-btn.zmove-done   { background:#2a2f3e; color:#555; cursor:default; box-shadow:none; }
+    @keyframes mz-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
+    .move-z-active { border:2px solid #f1c40f !important; box-shadow:0 0 12px rgba(241,196,15,.5) !important; }
+    .move-z-dim    { opacity:.4; filter:grayscale(.5); }
+    .move-z-icon   { font-size:10px; font-weight:900; color:#f1c40f; margin-left:4px; text-shadow:0 0 6px #f1c40f; }
+    .move-type-badge { font-size:9px; font-weight:700; padding:1px 5px; border-radius:8px; color:#fff; text-transform:uppercase; margin-left:4px; flex-shrink:0; }
+
+    /* ── PartyIconItem tooltip (pit-*) ── */
+    .party-icon-wrap { position:relative; }
+    .party-icon-tooltip {
+      position:absolute; z-index:9999; min-width:190px; max-width:230px;
+      background:#151a28; border:1px solid #2e3a55;
+      border-radius:10px; padding:10px 12px;
+      font-size:12px; color:#c8d0e0; line-height:1.4;
+      box-shadow:0 6px 28px rgba(0,0,0,.7);
+      pointer-events:none;
+    }
+    .pit-enemy { bottom:110%; left:50%; transform:translateX(-50%); }
+    .pit-player { top:110%; left:50%; transform:translateX(-50%); }
+    .pit-head { display:flex; align-items:center; gap:5px; margin-bottom:5px; }
+    .pit-name { color:#e8eaf6; font-size:13px; font-weight:700; }
+    .pit-lv   { color:#8892a4; font-size:11px; margin-left:auto; white-space:nowrap; }
+    .pit-status-badge { font-size:9px; padding:1px 6px; border-radius:6px; color:#fff; font-weight:700; }
+    .pit-types { display:flex; gap:3px; flex-wrap:wrap; margin-bottom:6px; }
+    .pit-hp-row { display:flex; align-items:center; gap:6px; margin-bottom:7px; }
+    .pit-hp-bar { flex:1; height:7px; background:#1a2035; border-radius:4px; overflow:hidden; }
+    .pit-hp-fill { height:100%; border-radius:4px; transition:width .3s; }
+    .pit-hp-fill.good     { background:linear-gradient(90deg,#27ae60,#2ecc71); }
+    .pit-hp-fill.low      { background:linear-gradient(90deg,#e67e22,#f39c12); }
+    .pit-hp-fill.critical { background:linear-gradient(90deg,#c0392b,#e74c3c); }
+    .pit-hp-text { font-size:11px; color:#8892a4; white-space:nowrap; min-width:36px; text-align:right; }
+    .pit-stats { display:flex; flex-direction:column; gap:3px; margin-bottom:6px; padding:6px 0; border-top:1px solid #1e2740; border-bottom:1px solid #1e2740; }
+    .pit-stat-row { display:flex; align-items:center; gap:5px; }
+    .pit-stat-name { width:22px; font-size:10px; color:#6a7590; flex-shrink:0; }
+    .pit-stat-bar  { flex:1; height:5px; background:#1a2035; border-radius:3px; overflow:hidden; }
+    .pit-stat-val   { font-size:10px; color:#c8d0e0; width:26px; text-align:right; flex-shrink:0; font-weight:600; }
+    .pit-stat-final { font-size:10px; color:#5dade2; min-width:30px; }
+    .pit-moves { border-top:1px solid #1e2740; padding-top:6px; margin-top:3px; }
+    .pit-move-row { display:flex; justify-content:space-between; font-size:11px; padding:2px 0; }
+    .pit-move-name { color:#c8d0e0; }
+    .pit-move-pp   { color:#8892a4; }
+    .pit-move-disabled .pit-move-name { color:#e74c3c; }
+    .pit-row { font-size:11px; color:#8892a4; margin-top:3px; }
+    .pit-row b { color:#c8d0e0; }
+  `;
+  document.head.appendChild(s);
+};
 
 export default BattleScreen;
