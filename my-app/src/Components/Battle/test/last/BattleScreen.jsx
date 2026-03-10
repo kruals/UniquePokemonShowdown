@@ -55,8 +55,6 @@ const VOLATILE_NAMES = {
 };
 const VISIBLE_VOLATILE = Object.keys(VOLATILE_NAMES);
 
-// Задержка перед показом меню свапа (мс) — даёт время увидеть что произошло
-const SWITCH_MENU_DELAY = 2500;
 
 const calcFinalStat = (pokemon, statKey) => {
   if (!pokemon?.baseStats) return null;
@@ -95,7 +93,8 @@ const makeFallback = (name, isBack) => {
     else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
     else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.gif`;
     else if (tries === 4) e.target.src = `/image_pokemons/${safeName}.png`;
-    else e.target.src = `/image_pokemons/${safeName}.PNG`;
+    else if (tries  === 5) e.target.src = `/image_pokemons/${safeName}.PNG`;
+    else e.target.src = 'https://play.pokemonshowdown.com/sprites/substitutes/gen5/substitute.png'
   };
 };
 
@@ -120,8 +119,6 @@ const BattleScreen = ({ socket }) => {
   const { battleId } = useParams();
   const navigate     = useNavigate();
   const logEndRef    = useRef(null);
-  const switchTimerRef = useRef(null);
-
   const { user, activeBattles, getBattleState, removeBattle } = useAppStore();
 
   const battleMeta  = activeBattles[battleId];
@@ -131,8 +128,11 @@ const BattleScreen = ({ socket }) => {
   const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
   // Локальные бусты — сбрасываются при свапе
   const [localBoosts, setLocalBoosts] = useState({ p1:{}, p2:{} });
-  // Задержка показа меню свапа
-  const [switchPending, setSwitchPending] = useState(false);
+  // Мега и Z-ход
+  const [megaUsed, setMegaUsed]   = useState(false);
+  const [zMoveUsed, setZMoveUsed] = useState(false);
+  const [megaPending, setMegaPending]   = useState(false);
+  const [zMovePending, setZMovePending] = useState(false);
 
   const myRole       = battleMeta?.myRole;
   const enemyRole    = myRole === 'p1' ? 'p2' : 'p1';
@@ -175,24 +175,6 @@ const BattleScreen = ({ socket }) => {
     });
   }, [battleState?.recentLog]);
 
-  // ── Задержка перед меню свапа ────────────────────────────────
-  useEffect(() => {
-    if (currentPhase === 'switch') {
-      setSwitchPending(true);
-      // Очищаем предыдущий таймер если есть
-      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
-      switchTimerRef.current = setTimeout(() => {
-        setSwitchPending(false);
-      }, SWITCH_MENU_DELAY);
-    } else {
-      // Фаза сменилась — отменяем ожидание
-      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
-      setSwitchPending(false);
-    }
-    return () => {
-      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
-    };
-  }, [currentPhase]);
 
   useEffect(() => {
     if (!battleId || !battleMeta) { navigate('/'); return; }
@@ -219,11 +201,26 @@ const BattleScreen = ({ socket }) => {
     logEndRef.current?.scrollIntoView({ behavior:'smooth' });
   }, [battleState?.logs]);
 
+  // Сбрасываем pending при новом ходе
+  useEffect(() => {
+    if (!isWaiting) {
+      setMegaPending(false);
+      setZMovePending(false);
+    }
+  }, [isWaiting]);
+
   const sendAction = useCallback((action) => {
     if (isWaiting || battleState?.winner || !socket?.current || !user) return;
+    let finalAction = action;
+    if (megaPending && action.startsWith('move')) finalAction = action + ' mega';
+    else if (zMovePending && action.startsWith('move')) finalAction = action + ' zmove';
     setIsWaiting(true);
-        socket.current.emit('battle_action', { battleId, userId: user.id, action });
-  }, [isWaiting, battleState?.winner, socket, battleId, user]);
+    if (megaPending)  setMegaUsed(true);
+    if (zMovePending) setZMoveUsed(true);
+    setMegaPending(false);
+    setZMovePending(false);
+        socket.current.emit('battle_action', { battleId, userId: user.id, action: finalAction });
+  }, [isWaiting, battleState?.winner, socket, battleId, user, megaPending, zMovePending]);
 
   const handleExit = useCallback(() => {
     removeBattle(battleId);
@@ -293,8 +290,8 @@ const BattleScreen = ({ socket }) => {
               )}
               <HazardDisplay hazards={myHazards} flip />
             </div>
-            <PartyIcons side={mySide}    position="bottom" />
-            <PartyIcons side={enemySide} position="top" />
+            <PartyIcons side={mySide}    position="bottom" isEnemy={false} />
+            <PartyIcons side={enemySide} position="top"    isEnemy={true}  />
           </div>
         )}
       </div>
@@ -306,8 +303,6 @@ const BattleScreen = ({ socket }) => {
             <WinScreen winner={battleState.winner} myName={user.username} onExit={handleExit} />
           ) : (currentPhase === 'wait' || isWaiting) ? (
             <WaitingPanel lastMove={battleState.lastMove} />
-          ) : currentPhase === 'switch' && switchPending ? (
-            <SwitchPendingPanel />
           ) : currentPhase === 'preview' ? (
             <div className="waiting-text">👆 Выберите первого покемона выше</div>
           ) : (
@@ -316,6 +311,10 @@ const BattleScreen = ({ socket }) => {
               isWaiting={isWaiting}
               activePokemon={activePokemon}
               isForceSwitch={currentPhase === 'switch'}
+              megaUsed={megaUsed} zMoveUsed={zMoveUsed}
+              megaPending={megaPending} zMovePending={zMovePending}
+              onMegaToggle={()=>{ setMegaPending(p=>!p); setZMovePending(false); }}
+              onZMoveToggle={()=>{ setZMovePending(p=>!p); setMegaPending(false); }}
             />
           )}
         </div>
@@ -327,24 +326,13 @@ const BattleScreen = ({ socket }) => {
           mySide={mySide}
           sendAction={sendAction}
           isWaiting={isWaiting}
-          isForceSwitch={currentPhase === 'switch' && !switchPending}
-          switchPending={switchPending}
+          isForceSwitch={currentPhase === 'switch'}
         />
       )}
     </div>
   );
 };
 
-// ── Панель ожидания перед меню свапа ────────────────────────
-const SwitchPendingPanel = () => (
-  <div className="waiting-panel">
-    <div className="waiting-spinner" />
-    <div className="waiting-text">Выберите следующего покемона...</div>
-    <div className="switch-countdown-bar">
-      <div className="switch-countdown-fill" />
-    </div>
-  </div>
-);
 
 const WeatherBadge = ({ weather, turns }) => (
   <div className="weather-badge" style={{ borderColor:WEATHER_CLR[weather]||'#aaa', color:WEATHER_CLR[weather]||'#aaa' }}>
@@ -390,19 +378,19 @@ const TrainerInfo = ({ name, side, isPlayer }) => {
 };
 
 // ── PARTY ICONS с тултипом HP% ───────────────────────────────
-const PartyIcons = ({ side, position }) => {
+const PartyIcons = ({ side, position, isEnemy }) => {
   if (!side?.pokemon) return null;
   const sorted = [...side.pokemon].sort((a,b)=>a.num-b.num);
   return (
     <div className={`party-icons party-icons-${position}`}>
       {sorted.map(p => (
-        <PartyIconItem key={p.num} p={p} />
+        <PartyIconItem key={p.num} p={p} isEnemy={isEnemy} />
       ))}
     </div>
   );
 };
 
-const PartyIconItem = ({ p }) => {
+const PartyIconItem = ({ p, isEnemy }) => {
   const [showTip, setShowTip] = useState(false);
   const hpPct = p.maxhp > 0 ? Math.ceil((p.hp / p.maxhp) * 100) : 0;
   const hpCls = hpPct < 20 ? 'critical' : hpPct < 50 ? 'low' : 'good';
@@ -423,19 +411,68 @@ const PartyIconItem = ({ p }) => {
       {p.fainted && <div className="pi-fainted-overlay">✕</div>}
 
       {showTip && (
-        <div className="party-icon-tooltip">
-          <div className="pit-name">{p.name}</div>
-          <div className="pit-hp-bar">
-            <div className={`pit-hp-fill ${hpCls}`} style={{ width: `${Math.max(0, hpPct)}%` }} />
+        <div className={`party-icon-tooltip ${isEnemy ? 'pit-enemy' : 'pit-player'}`}>
+          {/* Шапка */}
+          <div className="pit-head">
+            <span className="pit-name">{p.name}</span>
+            <span className="pit-lv">Ур.{p.level||100}</span>
+            {p.status && (
+              <span className="pit-status-badge" style={{background:STATUS_COLORS[p.status]}}>{STATUS_NAMES[p.status]?.slice(0,3)||p.status}</span>
+            )}
           </div>
-          <div className="pit-hp-text">
-            {p.fainted ? 'К.О.' : `${hpPct}%`}
-          </div>
-          {p.status && (
-            <div className="pit-status" style={{ color: STATUS_COLORS[p.status] || '#aaa' }}>
-              {STATUS_NAMES[p.status] || p.status}
+
+          {/* Типы */}
+          {p.types && (
+            <div className="pit-types">
+              {p.types.map(t=><span key={t} className="type-badge-xs" style={{background:TYPE_COLORS[t]||'#777'}}>{t}</span>)}
             </div>
           )}
+
+          {/* HP-бар */}
+          <div className="pit-hp-row">
+            <div className="pit-hp-bar">
+              <div className={`pit-hp-fill ${hpCls}`} style={{ width: `${Math.max(0, hpPct)}%` }} />
+            </div>
+            <span className="pit-hp-text">
+              {p.fainted ? 'К.О.' : isEnemy ? `${hpPct}%` : `${p.hp}/${p.maxhp}`}
+            </span>
+          </div>
+
+          {/* Статы — для своих полные, для врага только базовые */}
+          {p.baseStats && (
+            <div className="pit-stats">
+              {STAT_KEYS.map(stat => {
+                const base  = p.baseStats[stat] ?? 0;
+                const final = !isEnemy ? calcFinalStat(p, stat) : null;
+                const barW  = Math.min(100, base / 1.8);
+                const barC  = base>=100?'#2ecc71':base>=70?'#f1c40f':'#e74c3c';
+                return (
+                  <div key={stat} className="pit-stat-row">
+                    <span className="pit-stat-name">{STAT_NAMES[stat]?.slice(0,2)}</span>
+                    <div className="pit-stat-bar"><div style={{width:`${barW}%`,background:barC,height:'100%',borderRadius:2}}/></div>
+                    <span className="pit-stat-val">{base}</span>
+                    {final !== null && <span className="pit-stat-final">/{final}</span>}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Атаки — только для своих */}
+          {!isEnemy && p.moveSlots?.length > 0 && (
+            <div className="pit-moves">
+              {p.moveSlots.map((m,i) => (
+                <div key={i} className={`pit-move-row ${m.disabled?'pit-move-disabled':''}`}>
+                  <span className="pit-move-name">{m.move}</span>
+                  <span className="pit-move-pp">{m.pp}/{m.maxpp}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Предмет/способность */}
+          {p.ability && <div className="pit-row">Способность: <b>{p.ability}</b></div>}
+          {p.item     && <div className="pit-row">Предмет: <b>{p.item}</b></div>}
         </div>
       )}
     </div>
@@ -584,7 +621,14 @@ const PokemonTooltip = ({ pokemon, isEnemy, boosts, status, volatiles, seenMoves
   );
 };
 
-const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSwitch }) => (
+const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSwitch,
+  megaUsed, zMoveUsed, megaPending, zMovePending, onMegaToggle, onZMoveToggle }) => {
+
+  // Проверяем можно ли мегаэволюция/Z-ход для активного покемона
+  const canMega  = !megaUsed  && activePokemon?.canMegaEvo;
+  const canZMove = !zMoveUsed && activePokemon?.canZMove;
+
+  return (
   <div className="battle-menu">
     <div className="move-info-bar">
       {activePokemon&&(
@@ -598,35 +642,80 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
       {isForceSwitch && (
         <span className="force-switch-hint">⚠ Выберите замену ниже</span>
       )}
+      {/* Мега / Z кнопки */}
+      {!isForceSwitch && (canMega || canZMove || megaUsed || zMoveUsed) && (
+        <div className="mega-z-bar">
+          {(canMega || megaUsed) && (
+            <button
+              className={`mega-btn ${megaPending?'mega-active':''} ${megaUsed?'mega-done':''}`}
+              onClick={!megaUsed ? onMegaToggle : undefined}
+              disabled={isWaiting || megaUsed}
+              title={megaUsed ? 'Мега-эволюция уже использована' : 'Мега-эволюция'}
+            >
+              {megaUsed ? '✓ Мега' : megaPending ? '⬡ Мега ВКЛ' : '⬡ Мега'}
+            </button>
+          )}
+          {(canZMove || zMoveUsed) && (
+            <button
+              className={`zmove-btn ${zMovePending?'zmove-active':''} ${zMoveUsed?'zmove-done':''}`}
+              onClick={!zMoveUsed ? onZMoveToggle : undefined}
+              disabled={isWaiting || zMoveUsed}
+              title={zMoveUsed ? 'Z-ход уже использован' : 'Z-Ход'}
+            >
+              {zMoveUsed ? '✓ Z-Ход' : zMovePending ? '◈ Z-Ход ВКЛ' : '◈ Z-Ход'}
+            </button>
+          )}
+        </div>
+      )}
     </div>
     <div className={`moves-layout${isForceSwitch?' moves-blocked':''}`}>
       {moves.length>0
-        ?moves.map((m,i)=><MoveButton key={i} move={m} index={i} sendAction={sendAction} isWaiting={isWaiting||isForceSwitch} isForceSwitch={isForceSwitch}/>)
-        :<div className="waiting-text">Получение атак...</div>
+        ?moves.map((m,i)=><MoveButton key={i} move={m} index={i} sendAction={sendAction} isWaiting={isWaiting||isForceSwitch} isForceSwitch={isForceSwitch}
+            megaPending={megaPending} zMovePending={zMovePending}/>)
+        :<MoveButton
+            key="struggle"
+            move={{ move:'Struggle', pp:1, maxpp:1, disabled:false, id:'struggle' }}
+            index={0}
+            sendAction={sendAction}
+            isWaiting={isWaiting||isForceSwitch}
+            isStruggle
+          />
       }
     </div>
     <div className="action-sidebar">
       <button className="act-btn run-btn" onClick={()=>window.location.href='/'}>↩ СБЕЖАТЬ</button>
     </div>
   </div>
-);
+  );
+};
 
-const MoveButton = ({ move, index, sendAction, isWaiting }) => {
-  const ppPct = move.maxpp>0?(move.pp/move.maxpp)*100:0;
+const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle }) => {
+  const allPpZero = !isStruggle && move.pp === 0 && move.maxpp > 0;
+  // Если все PP = 0, это фактически Struggle
+  const displayMove = allPpZero ? { move:'Struggle', pp:1, maxpp:1, disabled:false } : move;
+  const ppPct = displayMove.maxpp>0?(displayMove.pp/displayMove.maxpp)*100:0;
   const ppCls = ppPct<=25?'pp-critical':ppPct<=50?'pp-low':'';
+  const isActualStruggle = isStruggle || allPpZero;
+
   return (
     <button
-      className={`move-card ${move.disabled?'move-disabled':''}`}
-      onClick={()=>sendAction(`move ${index+1}`)}
-      disabled={isWaiting||move.disabled}
+      className={`move-card ${displayMove.disabled&&!isActualStruggle?'move-disabled':''} ${isActualStruggle?'move-struggle':''}`}
+      onClick={()=>sendAction(isActualStruggle?'move 1':`move ${index+1}`)}
+      disabled={isWaiting||(displayMove.disabled&&!isActualStruggle)}
     >
       <div className="move-top">
-        <span className="move-name">{move.move}</span>
-        {move.disabled&&<span className="move-locked">🔒</span>}
+        <span className="move-name">{displayMove.move}</span>
+        {displayMove.disabled&&!isActualStruggle&&<span className="move-locked">🔒</span>}
+        {isActualStruggle&&<span className="move-locked">⚡</span>}
       </div>
       <div className="move-bottom">
-        <span className={`move-pp ${ppCls}`}>PP: {move.pp}/{move.maxpp}</span>
-        <div className="pp-mini-bar"><div className={`pp-fill ${ppCls}`} style={{width:`${ppPct}%`}}/></div>
+        {isActualStruggle
+          ? <span className="move-pp">Нет PP — авто-атака</span>
+          : <>
+              <span className={`move-pp ${ppCls}`}>PP: {displayMove.pp}/{displayMove.maxpp}</span>
+              <div className="pp-mini-bar"><div className={`pp-fill ${ppCls}`} style={{width:`${ppPct}%`}}/></div>
+            </>
+        }
       </div>
     </button>
   );
@@ -650,7 +739,7 @@ const WinScreen = ({ winner, myName, onExit }) => (
   </div>
 );
 
-const PartyStrip = ({ mySide, sendAction, isWaiting, isForceSwitch, switchPending }) => {
+const PartyStrip = ({ mySide, sendAction, isWaiting, isForceSwitch }) => {
   const [hoveredNum, setHoveredNum] = useState(null);
   const sorted = [...(mySide?.pokemon||[])].sort((a,b)=>a.num-b.num);
 
