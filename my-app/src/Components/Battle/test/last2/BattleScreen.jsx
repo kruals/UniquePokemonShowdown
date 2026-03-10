@@ -115,15 +115,15 @@ const parseBoostEvents = (logs) => {
 };
 
 // Парсим мега-эволюции из логов: |-mega|p2a: Gengar|Gengar|Gengarite
-// Возвращает { p1: { base: 'Gengar', mega: 'Gengar-Mega' }, p2: ... }
 const parseMegaFromLogs = (logs) => {
-  const megas = {};
+  const megas = {}; // { p1: 'Gengar-Mega', p2: 'Blastoise-Mega' }
   for (const line of logs) {
     const parts = line.split('|');
     if (parts[1] === '-mega') {
-      const side     = parts[2]?.startsWith('p1') ? 'p1' : 'p2';
+      // parts[2] = "p1a: Gengar", parts[3] = "Gengar", parts[4] = "Gengarite"
+      const side = parts[2]?.startsWith('p1') ? 'p1' : 'p2';
       const baseName = parts[3]?.trim();
-      if (baseName) megas[side] = { base: baseName, mega: baseName + '-Mega' };
+      if (baseName) megas[side] = baseName + '-Mega';
     }
   }
   return megas;
@@ -166,7 +166,7 @@ const BattleScreen = ({ socket }) => {
   const [zMoveUsed, setZMoveUsed] = useState(() => sessionStorage.getItem(`zmove_${battleId}`) === '1');
   const [megaPending,  setMegaPending]  = useState(false);
   const [zMovePending, setZMovePending] = useState(false);
-  // Мега-данные обоих игроков: { p1: { base: 'Gengar', mega: 'Gengar-Mega' } | null }
+  // Мега-имена обоих игроков (парсятся из логов)
   const [megaNames, setMegaNames] = useState({ p1: null, p2: null });
   // Seen moves врага { pokeName: { moveName: count } }
   const [seenMovesMap, setSeenMovesMap] = useState({});
@@ -333,7 +333,7 @@ const BattleScreen = ({ socket }) => {
                   volatiles={battleState.volatiles || {}}
                   isHit={animHit[enemyRole]}
                   seenMoves={seenMovesMap[activeEnemy.name] || {}}
-                  megaData={megaNames[enemyRole]}
+                  megaName={megaNames[enemyRole]}
                 />
               )}
             </div>
@@ -346,7 +346,7 @@ const BattleScreen = ({ socket }) => {
                   volatiles={battleState.volatiles || {}}
                   isHit={animHit[myRole]}
                   seenMoves={{}}
-                  megaData={megaNames[myRole]}
+                  megaName={megaNames[myRole]}
                 />
               )}
               <HazardDisplay hazards={myHazards} flip />
@@ -540,7 +540,7 @@ const PartyIconItem = ({ p, isEnemy }) => {
   );
 };
 
-const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves, megaData }) => {
+const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves, megaName }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const status    = statuses[pokemon.name];
   const myVols    = (volatiles[pokemon.name]||[]).filter(e=>VISIBLE_VOLATILE.includes(e));
@@ -549,9 +549,8 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
   const hpCls     = hpPct<20?'critical':hpPct<50?'low':'';
   const hasBoosts = boosts&&Object.values(boosts).some(v=>v!==0);
 
-  // Мега-спрайт только если активный покемон — именно тот, кто эволюционировал
-  const isMega      = megaData && megaData.base === pokemon.name;
-  const displayName = isMega ? megaData.mega : pokemon.name;
+  // Мега-спрайт: если в логах пришёл -mega для этого покемона
+  const displayName = megaName || pokemon.name;
   const spriteUrl   = isEnemy ? getSpriteFront(displayName) : getSpriteBack(displayName);
 
   return (
@@ -758,6 +757,7 @@ const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSw
             isStruggle
           />
       }
+      }
     </div>
     <div className="action-sidebar">
       <button className="act-btn run-btn" onClick={()=>window.location.href='/'}>↩ СБЕЖАТЬ</button>
@@ -781,13 +781,12 @@ const MoveButton = ({ move, index, sendAction, isWaiting, isStruggle, zMovePendi
   const isActualStruggle = isStruggle || allPpZero;
   const displayMove = allPpZero ? { move:'Struggle', pp:1, maxpp:1, disabled:false } : move;
 
-  // Тип атаки: берём из поля type, но проверяем что это реальный тип покемона (а не название атаки)
-  const rawType  = displayMove.type || null;
-  const moveType = (rawType && TYPE_COLORS[rawType]) ? rawType : null;
-
+  const moveType = displayMove.type || null;
   // Z совместим только если тип атаки совпадает с типом покемона
-  const isZCompatible   = zMovePending && moveType && pokemonTypes?.some(t => t === moveType);
+  const isZCompatible = zMovePending && moveType && pokemonTypes?.some(t => t === moveType);
+  // Несовместимые атаки при Z-режиме — затемняем, но не блокируем (игрок может отменить Z и ударить)
   const isZIncompatible = zMovePending && !isZCompatible && !isActualStruggle;
+
   const zName = isZCompatible ? (Z_MOVE_NAMES[moveType] || displayMove.move) : null;
 
   const ppPct = displayMove.maxpp>0?(displayMove.pp/displayMove.maxpp)*100:0;
@@ -980,13 +979,12 @@ const LogPanel = ({ logs, logEndRef }) => {
   );
 };
 
-// ── Инжектируемые стили для мега/Z/тип-бейджа и тултипов ────
+// ── Инжектируемые стили для мега/Z/тип-бейджа ───────────────
 const injectStyles = () => {
   if (document.getElementById('bs-extra-styles')) return;
   const s = document.createElement('style');
   s.id = 'bs-extra-styles';
   s.textContent = `
-    /* ── Мега / Z кнопки ── */
     .mega-z-bar { display:flex; gap:8px; align-items:center; margin-left:auto; }
     .mega-btn, .zmove-btn {
       display:flex; align-items:center; gap:5px; padding:5px 13px;
@@ -1005,45 +1003,7 @@ const injectStyles = () => {
     .move-z-active { border:2px solid #f1c40f !important; box-shadow:0 0 12px rgba(241,196,15,.5) !important; }
     .move-z-dim    { opacity:.4; filter:grayscale(.5); }
     .move-z-icon   { font-size:10px; font-weight:900; color:#f1c40f; margin-left:4px; text-shadow:0 0 6px #f1c40f; }
-    .move-type-badge { font-size:9px; font-weight:700; padding:1px 5px; border-radius:8px; color:#fff; text-transform:uppercase; margin-left:4px; flex-shrink:0; }
-
-    /* ── PartyIconItem tooltip (pit-*) ── */
-    .party-icon-wrap { position:relative; }
-    .party-icon-tooltip {
-      position:absolute; z-index:9999; min-width:190px; max-width:230px;
-      background:#151a28; border:1px solid #2e3a55;
-      border-radius:10px; padding:10px 12px;
-      font-size:12px; color:#c8d0e0; line-height:1.4;
-      box-shadow:0 6px 28px rgba(0,0,0,.7);
-      pointer-events:none;
-    }
-    .pit-enemy { bottom:110%; left:50%; transform:translateX(-50%); }
-    .pit-player { top:110%; left:50%; transform:translateX(-50%); }
-    .pit-head { display:flex; align-items:center; gap:5px; margin-bottom:5px; }
-    .pit-name { color:#e8eaf6; font-size:13px; font-weight:700; }
-    .pit-lv   { color:#8892a4; font-size:11px; margin-left:auto; white-space:nowrap; }
-    .pit-status-badge { font-size:9px; padding:1px 6px; border-radius:6px; color:#fff; font-weight:700; }
-    .pit-types { display:flex; gap:3px; flex-wrap:wrap; margin-bottom:6px; }
-    .pit-hp-row { display:flex; align-items:center; gap:6px; margin-bottom:7px; }
-    .pit-hp-bar { flex:1; height:7px; background:#1a2035; border-radius:4px; overflow:hidden; }
-    .pit-hp-fill { height:100%; border-radius:4px; transition:width .3s; }
-    .pit-hp-fill.good     { background:linear-gradient(90deg,#27ae60,#2ecc71); }
-    .pit-hp-fill.low      { background:linear-gradient(90deg,#e67e22,#f39c12); }
-    .pit-hp-fill.critical { background:linear-gradient(90deg,#c0392b,#e74c3c); }
-    .pit-hp-text { font-size:11px; color:#8892a4; white-space:nowrap; min-width:36px; text-align:right; }
-    .pit-stats { display:flex; flex-direction:column; gap:3px; margin-bottom:6px; padding:6px 0; border-top:1px solid #1e2740; border-bottom:1px solid #1e2740; }
-    .pit-stat-row { display:flex; align-items:center; gap:5px; }
-    .pit-stat-name { width:22px; font-size:10px; color:#6a7590; flex-shrink:0; }
-    .pit-stat-bar  { flex:1; height:5px; background:#1a2035; border-radius:3px; overflow:hidden; }
-    .pit-stat-val   { font-size:10px; color:#c8d0e0; width:26px; text-align:right; flex-shrink:0; font-weight:600; }
-    .pit-stat-final { font-size:10px; color:#5dade2; min-width:30px; }
-    .pit-moves { border-top:1px solid #1e2740; padding-top:6px; margin-top:3px; }
-    .pit-move-row { display:flex; justify-content:space-between; font-size:11px; padding:2px 0; }
-    .pit-move-name { color:#c8d0e0; }
-    .pit-move-pp   { color:#8892a4; }
-    .pit-move-disabled .pit-move-name { color:#e74c3c; }
-    .pit-row { font-size:11px; color:#8892a4; margin-top:3px; }
-    .pit-row b { color:#c8d0e0; }
+    .move-type-badge { font-size:9px; font-weight:700; padding:1px 5px; border-radius:8px; color:#fff; text-transform:uppercase; margin-left:auto; }
   `;
   document.head.appendChild(s);
 };
