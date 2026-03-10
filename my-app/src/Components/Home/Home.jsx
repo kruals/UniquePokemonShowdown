@@ -170,6 +170,9 @@ useEffect(() => {
           <button className="snav-btn disabled" disabled>
             🏆 Рейтинг (скоро)
           </button>
+          <button className="snav-btn" onClick={() => navigate('/news')}>
+             Новости / обновления
+          </button>
         </nav>
 
         {/* Уведомления о вызовах */}

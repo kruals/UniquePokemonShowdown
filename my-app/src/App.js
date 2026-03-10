@@ -5,6 +5,7 @@ import Home from './Components/Home/Home';
 import TeamBuild from './Components/TeamBuild/TeamBuild';
 import BattleScreen from './Components/Battle/BattleScreen';
 import Auth from './Components/Auth/Auth';
+import NewsPage from './Components/News/NewsPage'
 import { io } from 'socket.io-client';
 import useAppStore from './store/useAppStore';
 
@@ -109,6 +110,7 @@ function App() {
           <Route path="/teambuilder"     element={<TeamBuild />} />
           <Route path="/battle/:battleId" element={<BattleScreen socket={socketRef} />} />
           <Route path="/auth"            element={<Auth onLogin={setUser} />} />
+          <Route path = '/news' element={<NewsPage/>}/>
         </Routes>
       </main>
     </div>
