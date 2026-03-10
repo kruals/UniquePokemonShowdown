@@ -25121,12 +25121,12 @@ const Pokedex = {
           "Grass"
       ],
       "baseStats": {
-          "hp": 255,
-          "atk": 180,
-          "def": 255,
-          "spa": 134,
-          "spd": 250,
-          "spe": 146
+          "hp": 90,
+          "atk": 120,
+          "def": 100,
+          "spa": 140,
+          "spd": 80,
+          "spe": 100
       },
       "abilities": {
           "0": "Desolateland",
@@ -25248,12 +25248,12 @@ const Pokedex = {
           "Water"
       ],
       "baseStats": {
-          "hp": 255,
-          "atk": 134,
-          "def": 250,
-          "spa": 180,
-          "spd": 255,
-          "spe": 146
+          "hp": 90,
+          "atk": 120,
+          "def": 80,
+          "spa": 140,
+          "spd": 100,
+          "spe": 100
       },
       "abilities": {
           "0": "Primordialsea",

@@ -4,8 +4,12 @@
 .home-root {
   display: flex;
   height: calc(100vh - 52px);
-  background: #1a1a2e;
-  overflow: hidden;
+  /* background: #1a1a2e; */
+  overflow: hidden; 
+  background-image: url('../../../public/background1.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 
 /* ── SIDEBAR ──────────────────────────────── */

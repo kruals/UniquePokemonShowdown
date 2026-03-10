@@ -4,6 +4,7 @@ import {Learnsets} from '../Data/learnsets'
 
 
 export const getPokemonCompleteData = (id) => {
+    if (!id) return null;
     // Приводим ID к нижнему регистру без спецсимволов, как это обычно в данных Showdown
     const safeId = id.toLowerCase().replace(/[^a-z0-9]/g, '');
     const pokemon = Pokedex[id] || Pokedex[safeId]; 

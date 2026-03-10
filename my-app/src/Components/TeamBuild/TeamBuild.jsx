@@ -106,7 +106,8 @@ const mkFb = (name) => {
     if (tries === 1)      e.target.src = `https://play.pokemonshowdown.com/sprites/gen5/${safe}.png`;
     else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
     else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.png`;
-    else                  e.target.src = `/image_pokemons/${safeName}.PNG`;
+    else if (tries === 4) e.target.src = `/image_pokemons/${safeName}.PNG`;
+    else e.target.src = 'https://play.pokemonshowdown.com/sprites/substitutes/gen5/substitute.png'
   };
 };
 
@@ -119,23 +120,46 @@ const exportPaste = team => (team.mons||[]).filter(Boolean).map(m=>{
     ivStr&&`IVs: ${ivStr}`,...(m.moves||[]).filter(Boolean).map(mv=>`- ${mv}`)].filter(Boolean).join('\n');
 }).join('\n\n');
 
-const importPaste = text => text.split(/\n\n+/).filter(Boolean).map(block=>{
-  const lines=block.trim().split('\n');
-  const mon={nickname:'',name:'',item:'',ability:'None',level:100,shiny:false,teraType:'Normal',nature:'Serious',moves:[],evs:{hp:0,atk:0,def:0,spa:0,spd:0,spe:0},ivs:{hp:31,atk:31,def:31,spa:31,spd:31,spe:31}};
-  lines.forEach((line,i)=>{
-    if(i===0){const at=line.match(/^(.+?)\s*@\s*(.+)$/),ns=at?at[1]:line,pm=ns.match(/^(.+?)\s*\((.+)\)$/);
-      mon.nickname=pm?pm[1].trim():'';mon.name=pm?pm[2].trim():ns.trim();mon.item=at?at[2].trim():'';return;}
-    if(line.startsWith('Ability:'))mon.ability=line.slice(8).trim();
-    if(line.startsWith('Level:'))mon.level=parseInt(line.slice(6))||100;
-    if(line.startsWith('Shiny: Yes'))mon.shiny=true;
-    if(line.startsWith('Tera Type:'))mon.teraType=line.slice(10).trim();
-    if(line.includes('Nature'))mon.nature=line.split(' ')[0];
-    const parseSL=(raw,obj)=>raw.split('/').forEach(p=>{const m=p.trim().match(/(\d+)\s+(\w+)/);if(m){const k=Object.keys(STAT_LABELS).find(x=>STAT_LABELS[x]===m[2]);if(k)obj[k]=+m[1];}});
-    if(line.startsWith('EVs:'))parseSL(line.slice(4),mon.evs);
-    if(line.startsWith('IVs:'))parseSL(line.slice(4),mon.ivs);
-    if(line.startsWith('- '))mon.moves.push(line.slice(2).trim());
+const importPaste = text => text.split(/\n\n+/).filter(Boolean).map(block => {
+  const lines = block.trim().split('\n');
+  const mon = { nickname:'', name:'', item:'', ability:'None', level:100, shiny:false, teraType:'Normal', nature:'Serious', moves:[], evs:{hp:0,atk:0,def:0,spa:0,spd:0,spe:0}, ivs:{hp:31,atk:31,def:31,spa:31,spd:31,spe:31} };
+  
+  lines.forEach((line, i) => {
+    if (i === 0) {
+      const at = line.match(/^(.+?)\s*@\s*(.+)$/);
+      const ns = at ? at[1] : line;
+      if (at) mon.item = at[2].trim();
+      
+      // Убираем пол (M) или (F) из имени перед поиском никнейма
+      const nsClean = ns.replace(/\s*\([MF]\)\s*/g, '').trim();
+      
+      // Проверяем наличие никнейма: "Nickname (Species)"
+      const pm = nsClean.match(/^(.+?)\s*\(([^)]+)\)\s*$/);
+      if (pm) {
+        mon.nickname = pm[1].trim();
+        mon.name = pm[2].trim();
+      } else {
+        mon.nickname = '';
+        mon.name = nsClean.trim();
+      }
+      return;
+    }
+    if (line.startsWith('Ability:')) mon.ability = line.slice(8).trim();
+    if (line.startsWith('Level:')) mon.level = parseInt(line.slice(6)) || 100;
+    if (line.startsWith('Shiny: Yes')) mon.shiny = true;
+    if (line.startsWith('Tera Type:')) mon.teraType = line.slice(10).trim();
+    if (line.includes('Nature')) mon.nature = line.split(' ')[0];
+    const parseSL = (raw, obj) => raw.split('/').forEach(p => {
+      const m = p.trim().match(/(\d+)\s+(\w+)/);
+      if (m) { const k = Object.keys(STAT_LABELS).find(x => STAT_LABELS[x] === m[2]); if (k) obj[k] = +m[1]; }
+    });
+    if (line.startsWith('EVs:')) parseSL(line.slice(4), mon.evs);
+    if (line.startsWith('IVs:')) parseSL(line.slice(4), mon.ivs);
+    if (line.startsWith('- ')) mon.moves.push(line.slice(2).trim());
   });
-  while(mon.moves.length<4)mon.moves.push('');return mon;
+  
+  while (mon.moves.length < 4) mon.moves.push('');
+  return mon;
 });
 
 const mkDefault = data=>({...data,nickname:'',item:'',ability:data.abilities?Object.values(data.abilities)[0]:'None',
@@ -200,7 +224,26 @@ const TeamBuild=()=>{
   const clearSlot=useCallback(()=>updTeam(t=>{t.mons[activeSlot]=null;}),[updTeam,activeSlot]);
   const newTeam=useCallback(()=>{setTeams(prev=>{const t={name:'Untitled',format:'gen9ou',mons:Array(6).fill(null)};setCurIdx(prev.length);return[...prev,t];});setActiveSlot(0);setView('editor');},[]);
   const delTeam=useCallback((idx,e)=>{e.stopPropagation();setTeams(prev=>prev.filter((_,i)=>i!==idx));setCurIdx(c=>Math.max(0,c>idx?c-1:c));},[]);
-  const doImport=useCallback(()=>{const mons=importPaste(importTxt);updTeam(t=>{t.mons=[...mons.slice(0,6),...Array(6).fill(null)].slice(0,6);});setShowImport(false);setImportTxt('');},[updTeam,importTxt]);
+  
+const doImport = useCallback(() => {
+  const mons = importPaste(importTxt).map(mon => {
+    // Генерируем id из name (как Showdown: "Giratina-Origin" → "giratinaorigin")
+    const id = mon.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    // Подтягиваем baseStats, types, abilities из Pokedex
+    const fullData = getPokemonCompleteData(id) || getPokemonCompleteData(mon.name);
+    if (fullData) {
+      return {
+        ...fullData,       // baseStats, types, abilities, learnset
+        ...mon,            // перезаписываем импортированными данными (item, moves, evs, ivs, nature...)
+        id: fullData.id || id,
+      };
+    }
+    return { ...mon, id };
+  });
+  updTeam(t => { t.mons = [...mons.slice(0, 6), ...Array(6).fill(null)].slice(0, 6); });
+  setShowImport(false);
+  setImportTxt('');
+}, [updTeam, importTxt]);
 
   const monMoves=useMemo(()=>{
     if(!curMon)return[];let ls=curMon.learnset;

@@ -20,7 +20,8 @@
 
 .ps-teambuilder {
   font-family: var(--font); color: var(--text);
-  background: var(--bg); min-height: 100vh;
+  background: var(--bg); 
+  min-height: 100vh;
 }
 
 /* ══════════════════════════════════════════════

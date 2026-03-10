@@ -3,9 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import useAppStore from '../../store/useAppStore';
 import './BattleScreen.css';
 
-// ============================================================
-// КОНСТАНТЫ
-// ============================================================
 const STATUS_NAMES  = { brn:'Ожог', par:'Паралич', psn:'Отравление', tox:'Сильное отравление', slp:'Сон', frz:'Заморозка' };
 const STATUS_COLORS = { brn:'#e67e22', par:'#f1c40f', psn:'#9b59b6', tox:'#8e44ad', slp:'#95a5a6', frz:'#3498db' };
 const STAT_NAMES    = { hp:'HP', atk:'Атака', def:'Защита', spa:'Сп.Атк', spd:'Сп.Защ', spe:'Скорость', acc:'Точность', eva:'Уклонение' };
@@ -42,10 +39,6 @@ const HAZARD_NAMES  = {
   'Toxic Spikes':'Ядовитые шипы','move: Toxic Spikes':'Ядовитые шипы',
   'Sticky Web':'Липкая паутина','move: Sticky Web':'Липкая паутина',
 };
-const FIELD_NAMES = {
-  'move: Trick Room':'Комната трюков','move: Magic Room':'Волшебная комната',
-  'move: Wonder Room':'Комната чудес','move: Gravity':'Гравитация',
-};
 const VOLATILE_NAMES = {
   'move: Taunt':'Провокация','Taunt':'Провокация',
   'move: Encore':'Encore','Encore':'Encore',
@@ -62,9 +55,9 @@ const VOLATILE_NAMES = {
 };
 const VISIBLE_VOLATILE = Object.keys(VOLATILE_NAMES);
 
-// ============================================================
-// УТИЛИТЫ
-// ============================================================
+// Задержка перед показом меню свапа (мс) — даёт время увидеть что произошло
+const SWITCH_MENU_DELAY = 2500;
+
 const calcFinalStat = (pokemon, statKey) => {
   if (!pokemon?.baseStats) return null;
   const base = pokemon.baseStats[statKey] ?? 0;
@@ -102,60 +95,112 @@ const makeFallback = (name, isBack) => {
     else if (tries === 2) e.target.src = `https://play.pokemonshowdown.com/sprites/dex/${safe}.png`;
     else if (tries === 3) e.target.src = `/image_pokemons/${safeName}.gif`;
     else if (tries === 4) e.target.src = `/image_pokemons/${safeName}.png`;
-    else e.target.src = `/image_pokemons/${safeName}.PNG` ;
+    else e.target.src = `/image_pokemons/${safeName}.PNG`;
   };
 };
 
-// ============================================================
-// ГЛАВНЫЙ КОМПОНЕНТ
-// ============================================================
+// ─── ЛОКАЛЬНЫЙ ПАРСЕР БУСТОВ И СТАТУСОВ ─────────────────────
+// Следим за бустами локально, чтобы сбрасывать при свапе
+const parseBoostEvents = (logs) => {
+  const events = [];
+  for (const line of logs) {
+    const parts = line.split('|');
+    if (parts.length < 2) continue;
+    const type = parts[1];
+    const side = line.includes('|p1') ? 'p1' : 'p2';
+    if (type === '-boost')   events.push({ type: 'boost',   side, stat: parts[3], amount: parseInt(parts[4]) });
+    if (type === '-unboost') events.push({ type: 'unboost', side, stat: parts[3], amount: parseInt(parts[4]) });
+    if (type === '-clearallboost' || type === '-clearboost') events.push({ type: 'clearboost' });
+    if (type === 'switch' || type === 'drag') events.push({ type: 'switch', side });
+  }
+  return events;
+};
+
 const BattleScreen = ({ socket }) => {
   const { battleId } = useParams();
   const navigate     = useNavigate();
   const logEndRef    = useRef(null);
+  const switchTimerRef = useRef(null);
 
   const { user, activeBattles, getBattleState, removeBattle } = useAppStore();
 
   const battleMeta  = activeBattles[battleId];
   const battleState = getBattleState(battleId);
-  console.log('battleState',battleState)
-  const [isWaiting, setIsWaiting] = useState(false);
-  const [showParty, setShowParty] = useState(false);
-  const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
-  
-  const myRole      = battleMeta?.myRole;
-  const enemyRole   = myRole === 'p1' ? 'p2' : 'p1';
-  const mySide      = myRole === 'p1' ? battleState?.side1 : battleState?.side2;
-  const enemySide   = myRole === 'p1' ? battleState?.side2 : battleState?.side1;
-  const myBoosts    = battleState?.boosts?.[myRole];
-  const enemyBoosts = battleState?.boosts?.[enemyRole];
-  const myHazards   = battleState?.hazards?.[myRole];
-  const enemyHazards= battleState?.hazards?.[enemyRole];
-  const currentPhase = battleState?.winner
-  ? 'ended'
-  : mySide?.requestState === 'teampreview' ? 'preview'
-  : mySide?.requestState === 'switch'      ? 'switch'
-  : mySide?.requestState === 'move'        ? 'battle'
-  : 'wait';
-  console.log('currentPhase',currentPhase)
-  console.log('battleMeta',battleMeta)
-  // Все хуки выше — проверки после них
 
-  // При монтировании / обновлении страницы — реджойним комнату
+  const [isWaiting, setIsWaiting] = useState(false);
+  const [animHit,   setAnimHit]   = useState({ p1:false, p2:false });
+  // Локальные бусты — сбрасываются при свапе
+  const [localBoosts, setLocalBoosts] = useState({ p1:{}, p2:{} });
+  // Задержка показа меню свапа
+  const [switchPending, setSwitchPending] = useState(false);
+
+  const myRole       = battleMeta?.myRole;
+  const enemyRole    = myRole === 'p1' ? 'p2' : 'p1';
+  const mySide       = myRole === 'p1' ? battleState?.side1 : battleState?.side2;
+  const enemySide    = myRole === 'p1' ? battleState?.side2 : battleState?.side1;
+  const myBoosts     = localBoosts[myRole]    || {};
+  const enemyBoosts  = localBoosts[enemyRole] || {};
+  const myHazards    = battleState?.hazards?.[myRole]   || [];
+  const enemyHazards = battleState?.hazards?.[enemyRole]|| [];
+
+  const currentPhase = battleState?.winner
+    ? 'ended'
+    : mySide?.requestState === 'teampreview' ? 'preview'
+    : mySide?.requestState === 'switch'      ? 'switch'
+    : mySide?.requestState === 'move'        ? 'battle'
+    : 'wait';
+
+  // ── При получении battle_update — обновляем локальные бусты ─
+  useEffect(() => {
+    if (!battleState?.logs) return;
+    // Берём только последние логи (новые события)
+    const recentLogs = battleState.recentLog || [];
+    const events = parseBoostEvents(recentLogs);
+
+    setLocalBoosts(prev => {
+      let next = { p1: {...prev.p1}, p2: {...prev.p2} };
+      for (const ev of events) {
+        if (ev.type === 'switch') {
+          // Сбрасываем бусты при выходе покемона
+          next[ev.side] = {};
+        } else if (ev.type === 'boost') {
+          next[ev.side] = { ...next[ev.side], [ev.stat]: (next[ev.side][ev.stat] || 0) + ev.amount };
+        } else if (ev.type === 'unboost') {
+          next[ev.side] = { ...next[ev.side], [ev.stat]: (next[ev.side][ev.stat] || 0) - ev.amount };
+        } else if (ev.type === 'clearboost') {
+          next = { p1: {}, p2: {} };
+        }
+      }
+      return next;
+    });
+  }, [battleState?.recentLog]);
+
+  // ── Задержка перед меню свапа ────────────────────────────────
+  useEffect(() => {
+    if (currentPhase === 'switch') {
+      setSwitchPending(true);
+      // Очищаем предыдущий таймер если есть
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+      switchTimerRef.current = setTimeout(() => {
+        setSwitchPending(false);
+      }, SWITCH_MENU_DELAY);
+    } else {
+      // Фаза сменилась — отменяем ожидание
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+      setSwitchPending(false);
+    }
+    return () => {
+      if (switchTimerRef.current) clearTimeout(switchTimerRef.current);
+    };
+  }, [currentPhase]);
+
   useEffect(() => {
     if (!battleId || !battleMeta) { navigate('/'); return; }
-    if (socket.current) {
-      socket.current.emit('join_battle', battleId);
-    }
+    if (socket.current) socket.current.emit('join_battle', battleId);
   }, [battleId]); // eslint-disable-line
 
   useEffect(() => {
-    if (currentPhase === 'switch') setShowParty(true);
-  }, [currentPhase]);
-
-  // Локальный listener только для анимации попадания
-  useEffect(() => {
-    if (!socket.current) return;
+    if (!socket?.current) return;
     const handler = (data) => {
       if (!data) return;
       setIsWaiting(false);
@@ -175,9 +220,9 @@ const BattleScreen = ({ socket }) => {
   }, [battleState?.logs]);
 
   const sendAction = useCallback((action) => {
-    if (isWaiting || battleState?.winner || !socket.current || !user) return;
+    if (isWaiting || battleState?.winner || !socket?.current || !user) return;
     setIsWaiting(true);
-    socket.current.emit('battle_action', { battleId, userId: user.id, action });
+        socket.current.emit('battle_action', { battleId, userId: user.id, action });
   }, [isWaiting, battleState?.winner, socket, battleId, user]);
 
   const handleExit = useCallback(() => {
@@ -185,17 +230,9 @@ const BattleScreen = ({ socket }) => {
     navigate('/');
   }, [removeBattle, battleId, navigate]);
 
-if (!user) {
-    navigate('/auth');
-    return null;
-  }
+  if (!user) { navigate('/auth'); return null; }
+  if (!battleMeta) { navigate('/'); return null; }
 
-  if (!battleMeta) {
-    navigate('/');
-    return null;
-  }
-
-  // Пока store ещё не загрузил состояние боя
   if (!battleState) {
     return (
       <div className="battle-wrapper">
@@ -206,13 +243,9 @@ if (!user) {
     );
   }
 
-
-  
   const activePokemon = mySide?.pokemon?.[mySide?.activeIdx];
   const activeEnemy   = enemySide?.pokemon?.[enemySide?.activeIdx];
   const activeMoves   = activePokemon?.moveSlots || [];
-
-
 
   return (
     <div className="battle-wrapper">
@@ -240,10 +273,10 @@ if (!user) {
                 <PokemonOnField
                   pokemon={activeEnemy} isEnemy
                   boosts={enemyBoosts}
-                  statuses={battleState.statuses}
-                  volatiles={battleState.volatiles}
+                  statuses={battleState.statuses || {}}
+                  volatiles={battleState.volatiles || {}}
                   isHit={animHit[enemyRole]}
-                  seenMoves={battleState.seenMoves[activeEnemy.name] || []}
+                  seenMoves={battleState.seenMoves?.[activeEnemy.name] || []}
                 />
               )}
             </div>
@@ -252,8 +285,8 @@ if (!user) {
                 <PokemonOnField
                   pokemon={activePokemon} isEnemy={false}
                   boosts={myBoosts}
-                  statuses={battleState.statuses}
-                  volatiles={battleState.volatiles}
+                  statuses={battleState.statuses || {}}
+                  volatiles={battleState.volatiles || {}}
                   isHit={animHit[myRole]}
                   seenMoves={[]}
                 />
@@ -267,38 +300,52 @@ if (!user) {
       </div>
 
       <div className="ui-panel">
-        <LogPanel logs={battleState.logs} logEndRef={logEndRef} />
+        <LogPanel logs={battleState.logs || []} logEndRef={logEndRef} />
         <div className="controls-container">
           {currentPhase === 'ended' ? (
             <WinScreen winner={battleState.winner} myName={user.username} onExit={handleExit} />
           ) : (currentPhase === 'wait' || isWaiting) ? (
             <WaitingPanel lastMove={battleState.lastMove} />
+          ) : currentPhase === 'switch' && switchPending ? (
+            <SwitchPendingPanel />
           ) : currentPhase === 'preview' ? (
             <div className="waiting-text">👆 Выберите первого покемона выше</div>
           ) : (
             <BattleControls
               moves={activeMoves} sendAction={sendAction}
-              setShowParty={setShowParty} isWaiting={isWaiting}
+              isWaiting={isWaiting}
               activePokemon={activePokemon}
+              isForceSwitch={currentPhase === 'switch'}
             />
           )}
         </div>
       </div>
 
-      {showParty && (
-        <PartyModal
-          mySide={mySide} sendAction={sendAction}
-          setShowParty={setShowParty} isWaiting={isWaiting}
-          isForceSwitch={currentPhase === 'switch'}
+      {/* Полоска команды — всегда видна во время боя */}
+      {currentPhase !== 'preview' && currentPhase !== 'ended' && (
+        <PartyStrip
+          mySide={mySide}
+          sendAction={sendAction}
+          isWaiting={isWaiting}
+          isForceSwitch={currentPhase === 'switch' && !switchPending}
+          switchPending={switchPending}
         />
       )}
     </div>
   );
 };
 
-// ============================================================
-// WEATHER
-// ============================================================
+// ── Панель ожидания перед меню свапа ────────────────────────
+const SwitchPendingPanel = () => (
+  <div className="waiting-panel">
+    <div className="waiting-spinner" />
+    <div className="waiting-text">Выберите следующего покемона...</div>
+    <div className="switch-countdown-bar">
+      <div className="switch-countdown-fill" />
+    </div>
+  </div>
+);
+
 const WeatherBadge = ({ weather, turns }) => (
   <div className="weather-badge" style={{ borderColor:WEATHER_CLR[weather]||'#aaa', color:WEATHER_CLR[weather]||'#aaa' }}>
     <span className="weather-icon">{WEATHER_ICON[weather]}</span>
@@ -319,9 +366,6 @@ const WeatherOverlay = ({ weather }) => {
   return <div className={`weather-overlay ${cls[weather]||''}`}/>;
 };
 
-// ============================================================
-// HAZARDS
-// ============================================================
 const HazardDisplay = ({ hazards, flip }) => {
   if (!hazards?.length) return null;
   return (
@@ -331,9 +375,6 @@ const HazardDisplay = ({ hazards, flip }) => {
   );
 };
 
-// ============================================================
-// TRAINER INFO
-// ============================================================
 const TrainerInfo = ({ name, side, isPlayer }) => {
   const pokemon = side?.pokemon || [];
   return (
@@ -348,26 +389,59 @@ const TrainerInfo = ({ name, side, isPlayer }) => {
   );
 };
 
-// ============================================================
-// PARTY ICONS
-// ============================================================
+// ── PARTY ICONS с тултипом HP% ───────────────────────────────
 const PartyIcons = ({ side, position }) => {
   if (!side?.pokemon) return null;
   const sorted = [...side.pokemon].sort((a,b)=>a.num-b.num);
   return (
-    <div className={`party-icons ${position==='top'?'pi-top':'pi-bottom'}`}>
-      {sorted.map(p=>(
-        <div key={p.num} className={`pi-dot ${p.fainted?'pi-faint':p.active?'pi-active':''}`}>
-          <img src={getSpriteFront(p.name)} alt={p.name} className="pi-spr" onError={makeFallback(p.name,false)}/>
-        </div>
+    <div className={`party-icons party-icons-${position}`}>
+      {sorted.map(p => (
+        <PartyIconItem key={p.num} p={p} />
       ))}
     </div>
   );
 };
 
-// ============================================================
-// POKEMON ON FIELD
-// ============================================================
+const PartyIconItem = ({ p }) => {
+  const [showTip, setShowTip] = useState(false);
+  const hpPct = p.maxhp > 0 ? Math.ceil((p.hp / p.maxhp) * 100) : 0;
+  const hpCls = hpPct < 20 ? 'critical' : hpPct < 50 ? 'low' : 'good';
+
+  return (
+    <div
+      className={`party-icon-wrap ${p.fainted?'pi-fainted':p.active?'pi-active':'pi-alive'}`}
+      title=""
+      onMouseEnter={() => setShowTip(true)}
+      onMouseLeave={() => setShowTip(false)}
+    >
+      <img
+        src={getSpriteFront(p.name)}
+        alt={p.name}
+        className="party-icon-sprite"
+        onError={makeFallback(p.name, false)}
+      />
+      {p.fainted && <div className="pi-fainted-overlay">✕</div>}
+
+      {showTip && (
+        <div className="party-icon-tooltip">
+          <div className="pit-name">{p.name}</div>
+          <div className="pit-hp-bar">
+            <div className={`pit-hp-fill ${hpCls}`} style={{ width: `${Math.max(0, hpPct)}%` }} />
+          </div>
+          <div className="pit-hp-text">
+            {p.fainted ? 'К.О.' : `${hpPct}%`}
+          </div>
+          {p.status && (
+            <div className="pit-status" style={{ color: STATUS_COLORS[p.status] || '#aaa' }}>
+              {STATUS_NAMES[p.status] || p.status}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
 const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, seenMoves }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const status    = statuses[pokemon.name];
@@ -404,6 +478,7 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
           </div>
         )}
       </div>
+
       <div className={`sprite-container ${isHit?'hit-flash':''}`}
         onMouseEnter={()=>setShowTooltip(true)}
         onMouseLeave={()=>setShowTooltip(false)}>
@@ -429,72 +504,108 @@ const PokemonOnField = ({ pokemon, isEnemy, boosts, statuses, volatiles, isHit, 
   );
 };
 
-// ============================================================
-// TOOLTIP
-// ============================================================
 const PokemonTooltip = ({ pokemon, isEnemy, boosts, status, volatiles, seenMoves }) => {
   const hpPct = pokemon.maxhp>0?(pokemon.hp/pokemon.maxhp)*100:0;
   return (
-    <div className={`poke-tooltip ${isEnemy?'tooltip-left':'tooltip-right'}`}>
+    <div className={`poke-tooltip ${isEnemy?'tooltip-left':'tooltip-right'}`}
+         style={isEnemy ? { bottom:'auto', top:'110%' } : {}}>
       <div className="tooltip-header">
         <strong>{pokemon.name}</strong>
-        <span className="tt-level">Ур.{pokemon.level}</span>
+        <span className="tooltip-level">Ур. {pokemon.level}</span>
       </div>
-      <div className="tt-types">
-        {pokemon.types?.map(t=><span key={t} className="type-badge-xs" style={{background:TYPE_COLORS[t]||'#777'}}>{t}</span>)}
+      <div className="tooltip-types">
+        {pokemon.types?.map(t=>(
+          <span key={t} className="type-badge-sm" style={{background:TYPE_COLORS[t]||'#777'}}>{t}</span>
+        ))}
       </div>
-      <div className="tt-hp-bar">
-        <div className={`tt-hp-fill ${hpPct<20?'critical':hpPct<50?'low':''}`} style={{width:`${Math.max(0,hpPct)}%`}}/>
+      <div className="tooltip-hp">
+        HP: <strong>{isEnemy?`${Math.ceil(hpPct)}%`:`${pokemon.hp}/${pokemon.maxhp}`}</strong>
+        <span className={`tooltip-hp-pct ${hpPct<20?'pct-red':hpPct<50?'pct-yellow':'pct-green'}`}>
+          {Math.ceil(hpPct)}%
+        </span>
       </div>
-      <div className="tt-hp-text">{isEnemy?`${Math.ceil(hpPct)}% HP`:`${pokemon.hp}/${pokemon.maxhp}`}</div>
-      {status&&<div className="tt-status" style={{color:STATUS_COLORS[status]||'#aaa'}}>{STATUS_NAMES[status]||status}</div>}
-      {STAT_KEYS.map(s=>{
-        const base=calcFinalStat(pokemon,s);
-        if(!base) return null;
-        const stage=Math.max(-6,Math.min(6,boosts?.[s]??0));
-        const boosted=s==='hp'?base:Math.floor(base*(BOOST_MULT[String(stage)]??1));
-        return (
-          <div key={s} className="tt-stat-row">
-            <span className="tt-stat-key">{STAT_NAMES[s]}</span>
-            <span className={`tt-stat-val ${stage>0?'boost-pos':stage<0?'boost-neg':''}`}>
-              {boosted}{stage!==0?` (${stage>0?'+':''}${stage})`:''}
-            </span>
-          </div>
-        );
-      })}
-      {seenMoves?.length>0&&(
-        <div className="tt-moves">
-          <div className="tt-moves-title">Замечены атаки:</div>
-          {seenMoves.map(m=><span key={m} className="tt-move">{m}</span>)}
+      {status&&<div className="tooltip-status" style={{color:STATUS_COLORS[status]||'#aaa'}}>{STATUS_NAMES[status]||status}</div>}
+      {volatiles?.filter(e=>!e.includes('Substitute')).length>0&&(
+        <div className="tooltip-volatiles">
+          {volatiles.filter(e=>!e.includes('Substitute')).map((e,i)=>(
+            <span key={i} className="tv-badge">{VOLATILE_NAMES[e]||e}</span>
+          ))}
         </div>
       )}
-      {volatiles?.length>0&&(
-        <div className="tt-vols">
-          {volatiles.map(e=><span key={e} className="volatile-badge">{VOLATILE_NAMES[e]||e}</span>)}
+      {pokemon.ability&&<div className="tooltip-row"><span className="tl">Способность:</span> {pokemon.ability}</div>}
+      {pokemon.item   &&<div className="tooltip-row"><span className="tl">Предмет:</span> {pokemon.item}</div>}
+      {!isEnemy&&pokemon.nature&&<div className="tooltip-row"><span className="tl">Природа:</span> {pokemon.nature}</div>}
+
+      {pokemon.baseStats&&(
+        <div className="tooltip-stats">
+          <div className="ts-header">
+            <span className="ts-title">Статы</span>
+            <span className="ts-sub">{isEnemy?'Баз / Итог':'Баз / Итог / Буст'}</span>
+          </div>
+          {STAT_KEYS.map(stat=>{
+            const base    = pokemon.baseStats[stat]??0;
+            const final   = calcFinalStat(pokemon, stat);
+            const boosted = calcBoostedStat(pokemon, stat, boosts);
+            const bval    = boosts?.[stat]??0;
+            const barW    = Math.min(100, base/1.8);
+            const barClr  = base>=100?'#2ecc71':base>=70?'#f1c40f':'#e74c3c';
+            return (
+              <div key={stat} className="ts-row">
+                <span className="ts-name">{STAT_NAMES[stat]||stat}</span>
+                <div className="ts-bar-wrap"><div className="ts-bar" style={{width:`${barW}%`,background:barClr}}/></div>
+                <span className="ts-val">{base}</span>
+                {final!==null&&<span className="ts-final">{final}</span>}
+                {!isEnemy&&bval!==0&&boosted!==null&&(
+                  <span className={`ts-boosted ${bval>0?'ts-pos':'ts-neg'}`}>{boosted}</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {!isEnemy&&pokemon.moveSlots?.length>0&&(
+        <div className="tooltip-moves">
+          <div className="ts-title">Атаки</div>
+          {pokemon.moveSlots.map(m=>(
+            <div key={m.id} className="tm-row">
+              <span className={m.disabled?'tm-disabled':''}>{m.move}</span>
+              <span className="tm-pp">{m.pp}/{m.maxpp} PP</span>
+            </div>
+          ))}
+        </div>
+      )}
+      {isEnemy&&seenMoves?.length>0&&(
+        <div className="tooltip-moves">
+          <div className="ts-title">Замеченные атаки</div>
+          {seenMoves.map((m,i)=><div key={i} className="tm-row"><span>{m}</span></div>)}
         </div>
       )}
     </div>
   );
 };
 
-// ============================================================
-// BATTLE CONTROLS
-// ============================================================
-const BattleControls = ({ moves, sendAction, setShowParty, isWaiting, activePokemon }) => (
-  <div className="battle-controls">
-    <div className="active-mon-info">
+const BattleControls = ({ moves, sendAction, isWaiting, activePokemon, isForceSwitch }) => (
+  <div className="battle-menu">
+    <div className="move-info-bar">
       {activePokemon&&(
-        <span className="active-mon-name">{activePokemon.name}</span>
+        <span className="active-name">
+          {activePokemon.name}
+          {activePokemon.types?.map(t=>(
+            <span key={t} className="type-badge-inline" style={{background:TYPE_COLORS[t]||'#777'}}>{t}</span>
+          ))}
+        </span>
+      )}
+      {isForceSwitch && (
+        <span className="force-switch-hint">⚠ Выберите замену ниже</span>
       )}
     </div>
-    <div className="moves-layout">
+    <div className={`moves-layout${isForceSwitch?' moves-blocked':''}`}>
       {moves.length>0
-        ?moves.map((m,i)=><MoveButton key={i} move={m} index={i} sendAction={sendAction} isWaiting={isWaiting}/>)
+        ?moves.map((m,i)=><MoveButton key={i} move={m} index={i} sendAction={sendAction} isWaiting={isWaiting||isForceSwitch} isForceSwitch={isForceSwitch}/>)
         :<div className="waiting-text">Получение атак...</div>
       }
     </div>
     <div className="action-sidebar">
-      <button className="act-btn poke-btn" onClick={()=>setShowParty(true)}>⊕ ПОКЕМОНЫ</button>
       <button className="act-btn run-btn" onClick={()=>window.location.href='/'}>↩ СБЕЖАТЬ</button>
     </div>
   </div>
@@ -521,9 +632,6 @@ const MoveButton = ({ move, index, sendAction, isWaiting }) => {
   );
 };
 
-// ============================================================
-// MISC
-// ============================================================
 const WaitingPanel = ({ lastMove }) => (
   <div className="waiting-panel">
     <div className="waiting-spinner"/>
@@ -542,54 +650,87 @@ const WinScreen = ({ winner, myName, onExit }) => (
   </div>
 );
 
-const PartyModal = ({ mySide, sendAction, setShowParty, isWaiting, isForceSwitch }) => {
+const PartyStrip = ({ mySide, sendAction, isWaiting, isForceSwitch, switchPending }) => {
+  const [hoveredNum, setHoveredNum] = useState(null);
   const sorted = [...(mySide?.pokemon||[])].sort((a,b)=>a.num-b.num);
+
   return (
-    <div className="modal-overlay" onClick={!isForceSwitch?()=>setShowParty(false):undefined}>
-      <div className="party-window" onClick={e=>e.stopPropagation()}>
-        <div className="party-header">
-          <h3>ВАША КОМАНДА</h3>
-          {isForceSwitch&&<span className="force-switch-badge">⚠ Выберите замену</span>}
-        </div>
-        <div className="party-list">
-          {sorted.map(p=>{
-            const isFainted=p.fainted||p.condition?.startsWith('0');
-            const isActive=p.active;
-            const canSwitch=!isActive&&!isFainted;
-            const hpPct=p.maxhp>0?(p.hp/p.maxhp)*100:0;
-            return (
-              <button
-                key={p.num}
-                className={`party-member ${isActive?'on-field':''} ${isFainted?'fainted':''} ${canSwitch&&!isWaiting?'can-switch':''}`}
-                onClick={()=>{sendAction(`switch ${p.num}`);setShowParty(false);}}
-                disabled={!canSwitch||isWaiting}
-              >
-                <img src={getSpriteFront(p.name)} alt={p.name} className="party-sprite" onError={makeFallback(p.name,false)}/>
-                <div className="p-info">
-                  <div className="p-name-row">
-                    <span className="p-name">{p.name}</span>
-                    <span className="p-level">Ур.{p.level}</span>
-                    {p.status&&<span className="p-status-badge" style={{background:STATUS_COLORS[p.status]}}>{STATUS_NAMES[p.status]?.slice(0,3)||p.status}</span>}
+    <div className={`party-strip${isForceSwitch ? ' party-strip-force' : ''}`}>
+      {isForceSwitch && (
+        <div className="party-strip-label">⚠ Выберите замену:</div>
+      )}
+      <div className="party-strip-slots">
+        {sorted.map(p => {
+          const isFainted = p.fainted || p.condition?.startsWith('0');
+          const isActive  = p.active;
+          const canSwitch = !isActive && !isFainted && !isWaiting;
+          const hpPct     = p.maxhp > 0 ? (p.hp / p.maxhp) * 100 : 0;
+          const hpCls     = hpPct < 20 ? 'critical' : hpPct < 50 ? 'low' : '';
+
+          return (
+            <div
+              key={p.num}
+              className={[
+                'pslot',
+                isActive   ? 'pslot-active'   : '',
+                isFainted  ? 'pslot-fainted'  : '',
+                canSwitch && isForceSwitch ? 'pslot-pick' : '',
+                canSwitch && !isForceSwitch ? 'pslot-idle' : '',
+              ].filter(Boolean).join(' ')}
+              onClick={() => canSwitch && sendAction(`switch ${p.num}`)}
+              onMouseEnter={() => setHoveredNum(p.num)}
+              onMouseLeave={() => setHoveredNum(null)}
+            >
+              <div className="pslot-img-wrap">
+                <img
+                  src={getSpriteFront(p.name)} alt={p.name}
+                  className="pslot-sprite"
+                  onError={makeFallback(p.name, false)}
+                />
+                {isFainted && <div className="pslot-fnt">✕</div>}
+                {isActive  && <div className="pslot-active-ring"/>}
+              </div>
+
+              <div className="pslot-hpbar-bg">
+                <div className={`pslot-hpbar-fill ${hpCls}`} style={{width:`${Math.max(0,hpPct)}%`}}/>
+              </div>
+              <div className="pslot-name">{p.name}</div>
+
+              {hoveredNum === p.num && (
+                <div className="pslot-tooltip">
+                  <div className="pstt-head">
+                    <span className="pstt-name">{p.name}</span>
+                    <span className="pstt-lv">Ур.{p.level||100}</span>
+                    {p.status && (
+                      <span className="pstt-status" style={{background:STATUS_COLORS[p.status]}}>{STATUS_NAMES[p.status]?.slice(0,3)||p.status}</span>
+                    )}
                   </div>
-                  <div className="p-types">
-                    {p.types?.map(t=><span key={t} className="type-badge-xs" style={{background:TYPE_COLORS[t]||'#777'}}>{t}</span>)}
-                  </div>
-                  <div className="p-hp-row">
-                    <div className="p-hp-bar">
-                      <div className={`p-hp-fill ${hpPct<20?'critical':hpPct<50?'low':''}`} style={{width:`${Math.max(0,hpPct)}%`}}/>
+                  {p.types && (
+                    <div className="pstt-types">
+                      {p.types.map(t=><span key={t} className="type-badge-xs" style={{background:TYPE_COLORS[t]||'#777'}}>{t}</span>)}
                     </div>
-                    <span className="p-hp-text">{isFainted?'БЕЗ СОЗНАНИЯ':isActive?'В БОЮ':`${p.hp}/${p.maxhp}`}</span>
+                  )}
+                  <div className="pstt-hp-row">
+                    <div className="pstt-hpbar">
+                      <div className={`pslot-hpbar-fill ${hpCls}`} style={{width:`${Math.max(0,hpPct)}%`}}/>
+                    </div>
+                    <span className="pstt-hptxt">{isFainted ? 'К.О.' : `${Math.ceil(hpPct)}%`}</span>
+                  </div>
+                  {p.ability && <div className="pstt-row">Способность: <b>{p.ability}</b></div>}
+                  {p.item    && <div className="pstt-row">Предмет: <b>{p.item}</b></div>}
+                  <div className={`pstt-hint ${isActive?'hint-active':isFainted?'hint-fnt':canSwitch?'hint-switch':''}`}>
+                    {isActive ? '⚔ В бою' : isFainted ? '✕ Без сознания' : '↩ Нажмите чтобы выставить'}
                   </div>
                 </div>
-              </button>
-            );
-          })}
-        </div>
-        {!isForceSwitch&&<button className="close-modal" onClick={()=>setShowParty(false)}>ОТМЕНА</button>}
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
+
 
 const PreviewPhase = ({ side, enemySide, sendAction, isWaiting }) => {
   const myList    = [...(side?.pokemon||[])].sort((a,b)=>a.num-b.num);
@@ -626,7 +767,7 @@ const PreviewPhase = ({ side, enemySide, sendAction, isWaiting }) => {
 
 const LogPanel = ({ logs, logEndRef }) => (
   <div className="log-container">
-    {logs.map((log,i)=><div key={i} className={`log-entry ${log.cls||''}`}>{log.text}</div>)}
+    {logs.map((log,i)=><div key={i} className={`log-entry ${log.cls||''} log-entry-anim`}>{log.text}</div>)}
     <div ref={logEndRef}/>
   </div>
 );

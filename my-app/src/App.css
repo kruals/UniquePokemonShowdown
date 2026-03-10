@@ -20,6 +20,10 @@ body, html {
   display: flex;
   flex-direction: column;
   row-gap: 1vh;
+  /* background-image: url('../public/background1.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 /* Header */
