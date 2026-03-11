@@ -355,10 +355,58 @@
     }
     .stab { padding: 6px 10px; font-size: .76rem; }
 
-    /* Вызовы — скрываем в горизонтальной панели */
-    .challenges-section { display: none; }
+    /* ✅ Вызовы — вытаскиваем из сайдбара, показываем снизу экрана */
+    .challenges-section {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 300;
+        padding: 10px 12px 14px;
+        background: rgba(15, 20, 30, 0.98);
+        border-top: 2px solid rgba(231,76,60,.7);
+        box-shadow: 0 -4px 30px rgba(231,76,60,.25);
+        backdrop-filter: blur(8px);
+        max-height: 60vh;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
-    /* Основной контент занимает всё оставшееся место */
+    /* Карточка вызова — адаптируем под полную ширину */
+    .challenge-card {
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 10px;
+    }
+    .cc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .cc-from {
+        font-size: .9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    /* TeamSelector внутри карточки — на всю ширину */
+    .challenge-card .team-selector { width: 100%; }
+    .cc-btns {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+    }
+    .cc-btns .action-btn {
+        flex: 1;
+        text-align: center;
+        padding: 9px 0;
+        font-size: .82rem;
+    }
+
+    /* Основной контент — отступ снизу если есть вызовы */
+    /* (делаем через padding-bottom на home-main) */
     .home-main {
         flex: 1;
         padding: 10px;
@@ -377,4 +425,13 @@
     .snav-btn { font-size: .7rem; padding: 5px 8px; }
     .home-main { padding: 8px; gap: 8px; }
     .ts-spr, .ts-empty-slot { width: 24px; height: 24px; }
+}
+
+/* ── CHALLENGE BANNER — анимация заголовка ── */
+@keyframes challengePulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: .6; }
+}
+.cs-title {
+    animation: challengePulse 1.8s ease-in-out infinite;
 }
