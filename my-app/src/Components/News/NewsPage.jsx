@@ -102,9 +102,7 @@ export default function NewsPage() {
       <header style={s.header}>
         <div style={s.headerInner}>
           <div style={s.logo}>
-            <span style={s.logoPoke}>⚔</span>
             <div>
-              <div style={s.logoTitle}>PokéBattle</div>
               <div style={s.logoSub}>Патчноуты и обновления</div>
             </div>
           </div>

@@ -104,7 +104,7 @@ function App() {
   return (
     <div className="App">
       <AppHeader user={user} onLogout={handleLogout} navigate={navigate} />
-      <main>
+      <main >
         <Routes>
           <Route path="/"                element={<Home socket={socketRef} />} />
           <Route path="/teambuilder"     element={<TeamBuild />} />
