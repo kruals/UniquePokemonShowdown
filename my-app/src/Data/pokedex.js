@@ -23179,7 +23179,6 @@ const Pokedex = {
       "num": 1302,
       "name": "Typecast",
       "types": [
-          "Normal",
           "Normal"
       ],
       "baseStats": {
